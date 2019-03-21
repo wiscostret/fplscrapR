@@ -15,7 +15,7 @@ remotes::install_github("wiscostret/fplscrapR")
 ```
 ## Examples
 
-In the vignette folder, you can find examples for alle the functions available in fplscrapR, showing you how you can easily use the package to perform simple yet interesting FPL analysis.
+On the [vignette website](https://wiscostret.github.io/fplscrapR/), you can find examples for alle the functions available in fplscrapR, showing you how you can easily use the package to perform simple yet interesting FPL analysis.
 
 ## Questions
 
