@@ -12,6 +12,8 @@ if (!require(remotes)) {
 }
 
 remotes::install_github("wiscostret/fplscrapR")
+
+library(fplscrapR)
 ```
 ## Examples
 
