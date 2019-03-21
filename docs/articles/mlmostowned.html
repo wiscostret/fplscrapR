@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Average and top entry scores for the first 25 gameweeks • fplscrapR</title>
+<title>Finding the most owned players amongst the top 20 teams of your favourite mini-league • fplscrapR</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Average and top entry scores for the first 25 gameweeks">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Finding the most owned players amongst the top 20 teams of your favourite mini-league">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -132,36 +132,72 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Average and top entry scores for the first 25 gameweeks</h1>
+      <h1>Finding the most owned players amongst the top 20 teams of your favourite mini-league</h1>
                         <h4 class="author">Rasmus Wiscostretford</h4>
             
             <h4 class="date">2019-03-21</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/wiscostret/fplscrapR/blob/master/vignettes/entryscores.Rmd"><code>vignettes/entryscores.Rmd</code></a></small>
-      <div class="hidden name"><code>entryscores.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/wiscostret/fplscrapR/blob/master/vignettes/mlmostowned.Rmd"><code>vignettes/mlmostowned.Rmd</code></a></small>
+      <div class="hidden name"><code>mlmostowned.Rmd</code></div>
 
     </div>
 
     
     
-<p>Suppose we are interested in tracking the average and top FPL scores by gameweek?</p>
-<p>First we fetch the round information for a selection of gameweeks, say 1-25, using the get_round_info function:</p>
+<p>Suppose now we are interested in finding the most owned players in the top20 teams in your favourite mini-league? Here we take the example of the current ‘Who Got the Assist? Mini-League’.</p>
+<p>First we fetch the league data using get_league:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fplscrapR)
 
-df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_round_info.html">get_round_info</a></span>(<span class="dv">1</span>:<span class="dv">25</span>)</code></pre></div>
-<p>Next we use dplyr, tidyr and ggplot2 to transform and plot the data, showing the average and top entry progression by gameweek:</p>
+df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_league.html">get_league</a></span>(<span class="dt">leagueid =</span> <span class="dv">441</span>,<span class="dt">leaguetype =</span> <span class="st">"classic"</span>)</code></pre></div>
+<p>Next we save in a new data frame the entry ids’ of the top20 ranking teams at the moment, using dplyr:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(id,average_entry_score,highest_score) %&gt;%<span class="st"> </span><span class="co"># selecting the relevant columns</span>
-<span class="st">  </span><span class="kw">gather</span>(<span class="st">"var"</span>,<span class="st">"value"</span>,-id) %&gt;%<span class="st"> </span><span class="co"># transforming from wide to long format for ggplot</span>
-<span class="st">  </span><span class="kw">ggplot</span>() +<span class="st"> </span><span class="co"># plotting using ggplot2</span>
-<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>id,<span class="dt">y=</span>value,<span class="dt">colour=</span>var),<span class="dt">size=</span><span class="dv">1</span>) +
-<span class="st">    </span><span class="kw">theme_bw</span>() +
-<span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="dv">1</span>:<span class="dv">25</span>) +
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">"Gameweek"</span>,<span class="dt">y=</span><span class="st">"Score"</span>,<span class="dt">title=</span><span class="st">"Average and top FPL entry scores by gameweek"</span>,<span class="dt">caption=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Data from fplscrapR | "</span>,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>(),<span class="dt">sep=</span><span class="st">""</span>))</code></pre></div>
-<p><img src="entryscores_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyr)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top20entries &lt;-<span class="st"> </span>df$standings$results %&gt;%<span class="st"> </span><span class="co"># selecting the standings and results data</span>
+<span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(rank %in%<span class="st"> </span><span class="dv">1</span>:<span class="dv">20</span>) %&gt;%<span class="st">  </span><span class="co"># filtering for the top20 ranks</span>
+<span class="st">  </span><span class="kw">select</span>(entry) <span class="co"># selecting only the entry ids</span></code></pre></div>
+<p>Now we want to know the most selected players by these teams in a given gameweek, say gameweek 31. So we set the gameweek number and collect the players picks by each of the top20 entries using get_entry_picks. We do so through a loop (which is decidedly not the most efficient method), binding the picks together in a new data frame called ‘top20picks’:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gameweek &lt;-<span class="st"> </span><span class="dv">31</span>
+
+top20picks &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>()
+
+for (i in <span class="dv">1</span>:<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(top20entries)){
+  picks &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_entry_picks.html">get_entry_picks</a></span>(<span class="dt">entryid=</span>top20entries[i,],<span class="dt">gw=</span>gameweek)
+  top20picks &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(top20picks,picks$picks)
+}</code></pre></div>
+<p>Finally we list the top20 most owned players amongst the top20 managers in the WGTA Mini-League using dplyr:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top20picks %&gt;%<span class="st"> </span><span class="co"># working with our newly created data.frame</span>
+<span class="st">  </span><span class="kw">group_by</span>(element) %&gt;%<span class="st"> </span><span class="co"># transformation to group and summarize the count (number of times a given player was selected) at the element (the player) variable level</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">n</span>()) %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(-<span class="st">`</span><span class="dt">n()</span><span class="st">`</span>) %&gt;%<span class="st"> </span><span class="co"># arranging by most selected</span>
+<span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span>:<span class="dv">20</span>) %&gt;%<span class="st"> </span><span class="co"># slicing so we just see the top20 selected players</span>
+<span class="st">  </span><span class="kw">arrange</span>(element) %&gt;%<span class="st"> </span><span class="co"># arranging by element id in order to allow us to mutate (create a new variable) the element ids into player names </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">name=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(element,get_player_name)) %&gt;%<span class="st"> </span><span class="co"># adding the playername data</span>
+<span class="st">  </span>tidyr::<span class="kw">unnest</span>(name) %&gt;%<span class="st"> </span><span class="co"># unnesting the playername data via tidyr</span>
+<span class="st">  </span><span class="kw">select</span>(playername,<span class="st">`</span><span class="dt">n()</span><span class="st">`</span>) %&gt;%<span class="st"> </span><span class="co"># selecting the variables of interest for our final list</span>
+<span class="st">  </span><span class="kw">arrange</span>(-<span class="st">`</span><span class="dt">n()</span><span class="st">`</span>) <span class="co"># arranging by most selected again</span></code></pre></div>
+<pre><code>## # A tibble: 20 x 2
+##    playername                       `n()`
+##    &lt;chr&gt;                            &lt;int&gt;
+##  1 Andrew Robertson                    20
+##  2 Mohamed Salah                       20
+##  3 Lukasz Fabianski                    18
+##  4 Eden Hazard                         17
+##  5 Jamie Vardy                         14
+##  6 Callum Wilson                       13
+##  7 Felipe Anderson Pereira Gomes       12
+##  8 David Luiz Moreira Marinho          11
+##  9 Paul Pogba                          11
+## 10 Ricardo Domingos Barbosa Pereira    10
+## 11 Sadio Mané                          10
+## 12 Aaron Wan-Bissaka                    8
+## 13 Trent Alexander-Arnold               8
+## 14 Ryan Fraser                          7
+## 15 Artur Boruc                          6
+## 16 Matt Doherty                         6
+## 17 Raúl Jiménez                         6
+## 18 David Brooks                         5
+## 19 James Maddison                       5
+## 20 Jan Bednarek                         5</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
