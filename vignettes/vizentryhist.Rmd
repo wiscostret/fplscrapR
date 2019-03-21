@@ -1,0 +1,39 @@
+---
+title: "Visualizing the FPL histories of entries"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose now we are interested in visualizing the FPL history of select entries, e.g myself (current FPL ID: 1076) and an FPL legend such as James Eggersdorff (current FPL ID: 64342)?
+
+First we fetch the entry histories using get_entry_hist:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+entryhist <- get_entry_hist(entryid=c(1076,64342))
+
+```
+
+Next we plot the historical performance using dplyr and ggplot2:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r, warning=F,fig.width=7,fig.height=5}
+entryhist %>% 
+  ggplot() +
+  geom_line(aes(x=season_name,y=rank,group=name,colour=name)) +
+  theme_bw() +
+  theme(legend.position="top") +
+  labs(x="Season",y="Overall Rank",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+
+```

@@ -1,0 +1,45 @@
+---
+title: "Finding the names of goalscorers in a given fixture"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose now we are interested in finding the names of the goalscorers in a given game? Here we take the example of the fixture West Ham - Crystal Palace.
+
+First we find the gameid using get_game_list and dplyr:
+
+```{r, warning=F}
+
+library(fplscrapR)
+library(dplyr)
+
+gameid <- get_game_list() %>% filter(home=="WHU",away=="CRY") %>% select(id)
+
+```
+
+Next we fetch the game stats using get_game_stats:
+
+```{r, warning=F}
+
+df <- get_game_stats(gameid=gameid)
+```
+
+Next we identify the goalscorers' playerids:
+
+```{r, warning=F}
+
+goalscorerids <- unlist(list(df$goals_scored$a[[1]]$element,df$goals_scored$h[[1]]$element))
+```
+
+Finally we fetch the playernames of goalscorers using get_player_name:
+
+```{r, warning=F}
+
+get_player_name(playerid=goalscorerids)
+```
+

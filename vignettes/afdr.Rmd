@@ -1,0 +1,42 @@
+---
+title: "Creating an Alternative FDR' (aFDR) ranking of opponents by FPL points allowed"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose now we are interested in trying to create an alternative to FPL's "FDR" (Fixture Difficulty Ranking) based on actual FPL points allowed?  Again, we take the first 25 gameweeks of the season as an example.
+
+First we fetch the gameweek-by-gameweek details of ALL players using get_player_details:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_details() # this may take a while to load as it fetches ALL player details
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, ranking the teams by FPL points allowed:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+df %>% 
+  filter(round %in% 1:25) %>% # filter out the gameweeks we are interested in
+  group_by(opponent_team) %>% # transformation to group and summarize the total_points (scored by a given player in a given round) by the opponent ('opponent_team') variable level
+  summarize(sum(total_points)) %>% 
+  ggplot(aes(x=reorder(opponent_team,`sum(total_points)`),y=`sum(total_points)`,fill=factor(opponent_team))) + 
+    geom_col(colour="black") +
+    theme_bw() +
+    coord_flip() +
+    scale_x_discrete(labels=c("1"="ARS","2"="BOU","3"="BHA","4"="BUR","5"="CAR","6"="CHE","7"="CRY","8"="EVE","9"="FUL","10"="HUD","11"="LEI","12"="LIV","13"="MCI","14"="MUN","15"="NEW","16"="SOU","17"="TOT","18"="WAT","19"="WHU","20"="WOL")) + # here we transform the numbered team labels to the FPL short letter names
+    labs(x="Team",y="Total FPL points allowed",title="Alternative FDR ranking - by total FPL points allowed",subtitle="Season 2018/2019 - Gameweeks 1-25",caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
+    scale_fill_manual(values=c("1"="#EF0107","2"="#000000","3"="#0057B8","4"="#6C1D45","5"="#0070B5","6"="#034694","7"="#1B458F","8"="#003399","9"="#FFFFFF","10"="#0E63AD","11"="#003090","12"="#C8102E","13"="#6CABDD","14"="#DA291C","15"="#241F20","16"="#D71920","17"="#132257","18"="#FBEE23","19"="#7A263A","20"="#FDB913"),guide=F) # here we add the team-specific colours to the plot
+```

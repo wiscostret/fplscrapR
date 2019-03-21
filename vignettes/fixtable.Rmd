@@ -1,0 +1,53 @@
+---
+title: "Creating a simple fixture table"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose now we are interested in creating a simple overview of FPL fixtures? Again, we take the first 25 gameweeks of the season as an example.
+
+First we fetch the full fixture list using get_game_list:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+gamelist <- get_game_list()
+```
+
+FPL only lists the fixtures once, as HOME-AWAY, but we need both HOME-AWAY and AWAY-HOME to plot the full fixture table. We need to plot every fixture twice, once as a home game for the one team, and once as an away game for the other team.
+
+Using R base's rbind and dplyr's mutate (creating new variables) we essentially just duplicate the fixture table:
+
+```{r, message=F,warning=F}
+library(dplyr)
+```
+
+```{r, warning=F}
+
+allfixtures <- rbind(
+  gamelist %>% mutate(team=home,oppo=away,homeaway="home"),
+  gamelist %>% mutate(team=away,oppo=tolower(home),homeaway="away"))
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, ranking the teams by FPL points allowed:
+
+```{r,warning=F,fig.width=7,fig.height=5}
+library(ggplot2)
+
+allfixtures %>% 
+  filter(GW %in% 1:25) %>% # filtering for the gameweeks we are interested in
+    ggplot() +
+      geom_tile(aes(x=GW,y=team),fill="white",colour="lightgrey") +
+      geom_text(aes(x=GW,y=team,label=oppo),size=2) +
+      theme_void() +
+      theme(axis.text = element_text(face = "bold")) +
+      theme(axis.text.y = element_text(margin=margin(0,-20,0,0))) + # fixing the margins on the tile
+      scale_x_continuous(position="top",breaks=1:25) +
+      labs(caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```

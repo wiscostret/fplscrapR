@@ -1,0 +1,33 @@
+---
+title: "List your classic mini-leagues and current ranks"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose now we are interested in listing the classic mini-leagues of which you are a member and your current rank in those mini-leagues?
+
+First we fetch the entry information using get_entry:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_entry(entryid=1076)
+
+```
+
+Next we select the classic league details and the relevant data columns using dplyr:
+
+```{r, warning=F}
+
+library(dplyr)
+
+df$leagues$classic %>% 
+  select(name,entry_last_rank) # selecting the columns of interest here
+
+```

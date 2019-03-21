@@ -1,0 +1,47 @@
+---
+title: "Most expensive teams by average FPL player cost"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose we are interested in comparing which Premier League teams have the most expensive FPL players on average?
+
+First we fetch the full summary data on all FPL players using the get_player_info function:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_info()
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, ranking each Premier League by its average FPL player cost:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+df %>% 
+  select(id, team, now_cost) %>% # selecting the relevant columns
+  mutate(now_cost=now_cost/10) %>% # transforming the cost to millions (for some reason the FPL data structures FPL cost as 100.000s)
+  group_by(team) %>% # transformation to group and mean-summarize the costs at the 'team' variable level 
+  summarize(mean(now_cost)) %>%
+    ggplot() + # plotting using ggplot2
+    geom_col(aes(x=reorder(team,-`mean(now_cost)`),y=`mean(now_cost)`),fill="blue") +
+    theme_bw() +
+    scale_x_discrete(
+      labels=c("1"="ARS","2"="BOU","3"="BHA","4"="BUR","5"="CAR","6"="CHE",
+        "7"="CRY","8"="EVE","9"="FUL","10"="HUD","11"="LEI","12"="LIV",
+        "13"="MCI","14"="MUN","15"="NEW","16"="SOU","17"="TOT","18"="WAT",
+        "19"="WHU","20"="WOL")) +
+    labs(x="Team",y="Mean player cost (£m)",
+      title="Mean FPL player cost for Premier League teams",
+      caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```

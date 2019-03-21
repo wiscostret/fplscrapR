@@ -1,0 +1,39 @@
+---
+title: "List of top performers by FPL goals and assists"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose we are interested in listing the top FPL performers by FPL goals and assists? Again, we take the first 25 gameweeks of the season as an example.
+
+First we fetch the gameweek-by-gameweek details of ALL players using get_player_details:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_details() # this may take a while to load as it fetches ALL player details
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, showing the top performers:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F}
+df %>%
+  filter(round %in% 1:25) %>% # filtering for the GWs we are interested in
+  select(playername,goals_scored,assists) %>% # selecting the relevant columns
+  group_by(playername) %>% # transformation to group and summarize the performance at the 'playername' variable level
+  summarize_all(sum) %>% 
+  mutate("involvements"=goals_scored+assists) %>% # adding a new variable that sums the goals scored and assists
+  arrange(-involvements) %>%  # ordering (arranging) the table by top involvements
+  slice(1:20) # showing the top20 only
+```

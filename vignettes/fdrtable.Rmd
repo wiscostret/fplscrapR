@@ -1,0 +1,71 @@
+---
+title: "Creating your own 'FDR' fixture table"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose now we are interested in creating an FPL fixture table like the FPL's official 'Fixture Difficulty Ranking'? Again, we take the first 25 gameweeks of the season as an example.
+
+First we fetch the official FDR rankings using get_fdr:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+fdr <- get_fdr()
+```
+
+Next we fetch the full fixture list using get_game_list:
+
+```{r, warning=F}
+
+gamelist <- get_game_list()
+```
+
+FPL only lists the fixtures once, as HOME-AWAY, but we need both HOME-AWAY and AWAY-HOME to plot the full fixture table. We need to plot every fixture twice, once as a home game for the one team, and once as an away game for the other team.
+
+Using R base's rbind and dplyr's mutate (creating new variables) we essentially just duplicate the fixture table:
+
+```{r, message=F,warning=F}
+library(dplyr)
+```
+
+```{r, warning=F}
+
+fdrfixtures <- rbind(
+  gamelist %>% mutate(team=home,oppo=away,homeaway="home"),
+  gamelist %>% mutate(team=away,oppo=tolower(home),homeaway="away"))
+```
+
+Then we need to add in the FDR ranking for each fixture, doing so through a loop (which is decidedly not the most efficient method). For each row, we identify the data point in the fdr data frame that provides the FDR ranking for each team in question, depending on whether the fixture is home or away:
+
+```{r, warning=F}
+for (i in 1:nrow(fdrfixtures)){
+  ifelse(fdrfixtures$homeaway[i]=="home",
+    fdrfixtures$fdr[i] <- fdr$strength_overall_away[which(fdr$short_name==toupper(fdrfixtures$oppo[i]))],
+    fdrfixtures$fdr[i] <- fdr$strength_overall_home[which(fdr$short_name==toupper(fdrfixtures$oppo[i]))])
+}
+```
+
+Next we use dplyr and ggplot2 to plot the data in a fixture table:
+
+```{r,warning=F,fig.width=7,fig.height=5}
+
+library(ggplot2)
+
+fdrfixtures %>% 
+  filter(GW %in% 1:25) %>%  # filtering for the gameweeks we are interested in
+    ggplot() +
+      geom_tile(aes(x=GW,y=team,fill=fdr),colour="lightgrey") +
+      geom_text(aes(x=GW,y=team,label=oppo),size=2) +
+      theme_void() +
+      theme(axis.text = element_text(face = "bold")) +
+      theme(axis.text.y = element_text(margin=margin(0,-20,0,0))) + # fixing the margins
+      scale_x_continuous(position="top",breaks=1:25) +
+      labs(caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
+      scale_fill_gradient2(guide=F,low="#00FF87",mid="#D6DCD8",high="#7F002D",midpoint=median(fdrfixtures$fdr)) # creating a gradient colour-coding that spans from toughest FDR ranking (coloured red) to easiest (coloured green)

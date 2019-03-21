@@ -1,0 +1,65 @@
+---
+title: "Finding the most owned players amongst the top 20 teams of your favourite mini-league"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose now we are interested in finding the most owned players in the top20 teams in your favourite mini-league? Here we take the example of the current 'Who Got the Assist? Mini-League'.
+
+First we fetch the league data using get_league:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_league(leagueid = 441,leaguetype = "classic")
+```
+
+Next we save in a new data frame the entry ids' of the top20 ranking teams at the moment, using dplyr:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(tidyr)
+```
+
+```{r, warning=F}
+top20entries <- df$standings$results %>% # selecting the standings and results data
+  filter(rank %in% 1:20) %>%  # filtering for the top20 ranks
+  select(entry) # selecting only the entry ids
+```
+
+Now we want to know the most selected players by these teams in a given gameweek, say gameweek 31. So we set the gameweek number and collect the players picks by each of the top20 entries using get_entry_picks. We do so through a loop (which is decidedly not the most efficient method), binding the picks together in a new data frame called 'top20picks':
+
+```{r, warning=F}
+
+gameweek <- 31
+
+top20picks <- data.frame()
+
+for (i in 1:nrow(top20entries)){
+  picks <- get_entry_picks(entryid=top20entries[i,],gw=gameweek)
+  top20picks <- rbind(top20picks,picks$picks)
+}
+```
+
+Finally we list the top20 most owned players amongst the top20 managers in the WGTA Mini-League using dplyr:
+
+```{r, warning=F}
+
+top20picks %>% # working with our newly created data.frame
+  group_by(element) %>% # transformation to group and summarize the count (number of times a given player was selected) at the element (the player) variable level
+  summarize(n()) %>%
+  arrange(-`n()`) %>% # arranging by most selected
+  slice(1:20) %>% # slicing so we just see the top20 selected players
+  arrange(element) %>% # arranging by element id in order to allow us to mutate (create a new variable) the element ids into player names 
+  mutate(name=lapply(element,get_player_name)) %>% # adding the playername data
+  tidyr::unnest(name) %>% # unnesting the playername data via tidyr
+  select(playername,`n()`) %>% # selecting the variables of interest for our final list
+  arrange(-`n()`) # arranging by most selected again
+
+```
