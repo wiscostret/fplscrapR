@@ -695,8 +695,6 @@ rbind( # combining the two objects containing the home and away team's BPS point
 
 Suppose we are interested in tracking the average and top FPL scores by gameweek?
 
-get_round_info(1:25)
-
 First we fetch the round information for a selection of gameweeks, say 1-25, using the get_round_info function:
 
 ```{r, warning=F}
