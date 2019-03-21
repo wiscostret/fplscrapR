@@ -1,0 +1,31 @@
+---
+title: "Top options for DGW32 by FPL points per 90 mins"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose we are interested in the top options for DGW32, measured by FPL points per 90 mins (pp90) so far this season?
+
+With fplscrapR, we can get that list in juts a few lines of code:
+
+```{r, message=F,warning=F}
+library(fplscrapR)
+library(dplyr)
+```
+
+```{r,warning=F}
+df <- get_player_info()
+
+df %>% 
+  filter(total_points >= 30) %>% # filtering for players with more than 30 points scored
+  filter(team %in% c(3,5,6,7,9,13,14,17,18,20)) %>% # filtering for teams with a DGW in GW32 
+  mutate(pp90 = total_points / minutes * 90) %>% # creating the 'pp90' variable
+  select(playername,pp90) %>% # selecting player name and ppm for our table
+  arrange(-pp90) %>% # ordering (arranging) by ppm
+  slice(1:20) # showing just the top20
+```
