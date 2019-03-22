@@ -72,6 +72,9 @@
       <a href="../articles/bpsforgame.html">Comparing total team BPS scores for a given game</a>
     </li>
     <li>
+      <a href="../articles/dgw32ppms.html">Top options for DGW32 by FPL points per 90 mins</a>
+    </li>
+    <li>
       <a href="../articles/entryscores.html">Average and top entry scores for the first 25 gameweeks</a>
     </li>
     <li>
@@ -100,6 +103,9 @@
     </li>
     <li>
       <a href="../articles/simplexamodel.html">Building a very simple expected assists (xA) model</a>
+    </li>
+    <li>
+      <a href="../articles/talismantheory.html">Replicating Who Got The Assist?'s Talisman Theory</a>
     </li>
     <li>
       <a href="../articles/topperformers.html">List of top performers by FPL goals and assists</a>
@@ -135,7 +141,7 @@
       <h1>Finding the most owned players amongst the top 20 teams of your favourite mini-league</h1>
                         <h4 class="author">Rasmus Wiscostretford</h4>
             
-            <h4 class="date">2019-03-21</h4>
+            <h4 class="date">2019-03-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/wiscostret/fplscrapR/blob/master/vignettes/mlmostowned.Rmd"><code>vignettes/mlmostowned.Rmd</code></a></small>
       <div class="hidden name"><code>mlmostowned.Rmd</code></div>
@@ -144,18 +150,18 @@
 
     
     
-<p>Suppose now we are interested in finding the most owned players in the top20 teams in your favourite mini-league? Here we take the example of the current ‘Who Got the Assist? Mini-League’.</p>
+<p>Suppose now we are interested in finding the most owned players in the top20 teams in your favourite mini-league? Here we take the example of the current ‘The FF Community Shield’ mini-league.</p>
 <p>First we fetch the league data using get_league:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fplscrapR)
 
-df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_league.html">get_league</a></span>(<span class="dt">leagueid =</span> <span class="dv">441</span>,<span class="dt">leaguetype =</span> <span class="st">"classic"</span>)</code></pre></div>
+df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_league.html">get_league</a></span>(<span class="dt">leagueid =</span> <span class="dv">786</span>,<span class="dt">leaguetype =</span> <span class="st">"classic"</span>)</code></pre></div>
 <p>Next we save in a new data frame the entry ids’ of the top20 ranking teams at the moment, using dplyr:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyr)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top20entries &lt;-<span class="st"> </span>df$standings$results %&gt;%<span class="st"> </span><span class="co"># selecting the standings and results data</span>
 <span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(rank %in%<span class="st"> </span><span class="dv">1</span>:<span class="dv">20</span>) %&gt;%<span class="st">  </span><span class="co"># filtering for the top20 ranks</span>
 <span class="st">  </span><span class="kw">select</span>(entry) <span class="co"># selecting only the entry ids</span></code></pre></div>
-<p>Now we want to know the most selected players by these teams in a given gameweek, say gameweek 31. So we set the gameweek number and collect the players picks by each of the top20 entries using get_entry_picks. We do so through a loop (which is decidedly not the most efficient method), binding the picks together in a new data frame called ‘top20picks’:</p>
+<p>Now we want to know the most selected players by these teams in a given gameweek, say gameweek 31. So we set the gameweek number and collect the players picks by each of the top20 entries using get_entry_picks. We do so through a loop (which is probably not the most efficient method), binding the picks together in a new data frame called ‘top20picks’:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gameweek &lt;-<span class="st"> </span><span class="dv">31</span>
 
 top20picks &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>()
@@ -178,26 +184,26 @@ for (i in <span class="dv">1</span>:<span class="kw"><a href="https://www.rdocum
 <pre><code>## # A tibble: 20 x 2
 ##    playername                       `n()`
 ##    &lt;chr&gt;                            &lt;int&gt;
-##  1 Andrew Robertson                    20
-##  2 Mohamed Salah                       20
-##  3 Lukasz Fabianski                    18
-##  4 Eden Hazard                         17
+##  1 Mohamed Salah                       18
+##  2 Callum Wilson                       16
+##  3 Eden Hazard                         16
+##  4 Andrew Robertson                    15
 ##  5 Jamie Vardy                         14
-##  6 Callum Wilson                       13
-##  7 Felipe Anderson Pereira Gomes       12
-##  8 David Luiz Moreira Marinho          11
-##  9 Paul Pogba                          11
-## 10 Ricardo Domingos Barbosa Pereira    10
-## 11 Sadio Mané                          10
-## 12 Aaron Wan-Bissaka                    8
-## 13 Trent Alexander-Arnold               8
-## 14 Ryan Fraser                          7
-## 15 Artur Boruc                          6
-## 16 Matt Doherty                         6
-## 17 Raúl Jiménez                         6
-## 18 David Brooks                         5
-## 19 James Maddison                       5
-## 20 Jan Bednarek                         5</code></pre>
+##  6 Sadio Mané                          14
+##  7 Lukasz Fabianski                    14
+##  8 Ricardo Domingos Barbosa Pereira    12
+##  9 Paul Pogba                          12
+## 10 Trent Alexander-Arnold              10
+## 11 David Brooks                         9
+## 12 Ryan Fraser                          8
+## 13 David Luiz Moreira Marinho           8
+## 14 Matt Doherty                         8
+## 15 Salomón Rondón                       8
+## 16 Aaron Wan-Bissaka                    7
+## 17 Raúl Jiménez                         7
+## 18 Declan Rice                          6
+## 19 Ben Hamer                            5
+## 20 James Maddison                       5</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

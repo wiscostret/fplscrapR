@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose now we are interested in finding the most owned players in the top20 teams in your favourite mini-league? Here we take the example of the current 'Who Got the Assist? Mini-League'.
+Suppose now we are interested in finding the most owned players in the top20 teams in your favourite mini-league? Here we take the example of the current 'The FF Community Shield' mini-league.
 
 First we fetch the league data using get_league:
 
@@ -17,7 +17,7 @@ First we fetch the league data using get_league:
 
 library(fplscrapR)
 
-df <- get_league(leagueid = 441,leaguetype = "classic")
+df <- get_league(leagueid = 786,leaguetype = "classic")
 ```
 
 Next we save in a new data frame the entry ids' of the top20 ranking teams at the moment, using dplyr:
@@ -33,7 +33,7 @@ top20entries <- df$standings$results %>% # selecting the standings and results d
   select(entry) # selecting only the entry ids
 ```
 
-Now we want to know the most selected players by these teams in a given gameweek, say gameweek 31. So we set the gameweek number and collect the players picks by each of the top20 entries using get_entry_picks. We do so through a loop (which is decidedly not the most efficient method), binding the picks together in a new data frame called 'top20picks':
+Now we want to know the most selected players by these teams in a given gameweek, say gameweek 31. So we set the gameweek number and collect the players picks by each of the top20 entries using get_entry_picks. We do so through a loop (which is probably not the most efficient method), binding the picks together in a new data frame called 'top20picks':
 
 ```{r, warning=F}
 
