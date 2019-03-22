@@ -1,0 +1,60 @@
+---
+title: "Replicating Who Got The Assist?'s Talisman Theory"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose we are interested in replicating 'Who Got The Assist?'s famous 'Talisman Theory' analysis, looking at the 'key men' for Premier League teams, players who score the largest proportion of team points. Specifically, selected non-appearance points that can be attributed to the individual player rather than the team as a whole.
+
+With fplscrapR, we can do this analysis very easily.
+
+First, we fetch the player stats using get_player_info:
+
+```{r, warning=F,message=F}
+
+library(fplscrapR)
+
+df <- get_player_info()
+```
+
+Next we manipulate the data frame to represent our needs in several steps, using dplyr:
+
+```{r, warning=F,message=F}
+library(dplyr)
+```
+
+```{r,warning=F,message=F}
+
+df2 <- 
+  df %>% 
+  mutate( # creating the 'non-appearance points' variable based on goals, assists, saves, penalty saves, and bonus points, with the exact scoring diferent for each position (element_type)
+    napts = case_when(
+      element_type == 1 ~ round(goals_scored * 6 + assists * 3 + saves/3 + penalties_saved*6 + bonus,0),
+      element_type == 2 ~ goals_scored * 6 + assists * 3 + bonus,
+      element_type == 3 ~ goals_scored * 5 + assists * 3 + bonus,
+      element_type == 4 ~ goals_scored * 4 + assists * 3 + bonus)) %>% 
+  group_by(team) %>% 
+  mutate(teamtotal = sum(napts)) %>% # summarising team totals
+  mutate(naptsprop = round(napts/teamtotal,2)) %>% # calculating the player proportion of the team total (and rounding) 
+  top_n(n=1) # selecting the top player from each team
+```  
+
+Finally, we create a nice-looking plot of our data, using ggplot2:
+
+```{r, warning=F}
+library(ggplot2)
+```
+
+```{r,fig.width=7,fig.height=5}
+df2 %>% 
+  ggplot() + 
+    geom_col(aes(x=reorder(second_name,naptsprop),y=naptsprop)) +
+    theme_bw() +
+    coord_flip() +
+    labs(title="Who Got The Assists?'s Talisman Theory", x="Player",y="Proportion of team's non-appearance points scored",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```
