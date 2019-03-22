@@ -47,7 +47,7 @@ for (i in 1:nrow(top20entries)){
 }
 ```
 
-Finally we list the top20 most owned players amongst the top20 managers in the WGTA Mini-League using dplyr:
+Finally we list the top20 most owned players amongst the top20 managers in the mini-league using dplyr:
 
 ```{r, warning=F}
 

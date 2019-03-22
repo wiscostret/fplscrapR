@@ -170,7 +170,7 @@ for (i in <span class="dv">1</span>:<span class="kw"><a href="https://www.rdocum
   picks &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_entry_picks.html">get_entry_picks</a></span>(<span class="dt">entryid=</span>top20entries[i,],<span class="dt">gw=</span>gameweek)
   top20picks &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(top20picks,picks$picks)
 }</code></pre></div>
-<p>Finally we list the top20 most owned players amongst the top20 managers in the WGTA Mini-League using dplyr:</p>
+<p>Finally we list the top20 most owned players amongst the top20 managers in the mini-league using dplyr:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">top20picks %&gt;%<span class="st"> </span><span class="co"># working with our newly created data.frame</span>
 <span class="st">  </span><span class="kw">group_by</span>(element) %&gt;%<span class="st"> </span><span class="co"># transformation to group and summarize the count (number of times a given player was selected) at the element (the player) variable level</span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">n</span>()) %&gt;%
