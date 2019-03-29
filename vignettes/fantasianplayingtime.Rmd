@@ -1,0 +1,43 @@
+---
+title: "Replicating Fantasian's playing time visualisation"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose we are interested in replicating [Fantasian's](https://twitter.com/FantasianPL) super visualisation of playing time?
+
+With fplscrapR, it's just a few lines of code away. Here, we take the example of Tottenham players across the whole season.
+
+First, we fetch the player stats using get_player_details:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_details()
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data in a 'tile' format, showing the playing time for each player across gameweeks:
+
+```{r, message=F,warning=F}
+
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+
+df %>% 
+  filter(element %in% 351:372) %>%  # selecting the 'elements' (players) from Tottenham
+  ggplot() +
+    geom_tile(aes(x=round,y=reorder(playername,-element),fill=minutes)) +
+    theme_bw() +
+    scale_x_continuous(position="top",breaks=1:30) +
+    labs(x="Gameweek",y="Player",caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
+    scale_fill_gradient2(guide=F,low="#FFFFFF",high="#132257") # filling each tile based on the 'minutes' value, from 'low' (white) to 'high' (the 'Spurs blue')
+```
