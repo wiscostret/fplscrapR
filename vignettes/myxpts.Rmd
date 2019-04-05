@@ -1,0 +1,47 @@
+---
+title: "My Expected Points"
+author: "Rasmus Wiscostretford"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Suppose we are interested in how many points our team is expected to score in the next GW?
+
+With fplscrapR, it's just a few lines of code away.
+
+First, we fetch the player selection using get_entry_picks. Here I use the example of my own team for GW33. Since I used my Free Hit in 32, I have to fetch the team from GW31:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+picks <- get_entry_picks(entryid=1076,gw=31)$picks
+```
+
+Next we fetch the Official FPL Expected Points projections using get_player_info() and select only what we need: the player id (renamed 'element' for merging later), the player name, and the expected points projection ('ep_next'), which we indicate is a numeric vector.
+
+```{r, message=F,warning=F}
+library(dplyr)
+
+df <- get_player_info() %>% 
+  select(id,playername,ep_next) %>% 
+  mutate("element"=id)
+
+df$ep_next <- as.numeric(df$ep_next)
+
+```
+
+Finally we merge the two, select out the variables of interest, display the projections, and sum up the total expected points from our starting 11:
+
+```{r, message=F,warning=F}
+
+df2 <- left_join(picks,df,by="element") %>% select(playername,is_captain,is_vice_captain,ep_next)
+
+df2
+
+sum(df2$ep_next[1:11])
+```
