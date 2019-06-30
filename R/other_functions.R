@@ -9,6 +9,6 @@
 #' get_fdr()
 
 get_fdr <- function(){
-  teams <- jsonlite::fromJSON("https://fantasy.premierleague.com/drf/teams")
+  teams <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$teams
   return(teams)
 }

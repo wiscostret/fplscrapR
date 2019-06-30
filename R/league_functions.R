@@ -15,8 +15,14 @@ get_league <- function(leagueid = NULL,leaguetype = "classic"){
     is.null(leagueid),
     return(print("You'll need to input at least one entry ID, mate.")),
     {
-      league <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/drf/leagues-",leaguetype,"-standings/",leagueid,sep=""))
+      league <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/leagues-",leaguetype,"/",leagueid,"/standings/",sep=""))
       return(league)
     }
   )
 }
+
+
+
+jsonlite::fromJSON("https://fantasy.premierleague.com/api/leagues-classic/4552/standings/")
+
+paste("https://fantasy.premierleague.com/api/leagues-","classic","/",4552,"/standings/",sep="")

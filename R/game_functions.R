@@ -10,7 +10,7 @@
 
 get_game_list <- function(){
   shorts <- get_fdr() %>% select(short_name)
-  fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/drf/fixtures/")
+  fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/fixtures/")
   data.frame(
     "GW"=fixtures$event,
     "id"=fixtures$id,
@@ -81,7 +81,7 @@ get_game_stats <- function(gameid = NULL){
     return(print("You'll need to input a game ID, mate.")),
     ifelse(length(gameid) != 1,"One at a time, please",
            {
-             fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/drf/fixtures")
+             fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/fixtures")
              return((fixtures %>% dplyr::filter(id %in% gameid))$stats[[1]])
            }
     ))

@@ -10,7 +10,7 @@
 #' get_round_info(2:4)
 
 get_round_info <- function(round = NULL){
-  events <- jsonlite::fromJSON("https://fantasy.premierleague.com/drf/events")
+  events <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$events
   ifelse(
     is.null(round),
     return(events),
