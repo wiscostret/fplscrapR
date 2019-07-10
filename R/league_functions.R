@@ -20,9 +20,3 @@ get_league <- function(leagueid = NULL,leaguetype = "classic"){
     }
   )
 }
-
-
-
-jsonlite::fromJSON("https://fantasy.premierleague.com/api/leagues-classic/4552/standings/")
-
-paste("https://fantasy.premierleague.com/api/leagues-","classic","/",4552,"/standings/",sep="")
