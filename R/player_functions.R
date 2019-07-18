@@ -97,14 +97,14 @@ get_player_hist <- function(playerid = NULL){
     {
       histinfo <- data.frame()
       for (i in 1:nrow(elements)){
-        fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],sep="")))$history_past
+        fplboot <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],sep=""))$history_past
         histinfo <- rbind(histinfo,data.frame(fplboot,playername=rep(elements$playername[which(elements$id==elements$id[i])],length(unique(fplboot$season_name)))))}
       return(histinfo)
     },
     {
       histinfo <- data.frame()
       for (i in 1:length(playerid)){
-        fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],sep="")))$history_past
+        fplboot <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],sep=""))$history_past
         histinfo <- rbind(histinfo,data.frame(fplboot,playername=rep(elements$playername[which(elements$id==playerid[i])],length(unique(fplboot$season_name)))))}
       return(histinfo)})
 }
@@ -128,14 +128,14 @@ get_player_details <- function(playerid = NULL){
     {
       detinfo <- data.frame()
       for (i in 1:nrow(elements)){
-        fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],sep="")))$history
+        fplboot <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],sep=""))$history
         detinfo <- rbind(detinfo,data.frame(fplboot,playername=rep(elements$playername[which(elements$id==elements$id[i])],length(unique(fplboot$id)))))}
       return(detinfo)
     },
     {
       detinfo <- data.frame()
       for (i in 1:length(playerid)){
-        fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],sep="")))$history
+        fplboot <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],sep=""))$history
         detinfo <- rbind(detinfo,data.frame(fplboot,playername=rep(elements$playername[which(elements$id==playerid[i])],length(unique(fplboot$id)))))}
-      return(detinfo)})
+      return(detinfo)}) 
 }
