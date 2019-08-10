@@ -13,7 +13,7 @@ get_player_hist(playerid = NULL)
 This function fetches historical summary information on selected players given player ID(s).
 }
 \examples{
-get_player_hist(playerid=300)
+get_player_hist(playerid=200)
 
 get_player_hist(playerid=get_player_id("Sead Kolasinac")$id)
 }

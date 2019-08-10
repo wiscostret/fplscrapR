@@ -102,7 +102,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
+      <a href="../articles/allvignettes.html">allvignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -205,8 +205,34 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_player_hist</span>(<span class='kw'>playerid</span><span class='kw'>=</span><span class='fl'>300</span>)</div><div class='output co'>#&gt; [1] playername
-#&gt; &lt;0 rækker&gt; (eller 0-længde row.names)</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>get_player_hist</span>(<span class='kw'>playerid</span><span class='kw'>=</span><span class='fl'>200</span>)</div><div class='output co'>#&gt;   season_name element_code start_cost end_cost total_points minutes
+#&gt; 1     2013/14        15157         60       54           67    1373
+#&gt; 2     2014/15        15157         55       54          107    1749
+#&gt; 3     2015/16        15157         70       66          123    2409
+#&gt; 4     2016/17        15157         65       63          139    3154
+#&gt; 5     2017/18        15157         65       60           77    1759
+#&gt; 6     2018/19        15157         55       56          101    1778
+#&gt;   goals_scored assists clean_sheets goals_conceded own_goals penalties_saved
+#&gt; 1            1       6            5             19         0               0
+#&gt; 2            5       8            7             19         0               0
+#&gt; 3            5      11            8             35         0               0
+#&gt; 4            7       4           12             35         0               0
+#&gt; 5            0       3            6             25         0               0
+#&gt; 6            5       5            9             13         0               0
+#&gt;   penalties_missed yellow_cards red_cards saves bonus bps influence creativity
+#&gt; 1                0            3         0     0     0  73       0.0        0.0
+#&gt; 2                0            6         0     0     8 393       0.0        0.0
+#&gt; 3                0            9         1     0    13 520       0.0        0.0
+#&gt; 4                1            5         0     0    16 682     919.0      937.0
+#&gt; 5                0            3         0     0     4 459     437.2      615.5
+#&gt; 6                0            5         1     0    12 448     587.2      725.2
+#&gt;   threat ict_index   playername
+#&gt; 1    0.0       0.0 James Milner
+#&gt; 2    0.0       0.0 James Milner
+#&gt; 3    0.0       0.0 James Milner
+#&gt; 4  493.0     235.2 James Milner
+#&gt; 5  272.0     132.5 James Milner
+#&gt; 6  374.0     169.2 James Milner</div><div class='input'>
 <span class='fu'>get_player_hist</span>(<span class='kw'>playerid</span><span class='kw'>=</span><span class='fu'><a href='get_player_id.html'>get_player_id</a></span>(<span class='st'>"Sead Kolasinac"</span>)$<span class='no'>id</span>)</div><div class='output co'>#&gt;   season_name element_code start_cost end_cost total_points minutes
 #&gt; 1     2017/18       111457         60       58          108    2146
 #&gt; 2     2018/19       111457         50       49           81    1886

@@ -40,7 +40,7 @@
 
 <meta property="og:title" content="get_game_stats — get_game_stats" />
 
-<meta property="og:description" content="This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home and away players, e.g. with '$': goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps." />
+<meta property="og:description" content="This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home (h) and away (a) players: goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -102,7 +102,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
+      <a href="../articles/allvignettes.html">allvignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -188,7 +188,7 @@
 
     <div class="ref-description">
     
-    <p>This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home and away players, e.g. with '$': goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps.</p>
+    <p>This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home (h) and away (a) players: goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps.</p>
     
     </div>
 
@@ -205,7 +205,39 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_game_stats</span>(<span class='fl'>20</span>)</div><div class='output co'>#&gt; dataramme med 0 kolonner og 0 rækker</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_game_stats</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: package ‘bindrcpp’ was built under R version 3.4.4</span></div><div class='output co'>#&gt;          identifier
+#&gt; 1      goals_scored
+#&gt; 2           assists
+#&gt; 3         own_goals
+#&gt; 4   penalties_saved
+#&gt; 5  penalties_missed
+#&gt; 6      yellow_cards
+#&gt; 7         red_cards
+#&gt; 8             saves
+#&gt; 9             bonus
+#&gt; 10              bps
+#&gt;                                                                                                                   a
+#&gt; 1                                                                                                            1, 278
+#&gt; 2                                                                                                            1, 283
+#&gt; 3                                                                                                            1, 277
+#&gt; 4                                                                                                              NULL
+#&gt; 5                                                                                                              NULL
+#&gt; 6                                                                                                    1, 1, 283, 288
+#&gt; 7                                                                                                              NULL
+#&gt; 8                                                                                                            4, 280
+#&gt; 9                                                                                                            1, 278
+#&gt; 10 32, 19, 18, 16, 16, 15, 12, 11, 10, 3, 2, 1, -3, 278, 280, 273, 274, 283, 276, 286, 290, 287, 434, 277, 285, 288
+#&gt;                                                                                                                           h
+#&gt; 1                                                                                                    1, 1, 1, 183, 188, 191
+#&gt; 2                                                                                            1, 1, 1, 1, 182, 187, 188, 191
+#&gt; 3                                                                                                                      NULL
+#&gt; 4                                                                                                                      NULL
+#&gt; 5                                                                                                                      NULL
+#&gt; 6                                                                                                                      NULL
+#&gt; 7                                                                                                                      NULL
+#&gt; 8                                                                                                            2, 2, 189, 526
+#&gt; 9                                                                                                            3, 2, 188, 191
+#&gt; 10 46, 40, 27, 26, 24, 18, 15, 12, 11, 10, 7, 7, 3, 3, 188, 191, 183, 187, 182, 197, 181, 198, 199, 184, 189, 526, 192, 200</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
