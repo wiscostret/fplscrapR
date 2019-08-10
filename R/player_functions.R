@@ -16,9 +16,7 @@ if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
 #' @keywords player
 #' @export
 #' @examples
-#' get_player_id(name="Aleksandar Mitrovic")
-#'
-#' get_player_id(name=c("Petr Cech","Bernd Leno"))
+#' get_player_id(name="Virgil van Dijk")
 
 get_player_id <- function(name = NULL){
   ifelse(
@@ -75,7 +73,7 @@ get_player_name <- function(playerid = NULL){
 #' @keywords player
 #' @export
 #' @examples
-#' get_player_info(name=c("Jesse Lingard","Aleksandar Mitrovic"))
+#' get_player_info(name=c("Jesse Lingard","Virgil van Dijk"))
 
 get_player_info <- function(name = NULL, season = NULL){
   ifelse(
@@ -104,7 +102,7 @@ get_player_info <- function(name = NULL, season = NULL){
 #' @keywords player
 #' @export
 #' @examples
-#' get_player_hist(playerid=300)
+#' get_player_hist(playerid=200)
 #'
 #' get_player_hist(playerid=get_player_id("Sead Kolasinac")$id)
 

@@ -83,12 +83,12 @@ get_game_list <- function(season = NULL){
 
 #' get_game_stats
 #'
-#' This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home and away players, e.g. with '$': goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps.
+#' This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home (h) and away (a) players: goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps.
 #' @param gameid The game ID. Can be found with get_game_list().
 #' @keywords game
 #' @export
 #' @examples
-#' get_game_stats(20)
+#' get_game_stats(1)
 
 get_game_stats <- function(gameid = NULL){
   if(is.null(gameid)) stop("You'll need to input at least one game ID, mate.")

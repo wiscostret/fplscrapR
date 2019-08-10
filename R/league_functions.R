@@ -2,7 +2,7 @@
 
 #' get_league
 #'
-#' This function fetches basic information for a Fantasy Premier League mini-league given the league ID and type. In the new FPL API for 19/20, this information requires authentication - so you'll also need to post your FPL login and password to retrieve the data.
+#' This function fetches basic information for a Fantasy Premier League mini-league given the league ID and type. In the new FPL API for 19/20, this information requires authentication - so you'll be prompted to post your FPL login and password to retrieve the data.
 #' @param leagueid The league ID(s). Can be found on the FPL website.
 #' @param leaguetype The league type: 'classic' or 'h2h'.
 #' @keywords league
@@ -33,7 +33,7 @@ get_league <- function(leagueid = NULL, leaguetype = "classic"){
 
 #' get_league_entries
 #'
-#' This function fetches a list of entries in the standings for a Fantasy Premier League mini-league given the league ID and type. In the new FPL API for 19/20, this information requires authentication - so you'll also need to post your FPL login and password to retrieve the data.
+#' This function fetches a list of entries in the standings for a Fantasy Premier League mini-league given the league ID and type. In the new FPL API for 19/20, this information requires authentication - so you'll be prompted to post your FPL login and password to retrieve the data.
 #' @param leagueid The league ID(s). Can be found on the FPL website.
 #' @param leaguetype The league type: 'classic' or 'h2h'.
 #' @param pages The number of pages of entries to fetch (there are 50 entries on each page)

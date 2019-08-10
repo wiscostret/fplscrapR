@@ -389,7 +389,7 @@ Next we identify the goalscorers' playerids:
 
 ```{r, warning=F}
 
-goalscorerids <- unlist(list(df$goals_scored$a[[1]]$element,df$goals_scored$h[[1]]$element))
+goalscorerids <- unlist(list(df$a[[1]]$element,df$h[[1]]$element))
 ```
 
 Finally we fetch the playernames of goalscorers using get_player_name:
