@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose we are interested in replicating 'Who Got The Assist?'s famous 'Talisman Theory' analysis, looking at the 'key men' for Premier League teams, players who score the largest proportion of team points. Specifically, selected non-appearance points that can be attributed to the individual player rather than the team as a whole.
+Suppose we are interested in replicating 'Who Got The Assist?'s famous 'Talisman Theory' analysis for the 18/19 season, looking at the 'key men' for Premier League teams, players who score the largest proportion of team points. Specifically, selected non-appearance points that can be attributed to the individual player rather than the team as a whole.
 
 With fplscrapR, we can do this analysis very easily.
 
@@ -19,7 +19,7 @@ First, we fetch the player stats using get_player_info:
 
 library(fplscrapR)
 
-df <- get_player_info()
+df <- get_player_info(season=18)
 ```
 
 Next we manipulate the data frame to represent our needs in several steps, using dplyr:

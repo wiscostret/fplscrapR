@@ -8,6 +8,13 @@
 
 <title>get_fdr — get_fdr • fplscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -34,6 +41,8 @@
 <meta property="og:title" content="get_fdr — get_fdr" />
 
 <meta property="og:description" content="This function fetches FPL's 'team strength' measures, which form the basis of the 'FDR' (Fixture Difficulty Rating)" />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -93,7 +102,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -105,7 +114,13 @@
       <a href="../articles/bpsforgame.html">Comparing total team BPS scores for a given game</a>
     </li>
     <li>
+      <a href="../articles/dgw32ppms.html">Top options by FPL points per 90 mins</a>
+    </li>
+    <li>
       <a href="../articles/entryscores.html">Average and top entry scores for the first 25 gameweeks</a>
+    </li>
+    <li>
+      <a href="../articles/fantasianplayingtime.html">Replicating Fantasian's playing time visualisation</a>
     </li>
     <li>
       <a href="../articles/fdrtable.html">Creating your own 'FDR' fixture table</a>
@@ -117,16 +132,13 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Eden Hazard and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
     </li>
     <li>
-      <a href="../articles/mlmostowned.html">Finding the most owned players amongst the top 20 teams of your favourite mini-league</a>
-    </li>
-    <li>
-      <a href="../articles/mltop.html">Listing the top 20 of your favourite mini-league</a>
+      <a href="../articles/myxpts.html">My Expected Points</a>
     </li>
     <li>
       <a href="../articles/salahpoints.html">Mohamed Salah's points in each gameweek for the first 25 gameweeks</a>
@@ -135,15 +147,18 @@
       <a href="../articles/simplexamodel.html">Building a very simple expected assists (xA) model</a>
     </li>
     <li>
+      <a href="../articles/talismantheory.html">Replicating Who Got The Assist?'s Talisman Theory</a>
+    </li>
+    <li>
       <a href="../articles/topperformers.html">List of top performers by FPL goals and assists</a>
     </li>
     <li>
       <a href="../articles/vizentryhist.html">Visualizing the FPL histories of entries</a>
     </li>
-    <li>
-      <a href="../articles/vizrankprogress.html">Visualizing your in-season Overall Rank progress</a>
-    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -181,111 +196,90 @@
         
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_fdr</span>()</div><div class='output co'>#&gt;    id current_event_fixture                        next_event_fixture
-#&gt; 1   1                  NULL                       1, 4, 3, 311, 1, 15
-#&gt; 2   2  1, 3, 1, 301, 16, 15                      0, 3, 1, 317, 30, 11
-#&gt; 3   3                  NULL  1, 0, 3, 4, 1, 5, 312, 265, 30, 3, 16, 6
-#&gt; 4   4  1, 3, 1, 303, 16, 11                      1, 3, 1, 313, 30, 20
-#&gt; 5   5                  NULL  1, 0, 3, 4, 2, 5, 314, 325, 31, 3, 6, 13
-#&gt; 6   6   0, 3, 2, 304, 17, 8   0, 1, 3, 4, 2, 5, 314, 265, 31, 3, 5, 3
-#&gt; 7   7                  NULL 1, 0, 3, 4, 1, 5, 315, 307, 30, 3, 10, 17
-#&gt; 8   8   1, 3, 2, 304, 17, 6                      0, 3, 1, 320, 30, 19
-#&gt; 9   9  1, 3, 2, 305, 17, 12 1, 0, 3, 4, 1, 4, 316, 329, 30, 2, 13, 18
-#&gt; 10 10  0, 3, 1, 309, 16, 19                       0, 3, 1, 315, 30, 7
-#&gt; 11 11   0, 3, 1, 303, 16, 4                       1, 3, 1, 317, 30, 2
-#&gt; 12 12   0, 3, 2, 305, 17, 9                      1, 3, 2, 318, 31, 17
-#&gt; 13 13                  NULL   0, 1, 3, 4, 1, 5, 316, 325, 30, 3, 9, 5
-#&gt; 14 14                  NULL 1, 0, 3, 4, 1, 4, 319, 330, 30, 2, 18, 20
-#&gt; 15 15   0, 3, 1, 301, 16, 2                        0, 4, 3, 311, 1, 1
-#&gt; 16 16                  NULL                       0, 3, 1, 312, 30, 3
-#&gt; 17 17                  NULL  0, 1, 3, 4, 2, 5, 318, 307, 31, 3, 12, 7
-#&gt; 18 18                  NULL  0, 1, 3, 4, 1, 4, 319, 329, 30, 2, 14, 9
-#&gt; 19 19  1, 3, 1, 309, 16, 10                       1, 3, 1, 320, 30, 8
-#&gt; 20 20                  NULL  0, 1, 3, 4, 1, 4, 313, 330, 30, 2, 4, 14
-#&gt;              name code short_name unavailable strength position played win loss
-#&gt; 1         Arsenal    3        ARS       FALSE        4        0      0   0    0
-#&gt; 2     Bournemouth   91        BOU       FALSE        3        0      0   0    0
-#&gt; 3        Brighton   36        BHA       FALSE        2        0      0   0    0
-#&gt; 4         Burnley   90        BUR       FALSE        3        0      0   0    0
-#&gt; 5         Cardiff   97        CAR       FALSE        2        0      0   0    0
-#&gt; 6         Chelsea    8        CHE       FALSE        4        0      0   0    0
-#&gt; 7  Crystal Palace   31        CRY       FALSE        2        0      0   0    0
-#&gt; 8         Everton   11        EVE       FALSE        3        0      0   0    0
-#&gt; 9          Fulham   54        FUL       FALSE        2        0      0   0    0
-#&gt; 10   Huddersfield   38        HUD       FALSE        2        0      0   0    0
-#&gt; 11      Leicester   13        LEI       FALSE        3        0      0   0    0
-#&gt; 12      Liverpool   14        LIV       FALSE        5        0      0   0    0
-#&gt; 13       Man City   43        MCI       FALSE        5        0      0   0    0
-#&gt; 14        Man Utd    1        MUN       FALSE        4        0      0   0    0
-#&gt; 15      Newcastle    4        NEW       FALSE        3        0      0   0    0
-#&gt; 16    Southampton   20        SOU       FALSE        2        0      0   0    0
-#&gt; 17          Spurs    6        TOT       FALSE        5        0      0   0    0
-#&gt; 18        Watford   57        WAT       FALSE        3        0      0   0    0
-#&gt; 19       West Ham   21        WHU       FALSE        3        0      0   0    0
-#&gt; 20         Wolves   39        WOL       FALSE        3        0      0   0    0
-#&gt;    draw points form link_url strength_overall_home strength_overall_away
-#&gt; 1     0      0   NA                           1260                  1320
-#&gt; 2     0      0   NA                           1030                  1130
-#&gt; 3     0      0   NA                           1030                  1050
-#&gt; 4     0      0   NA                           1070                  1100
-#&gt; 5     0      0   NA                           1030                  1080
-#&gt; 6     0      0   NA                           1260                  1310
-#&gt; 7     0      0   NA                           1060                  1080
-#&gt; 8     0      0   NA                           1090                  1110
-#&gt; 9     0      0   NA                           1000                  1040
-#&gt; 10    0      0   NA                           1010                  1020
-#&gt; 11    0      0   NA                           1110                  1110
-#&gt; 12    0      0   NA                           1330                  1350
-#&gt; 13    0      0   NA                           1320                  1350
-#&gt; 14    0      0   NA                           1310                  1330
-#&gt; 15    0      0   NA                           1070                  1120
-#&gt; 16    0      0   NA                           1050                  1060
-#&gt; 17    0      0   NA                           1330                  1330
-#&gt; 18    0      0   NA                           1100                  1110
-#&gt; 19    0      0   NA                           1100                  1150
-#&gt; 20    0      0   NA                           1130                  1150
-#&gt;    strength_attack_home strength_attack_away strength_defence_home
-#&gt; 1                  1240                 1270                  1310
-#&gt; 2                  1040                 1100                  1120
-#&gt; 3                  1040                 1140                  1010
-#&gt; 4                   990                 1030                  1000
-#&gt; 5                  1030                 1060                  1020
-#&gt; 6                  1270                 1340                  1320
-#&gt; 7                  1030                 1180                  1030
-#&gt; 8                  1070                 1120                  1140
-#&gt; 9                  1000                 1030                  1000
-#&gt; 10                 1030                 1060                   990
-#&gt; 11                 1130                 1180                  1080
-#&gt; 12                 1330                 1360                  1330
-#&gt; 13                 1320                 1330                  1340
-#&gt; 14                 1250                 1260                  1310
-#&gt; 15                 1070                 1110                  1030
-#&gt; 16                 1040                 1070                  1100
-#&gt; 17                 1270                 1340                  1320
-#&gt; 18                 1100                 1100                  1130
-#&gt; 19                 1090                 1100                  1120
-#&gt; 20                 1180                 1200                  1080
-#&gt;    strength_defence_away team_division
-#&gt; 1                   1340             1
-#&gt; 2                   1130             1
-#&gt; 3                   1070             1
-#&gt; 4                   1040             1
-#&gt; 5                   1090             1
-#&gt; 6                   1330             1
-#&gt; 7                   1050             1
-#&gt; 8                   1230             1
-#&gt; 9                   1080             1
-#&gt; 10                  1010             1
-#&gt; 11                  1140             1
-#&gt; 12                  1340             1
-#&gt; 13                  1360             1
-#&gt; 14                  1340             1
-#&gt; 15                  1050             1
-#&gt; 16                  1100             1
-#&gt; 17                  1340             1
-#&gt; 18                  1150             1
-#&gt; 19                  1150             1
-#&gt; 20                  1100             1</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_fdr</span>()</div><div class='output co'>#&gt;    code draw form id loss           name played points position short_name
+#&gt; 1     3    0   NA  1    0        Arsenal      0      0        0        ARS
+#&gt; 2     7    0   NA  2    0    Aston Villa      0      0        0        AVL
+#&gt; 3    91    0   NA  3    0    Bournemouth      0      0        0        BOU
+#&gt; 4    36    0   NA  4    0       Brighton      0      0        0        BHA
+#&gt; 5    90    0   NA  5    0        Burnley      0      0        0        BUR
+#&gt; 6     8    0   NA  6    0        Chelsea      0      0        0        CHE
+#&gt; 7    31    0   NA  7    0 Crystal Palace      0      0        0        CRY
+#&gt; 8    11    0   NA  8    0        Everton      0      0        0        EVE
+#&gt; 9    13    0   NA  9    0      Leicester      0      0        0        LEI
+#&gt; 10   14    0   NA 10    0      Liverpool      0      0        0        LIV
+#&gt; 11   43    0   NA 11    0       Man City      0      0        0        MCI
+#&gt; 12    1    0   NA 12    0        Man Utd      0      0        0        MUN
+#&gt; 13    4    0   NA 13    0      Newcastle      0      0        0        NEW
+#&gt; 14   45    0   NA 14    0        Norwich      0      0        0        NOR
+#&gt; 15   49    0   NA 15    0  Sheffield Utd      0      0        0        SHU
+#&gt; 16   20    0   NA 16    0    Southampton      0      0        0        SOU
+#&gt; 17    6    0   NA 17    0          Spurs      0      0        0        TOT
+#&gt; 18   57    0   NA 18    0        Watford      0      0        0        WAT
+#&gt; 19   21    0   NA 19    0       West Ham      0      0        0        WHU
+#&gt; 20   39    0   NA 20    0         Wolves      0      0        0        WOL
+#&gt;    strength team_division unavailable win strength_overall_home
+#&gt; 1         4            NA       FALSE   0                  1250
+#&gt; 2         2            NA       FALSE   0                   990
+#&gt; 3         3            NA       FALSE   0                  1050
+#&gt; 4         2            NA       FALSE   0                  1000
+#&gt; 5         3            NA       FALSE   0                  1070
+#&gt; 6         4            NA       FALSE   0                  1280
+#&gt; 7         3            NA       FALSE   0                  1130
+#&gt; 8         3            NA       FALSE   0                  1100
+#&gt; 9         3            NA       FALSE   0                  1110
+#&gt; 10        5            NA       FALSE   0                  1340
+#&gt; 11        5            NA       FALSE   0                  1340
+#&gt; 12        4            NA       FALSE   0                  1310
+#&gt; 13        3            NA       FALSE   0                  1080
+#&gt; 14        2            NA       FALSE   0                   990
+#&gt; 15        2            NA       FALSE   0                   990
+#&gt; 16        3            NA       FALSE   0                  1060
+#&gt; 17        4            NA       FALSE   0                  1320
+#&gt; 18        3            NA       FALSE   0                  1110
+#&gt; 19        3            NA       FALSE   0                  1100
+#&gt; 20        3            NA       FALSE   0                  1110
+#&gt;    strength_overall_away strength_attack_home strength_attack_away
+#&gt; 1                   1330                 1240                 1270
+#&gt; 2                   1050                 1050                 1050
+#&gt; 3                   1140                 1040                 1100
+#&gt; 4                   1070                 1040                 1140
+#&gt; 5                   1090                  990                 1030
+#&gt; 6                   1310                 1270                 1340
+#&gt; 7                   1080                 1030                 1180
+#&gt; 8                   1220                 1070                 1120
+#&gt; 9                   1120                 1130                 1180
+#&gt; 10                  1350                 1330                 1360
+#&gt; 11                  1360                 1320                 1330
+#&gt; 12                  1330                 1250                 1260
+#&gt; 13                  1110                 1070                 1110
+#&gt; 14                  1060                 1050                 1050
+#&gt; 15                  1060                 1060                 1080
+#&gt; 16                  1090                 1040                 1070
+#&gt; 17                  1310                 1270                 1340
+#&gt; 18                  1110                 1100                 1100
+#&gt; 19                  1160                 1090                 1100
+#&gt; 20                  1200                 1180                 1200
+#&gt;    strength_defence_home strength_defence_away
+#&gt; 1                   1290                  1330
+#&gt; 2                   1030                  1070
+#&gt; 3                   1120                  1170
+#&gt; 4                   1050                  1070
+#&gt; 5                   1060                  1070
+#&gt; 6                   1280                  1330
+#&gt; 7                   1100                  1070
+#&gt; 8                   1120                  1210
+#&gt; 9                   1110                  1110
+#&gt; 10                  1330                  1360
+#&gt; 11                  1340                  1370
+#&gt; 12                  1310                  1340
+#&gt; 13                  1070                  1090
+#&gt; 14                  1060                  1080
+#&gt; 15                  1030                  1050
+#&gt; 16                  1100                  1110
+#&gt; 17                  1320                  1330
+#&gt; 18                  1110                  1120
+#&gt; 19                  1080                  1200
+#&gt; 20                  1080                  1150</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose we are interested in listing the top FPL performers by FPL goals and assists? Again, we take the first 25 gameweeks of the season as an example.
+Suppose we are interested in listing the top FPL performers by FPL goals and assists? Again, we take the first 25 gameweeks of the 18/19 season as an example.
 
 First we fetch the gameweek-by-gameweek details of ALL players using get_player_details:
 
@@ -17,7 +17,7 @@ First we fetch the gameweek-by-gameweek details of ALL players using get_player_
 
 library(fplscrapR)
 
-df <- get_player_details() # this may take a while to load as it fetches ALL player details
+df <- get_player_details(season=18) # this may take a while to load as it fetches ALL player details
 ```
 
 Next we use dplyr and ggplot2 to transform and plot the data, showing the top performers:

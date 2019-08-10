@@ -8,6 +8,13 @@
 
 <title>get_player_hist — get_player_hist • fplscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -34,6 +41,8 @@
 <meta property="og:title" content="get_player_hist — get_player_hist" />
 
 <meta property="og:description" content="This function fetches historical summary information on selected players given player ID(s)." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -93,7 +102,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -105,7 +114,13 @@
       <a href="../articles/bpsforgame.html">Comparing total team BPS scores for a given game</a>
     </li>
     <li>
+      <a href="../articles/dgw32ppms.html">Top options by FPL points per 90 mins</a>
+    </li>
+    <li>
       <a href="../articles/entryscores.html">Average and top entry scores for the first 25 gameweeks</a>
+    </li>
+    <li>
+      <a href="../articles/fantasianplayingtime.html">Replicating Fantasian's playing time visualisation</a>
     </li>
     <li>
       <a href="../articles/fdrtable.html">Creating your own 'FDR' fixture table</a>
@@ -117,16 +132,13 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Eden Hazard and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
     </li>
     <li>
-      <a href="../articles/mlmostowned.html">Finding the most owned players amongst the top 20 teams of your favourite mini-league</a>
-    </li>
-    <li>
-      <a href="../articles/mltop.html">Listing the top 20 of your favourite mini-league</a>
+      <a href="../articles/myxpts.html">My Expected Points</a>
     </li>
     <li>
       <a href="../articles/salahpoints.html">Mohamed Salah's points in each gameweek for the first 25 gameweeks</a>
@@ -135,15 +147,18 @@
       <a href="../articles/simplexamodel.html">Building a very simple expected assists (xA) model</a>
     </li>
     <li>
+      <a href="../articles/talismantheory.html">Replicating Who Got The Assist?'s Talisman Theory</a>
+    </li>
+    <li>
       <a href="../articles/topperformers.html">List of top performers by FPL goals and assists</a>
     </li>
     <li>
       <a href="../articles/vizentryhist.html">Visualizing the FPL histories of entries</a>
     </li>
-    <li>
-      <a href="../articles/vizrankprogress.html">Visualizing your in-season Overall Rank progress</a>
-    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -190,39 +205,20 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_player_hist</span>(<span class='kw'>playerid</span><span class='kw'>=</span><span class='fl'>300</span>)</div><div class='output co'>#&gt;     id season_name element_code start_cost end_cost total_points minutes
-#&gt; 1 3830     2011/12       109322         55       55            0       0
-#&gt; 2 4367     2012/13       109322         45       43            0       0
-#&gt; 3 5184     2013/14       109322         45       42            0       0
-#&gt; 4 5800     2014/15       109322         45       43            1      23
-#&gt; 5 6638     2015/16       109322         45       43           76    1632
-#&gt; 6 7223     2016/17       109322         60       56           60    1360
-#&gt; 7 7900     2017/18       109322         60       60          128    1807
+    <pre class="examples"><div class='input'><span class='fu'>get_player_hist</span>(<span class='kw'>playerid</span><span class='kw'>=</span><span class='fl'>300</span>)</div><div class='output co'>#&gt; [1] playername
+#&gt; &lt;0 rækker&gt; (eller 0-længde row.names)</div><div class='input'>
+<span class='fu'>get_player_hist</span>(<span class='kw'>playerid</span><span class='kw'>=</span><span class='fu'><a href='get_player_id.html'>get_player_id</a></span>(<span class='st'>"Sead Kolasinac"</span>)$<span class='no'>id</span>)</div><div class='output co'>#&gt;   season_name element_code start_cost end_cost total_points minutes
+#&gt; 1     2017/18       111457         60       58          108    2146
+#&gt; 2     2018/19       111457         50       49           81    1886
 #&gt;   goals_scored assists clean_sheets goals_conceded own_goals penalties_saved
-#&gt; 1            0       0            0              0         0               0
-#&gt; 2            0       0            0              0         0               0
-#&gt; 3            0       0            0              0         0               0
-#&gt; 4            0       0            0              0         0               0
-#&gt; 5            4       1            9             13         0               0
-#&gt; 6            1       3            7             12         0               0
-#&gt; 7            8       6            9             18         0               0
+#&gt; 1            2       4           10             30         0               0
+#&gt; 2            0       7            5             29         1               0
 #&gt;   penalties_missed yellow_cards red_cards saves bonus bps influence creativity
-#&gt; 1                0            0         0     0     0   0       0.0        0.0
-#&gt; 2                0            0         0     0     0   0       0.0        0.0
-#&gt; 3                0            0         0     0     0   0       0.0        0.0
-#&gt; 4                0            0         0     0     0   3       0.0        0.0
-#&gt; 5                0            4         0     0     5 268       0.0        0.0
-#&gt; 6                0            3         0     0     3 227     229.4      522.3
-#&gt; 7                0            2         0     0    10 450     526.6      519.1
-#&gt;   threat ict_index ea_index season    playername
-#&gt; 1    0.0       0.0        0      6 Jesse Lingard
-#&gt; 2    0.0       0.0        0      7 Jesse Lingard
-#&gt; 3    0.0       0.0        0      8 Jesse Lingard
-#&gt; 4    0.0       0.0        2      9 Jesse Lingard
-#&gt; 5    0.0       0.0      318     10 Jesse Lingard
-#&gt; 6  439.0     118.0        0     11 Jesse Lingard
-#&gt; 7  711.0     175.3        0     12 Jesse Lingard</div><div class='input'>
-<span class='fu'>get_player_hist</span>(<span class='kw'>playerid</span><span class='kw'>=</span><span class='fu'><a href='get_player_id.html'>get_player_id</a></span>(<span class='st'>"Eden Hazard"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open URL 'https://fantasy.premierleague.com/drf/element-summary/Eden Hazard': HTTP status was '404 Not Found'</span></div><div class='output co'>#&gt; <span class='error'>Error in open.connection(con, "rb"): kan ikke åbne forbindelsen</span></div></pre>
+#&gt; 1                0            3         0     0     6 510     443.2      334.9
+#&gt; 2                0            5         0     0    10 382     323.2      445.9
+#&gt;   threat ict_index     playername
+#&gt; 1  404.0     118.3 Sead Kolasinac
+#&gt; 2  242.0     101.0 Sead Kolasinac</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

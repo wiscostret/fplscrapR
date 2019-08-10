@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose now we are interested in creating an FPL fixture table that ranks fixtures by the 'Alternative FDR' (aFDR) metric? Again, we take the first 25 gameweeks of the season as an example.
+Suppose now we are interested in creating an FPL fixture table that ranks fixtures by the 'Alternative FDR' (aFDR) metric? Again, we take the first 25 gameweeks of the '18 season as an example.
 
 First we create the aFDR rankings table, by fetching the gameweek-by-gameweek details of ALL players using get_player_details, and then transforming that using dplyr:
 
@@ -18,7 +18,7 @@ First we create the aFDR rankings table, by fetching the gameweek-by-gameweek de
 library(fplscrapR)
 library(dplyr)
 
-df <- get_player_details() # this may take a while to load as it fetches ALL player details
+df <- get_player_details(season = 18) # this may take a while to load as it fetches ALL player details
 
 afdrranks <- df %>% 
   filter(round %in% 1:25) %>% # filtering for the gameweeks we are interested in.
@@ -32,7 +32,7 @@ Next, we fetch the full fixture list using get_game_list:
 
 ```{r, warning=F}
 
-gamelist <- get_game_list()
+gamelist <- get_game_list(season = 18)
 
 ```
 
@@ -71,3 +71,4 @@ afdrfixtures %>%
     scale_x_continuous(position="top",breaks=1:25) +
     labs(caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
     scale_fill_gradient2(guide=F,low="#00FF87",mid="#D6DCD8",high="#7F002D",midpoint=median(afdrfixtures$afdr)) # creating a gradient colour-coding that spans from lowest aFDR ranking (coloured red) to highest (coloured green)
+```

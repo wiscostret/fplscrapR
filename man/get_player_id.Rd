@@ -10,7 +10,7 @@ get_player_id(name = NULL)
 \item{name}{The player's full name, as listed on the official Fantasy Premier League site (for instance: "Richarlison de Andrade", not "Richarlison". You can list multiple, e.g. with c().}
 }
 \description{
-This function fetches the FPL ID of a player given the player's full name.
+This function fetches the FPL ID of a player given the player's full name. If blank, the function fetches all current players.
 }
 \examples{
 get_player_id(name="Aleksandar Mitrovic")

@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose now we are interested in creating an FPL fixture table like the FPL's official 'Fixture Difficulty Ranking'? Again, we take the first 25 gameweeks of the season as an example.
+Suppose now we are interested in creating an FPL fixture table like the FPL's official 'Fixture Difficulty Ranking'? Let's take the first 15 gameweeks of the season as an example.
 
 First we fetch the official FDR rankings using get_fdr:
 
@@ -59,13 +59,14 @@ Next we use dplyr and ggplot2 to plot the data in a fixture table:
 library(ggplot2)
 
 fdrfixtures %>% 
-  filter(GW %in% 1:25) %>%  # filtering for the gameweeks we are interested in
+  filter(GW %in% 1:15) %>%  # filtering for the gameweeks we are interested in
     ggplot() +
       geom_tile(aes(x=GW,y=team,fill=fdr),colour="lightgrey") +
       geom_text(aes(x=GW,y=team,label=oppo),size=2) +
       theme_void() +
       theme(axis.text = element_text(face = "bold")) +
       theme(axis.text.y = element_text(margin=margin(0,-20,0,0))) + # fixing the margins
-      scale_x_continuous(position="top",breaks=1:25) +
+      scale_x_continuous(position="top",breaks=1:15) +
       labs(caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
       scale_fill_gradient2(guide=F,low="#00FF87",mid="#D6DCD8",high="#7F002D",midpoint=median(fdrfixtures$fdr)) # creating a gradient colour-coding that spans from toughest FDR ranking (coloured red) to easiest (coloured green)
+```

@@ -4,7 +4,10 @@
 \alias{get_game_list}
 \title{get_game_list}
 \usage{
-get_game_list()
+get_game_list(season = NULL)
+}
+\arguments{
+\item{season}{To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '18' for the 2018/2019 season).}
 }
 \description{
 This function fetches a basic list of games.

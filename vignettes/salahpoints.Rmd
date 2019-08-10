@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose we are interested in the progression and variance of Mohamed Salah's FPL score in each gameweek? Here, we take the first 25 gameweeks of the season as an example.
+Suppose we are interested in the progression and variance of Mohamed Salah's FPL score in each gameweek in '18/19? Here, we take the first 25 gameweeks of the season as an example.
 
 First we fetch the gameweek-by-gameweek details of the player using get_player_details, mobilising the playerid using get_player_id:
 
@@ -17,7 +17,7 @@ First we fetch the gameweek-by-gameweek details of the player using get_player_d
 
 library(fplscrapR)
 
-df <- get_player_details(get_player_id("Mohamed Salah")$id)
+df <- get_player_details(name="Mohamed Salah",season=18)
 ```
 
 Next we use dplyr and ggplot2 to transform and plot the data, showing Salah's round score for each gameweek:

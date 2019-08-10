@@ -8,6 +8,13 @@
 
 <title>get_player_info — get_player_info • fplscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -34,6 +41,8 @@
 <meta property="og:title" content="get_player_info — get_player_info" />
 
 <meta property="og:description" content="This function fetches selected summary information on selected players given full player name(s)." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -93,7 +102,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -105,7 +114,13 @@
       <a href="../articles/bpsforgame.html">Comparing total team BPS scores for a given game</a>
     </li>
     <li>
+      <a href="../articles/dgw32ppms.html">Top options by FPL points per 90 mins</a>
+    </li>
+    <li>
       <a href="../articles/entryscores.html">Average and top entry scores for the first 25 gameweeks</a>
+    </li>
+    <li>
+      <a href="../articles/fantasianplayingtime.html">Replicating Fantasian's playing time visualisation</a>
     </li>
     <li>
       <a href="../articles/fdrtable.html">Creating your own 'FDR' fixture table</a>
@@ -117,16 +132,13 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Eden Hazard and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
     </li>
     <li>
-      <a href="../articles/mlmostowned.html">Finding the most owned players amongst the top 20 teams of your favourite mini-league</a>
-    </li>
-    <li>
-      <a href="../articles/mltop.html">Listing the top 20 of your favourite mini-league</a>
+      <a href="../articles/myxpts.html">My Expected Points</a>
     </li>
     <li>
       <a href="../articles/salahpoints.html">Mohamed Salah's points in each gameweek for the first 25 gameweeks</a>
@@ -135,15 +147,18 @@
       <a href="../articles/simplexamodel.html">Building a very simple expected assists (xA) model</a>
     </li>
     <li>
+      <a href="../articles/talismantheory.html">Replicating Who Got The Assist?'s Talisman Theory</a>
+    </li>
+    <li>
       <a href="../articles/topperformers.html">List of top performers by FPL goals and assists</a>
     </li>
     <li>
       <a href="../articles/vizentryhist.html">Visualizing the FPL histories of entries</a>
     </li>
-    <li>
-      <a href="../articles/vizrankprogress.html">Visualizing your in-season Overall Rank progress</a>
-    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -177,7 +192,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_player_info</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_player_info</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>season</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -186,43 +201,34 @@
       <th>name</th>
       <td><p>The player's full name, as listed on the official Fantasy Premier League site (for instance: "Richarlison de Andrade", not "Richarlison"). If blank, the function fetches all players.</p></td>
     </tr>
+    <tr>
+      <th>season</th>
+      <td><p>To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '17' for the 2017/2018 season).</p></td>
+    </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_player_info</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Jesse Lingard"</span>,<span class='st'>"Aleksandar Mitrovic"</span>))</div><div class='output co'>#&gt;    id      photo web_name team_code status   code first_name second_name
-#&gt; 1 480 128389.jpg Mitrovic        54      a 128389 Aleksandar    Mitrovic
-#&gt; 2 300 109322.jpg  Lingard         1      a 109322      Jesse     Lingard
-#&gt;   squad_number news now_cost           news_added chance_of_playing_this_round
-#&gt; 1            9            64                 &lt;NA&gt;                           NA
-#&gt; 2           14            67 2019-02-12T22:31:20Z                           75
-#&gt;   chance_of_playing_next_round value_form value_season cost_change_start
-#&gt; 1                           NA        0.3         18.1                -1
-#&gt; 2                          100        0.0         10.4                -3
-#&gt;   cost_change_event cost_change_start_fall cost_change_event_fall in_dreamteam
-#&gt; 1                 0                      1                      0        FALSE
-#&gt; 2                 0                      3                      0        FALSE
-#&gt;   dreamteam_count selected_by_percent form transfers_out transfers_in
-#&gt; 1               3                11.9  2.0       2506231      2717661
-#&gt; 2               1                 2.8  0.3        785094       623936
-#&gt;   transfers_out_event transfers_in_event loans_in loans_out loaned_in
-#&gt; 1               14000               1220        0         0         0
-#&gt; 2                 890               3688        0         0         0
-#&gt;   loaned_out total_points event_points points_per_game ep_this ep_next special
-#&gt; 1          0          116            2             3.7     0.5     2.0   FALSE
-#&gt; 2          0           70            0             3.2     0.0     1.6   FALSE
-#&gt;   minutes goals_scored assists clean_sheets goals_conceded own_goals
-#&gt; 1    2740           10       3            2             69         0
-#&gt; 2    1278            4       3            3             18         0
+    <pre class="examples"><div class='input'><span class='fu'>get_player_info</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Jesse Lingard"</span>,<span class='st'>"Aleksandar Mitrovic"</span>))</div><div class='output co'>#&gt;   chance_of_playing_next_round chance_of_playing_this_round   code
+#&gt; 1                           NA                           NA 109322
+#&gt;   cost_change_event cost_change_event_fall cost_change_start
+#&gt; 1                 0                      0                 0
+#&gt;   cost_change_start_fall dreamteam_count element_type ep_next ep_this
+#&gt; 1                      0               0            3     2.7     2.2
+#&gt;   event_points first_name form  id in_dreamteam news news_added now_cost
+#&gt; 1            0      Jesse  0.0 241        FALSE            &lt;NA&gt;       65
+#&gt;        photo points_per_game second_name selected_by_percent special
+#&gt; 1 109322.jpg             0.0     Lingard                 1.5   FALSE
+#&gt;   squad_number status team team_code total_points transfers_in
+#&gt; 1           NA      a   12         1            0         1174
+#&gt;   transfers_in_event transfers_out transfers_out_event value_form value_season
+#&gt; 1               1174           854                 854        0.0          0.0
+#&gt;   web_name minutes goals_scored assists clean_sheets goals_conceded own_goals
+#&gt; 1  Lingard       0            0       0            0              0         0
 #&gt;   penalties_saved penalties_missed yellow_cards red_cards saves bonus bps
-#&gt; 1               0                0            6         0     0    12 321
-#&gt; 2               0                0            2         0     0     5 236
-#&gt;   influence creativity threat ict_index ea_index element_type team
-#&gt; 1     575.6      424.4 1276.0     227.9        0            4    9
-#&gt; 2     272.0      238.4  323.0      83.2        0            3   14
-#&gt;            playername
-#&gt; 1 Aleksandar Mitrovic
-#&gt; 2       Jesse Lingard</div></pre>
+#&gt; 1               0                0            0         0     0     0   0
+#&gt;   influence creativity threat ict_index    playername
+#&gt; 1       0.0        0.0    0.0       0.0 Jesse Lingard</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

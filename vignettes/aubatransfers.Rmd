@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose we are interested in how the ownership of Pierre-Emerick Aubameyang has changed through transfers over the course of the first 25 gameweeks of the year?
+Suppose we are interested in how the ownership of Pierre-Emerick Aubameyang has changed through transfers over the course of the first 25 gameweeks of the 18/19 season?
 
 First we fetch the gameweek-by-gameweek details of the player using get_player_details, mobilising the playerid using get_player_id:
 
@@ -17,7 +17,7 @@ First we fetch the gameweek-by-gameweek details of the player using get_player_d
 
 library(fplscrapR)
 
-df <- get_player_details(get_player_id("Pierre-Emerick Aubameyang")$id)
+df <- get_player_details(name="Pierre-Emerick Aubameyang",season=18)
 ```
 
 Next we use dplyr, tidyr and ggplot2 to transform and plot the data, showing the total number of owners and net transfers out for each gameweek:

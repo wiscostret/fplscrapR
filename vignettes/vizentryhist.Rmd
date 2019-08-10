@@ -9,15 +9,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose now we are interested in visualizing the FPL history of select entries, e.g myself (current FPL ID: 1076) and an FPL legend such as James Eggersdorff (current FPL ID: 64342)?
+Suppose now we are interested in visualizing the FPL history of two entries.
 
-First we fetch the entry histories using get_entry_hist:
+First we fetch the entry histories of two random entries using get_entry_hist:
 
 ```{r, warning=F}
 
 library(fplscrapR)
 
-entryhist <- get_entry_hist(entryid=c(1076,64342))
+entryhist <- get_entry_hist(entryid=c(1001,2002))
 
 ```
 

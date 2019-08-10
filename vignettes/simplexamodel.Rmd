@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose we are interested in trying to build an 'expected assists' (xA) model from the FPL data? Again, we take the first 25 gameweeks of the season as an example.
+Suppose we are interested in trying to build an 'expected assists' (xA) model from the FPL data? Again, we take the first 25 gameweeks of the 18/19 season as an example.
 
 First we fetch the gameweek-by-gameweek details of ALL players using get_player_details, then create our model dataset by selected information that could predict assist performance, such as Key Passes and Open Play Crosses:
 
@@ -18,7 +18,7 @@ First we fetch the gameweek-by-gameweek details of ALL players using get_player_
 library(fplscrapR)
 library(dplyr)
 
-df <- get_player_details() # this may take a while to load as it fetches ALL player details
+df <- get_player_details(season=18) # this may take a while to load as it fetches ALL player details
 
 dfmodel <- df %>% 
   filter(round %in% 1:25) %>% # filtering out the rounds we are interested in

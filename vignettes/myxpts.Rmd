@@ -13,13 +13,13 @@ Suppose we are interested in how many points our team is expected to score in th
 
 With fplscrapR, it's just a few lines of code away.
 
-First, we fetch the player selection using get_entry_picks. Here I use the example of my own team for GW33. Since I used my Free Hit in 32, I have to fetch the team from GW31:
+First, we fetch the player selection using get_entry_picks. Here I use the example of random team for GW2.
 
 ```{r, warning=F}
 
 library(fplscrapR)
 
-picks <- get_entry_picks(entryid=1076,gw=31)$picks
+picks <- get_entry_picks(entryid=1076,gw=1)$picks
 ```
 
 Next we fetch the Official FPL Expected Points projections using get_player_info() and select only what we need: the player id (renamed 'element' for merging later), the player name, and the expected points projection ('ep_next'), which we indicate is a numeric vector.

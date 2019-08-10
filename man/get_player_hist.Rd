@@ -15,6 +15,6 @@ This function fetches historical summary information on selected players given p
 \examples{
 get_player_hist(playerid=300)
 
-get_player_hist(playerid=get_player_id("Eden Hazard"))
+get_player_hist(playerid=get_player_id("Sead Kolasinac")$id)
 }
 \keyword{player}

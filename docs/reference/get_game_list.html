@@ -8,6 +8,13 @@
 
 <title>get_game_list — get_game_list • fplscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -34,6 +41,8 @@
 <meta property="og:title" content="get_game_list — get_game_list" />
 
 <meta property="og:description" content="This function fetches a basic list of games." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -93,7 +102,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -105,7 +114,13 @@
       <a href="../articles/bpsforgame.html">Comparing total team BPS scores for a given game</a>
     </li>
     <li>
+      <a href="../articles/dgw32ppms.html">Top options by FPL points per 90 mins</a>
+    </li>
+    <li>
       <a href="../articles/entryscores.html">Average and top entry scores for the first 25 gameweeks</a>
+    </li>
+    <li>
+      <a href="../articles/fantasianplayingtime.html">Replicating Fantasian's playing time visualisation</a>
     </li>
     <li>
       <a href="../articles/fdrtable.html">Creating your own 'FDR' fixture table</a>
@@ -117,16 +132,13 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Eden Hazard and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
     </li>
     <li>
-      <a href="../articles/mlmostowned.html">Finding the most owned players amongst the top 20 teams of your favourite mini-league</a>
-    </li>
-    <li>
-      <a href="../articles/mltop.html">Listing the top 20 of your favourite mini-league</a>
+      <a href="../articles/myxpts.html">My Expected Points</a>
     </li>
     <li>
       <a href="../articles/salahpoints.html">Mohamed Salah's points in each gameweek for the first 25 gameweeks</a>
@@ -135,15 +147,18 @@
       <a href="../articles/simplexamodel.html">Building a very simple expected assists (xA) model</a>
     </li>
     <li>
+      <a href="../articles/talismantheory.html">Replicating Who Got The Assist?'s Talisman Theory</a>
+    </li>
+    <li>
       <a href="../articles/topperformers.html">List of top performers by FPL goals and assists</a>
     </li>
     <li>
       <a href="../articles/vizentryhist.html">Visualizing the FPL histories of entries</a>
     </li>
-    <li>
-      <a href="../articles/vizrankprogress.html">Visualizing your in-season Overall Rank progress</a>
-    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -177,395 +192,786 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_game_list</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>get_game_list</span>(<span class='kw'>season</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>season</th>
+      <td><p>To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '18' for the 2018/2019 season).</p></td>
+    </tr>
+    </table>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_game_list</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: pakke 'bindrcpp' blev bygget under R version 3.4.4</span></div><div class='output co'>#&gt;     GW  id home away finished              kickoff
-#&gt; 1    1   6  MUN  LEI     TRUE 2018-08-10T19:00:00Z
-#&gt; 2    1   7  NEW  TOT     TRUE 2018-08-11T11:30:00Z
-#&gt; 3    1   2  BOU  CAR     TRUE 2018-08-11T14:00:00Z
-#&gt; 4    1   3  FUL  CRY     TRUE 2018-08-11T14:00:00Z
-#&gt; 5    1   4  HUD  CHE     TRUE 2018-08-11T14:00:00Z
-#&gt; 6    1   9  WAT  BHA     TRUE 2018-08-11T14:00:00Z
-#&gt; 7    1  10  WOL  EVE     TRUE 2018-08-11T16:30:00Z
-#&gt; 8    1   5  LIV  WHU     TRUE 2018-08-12T12:30:00Z
-#&gt; 9    1   8  SOU  BUR     TRUE 2018-08-12T12:30:00Z
-#&gt; 10   1   1  ARS  MCI     TRUE 2018-08-12T15:00:00Z
-#&gt; 11   2  13  CAR  NEW     TRUE 2018-08-18T11:30:00Z
-#&gt; 12   2  16  EVE  SOU     TRUE 2018-08-18T14:00:00Z
-#&gt; 13   2  17  LEI  WOL     TRUE 2018-08-18T14:00:00Z
-#&gt; 14   2  19  TOT  FUL     TRUE 2018-08-18T14:00:00Z
-#&gt; 15   2  20  WHU  BOU     TRUE 2018-08-18T14:00:00Z
-#&gt; 16   2  14  CHE  ARS     TRUE 2018-08-18T16:30:00Z
-#&gt; 17   2  12  BUR  WAT     TRUE 2018-08-19T12:30:00Z
-#&gt; 18   2  18  MCI  HUD     TRUE 2018-08-19T12:30:00Z
-#&gt; 19   2  11  BHA  MUN     TRUE 2018-08-19T15:00:00Z
-#&gt; 20   2  15  CRY  LIV     TRUE 2018-08-20T19:00:00Z
-#&gt; 21   3  30  WOL  MCI     TRUE 2018-08-25T11:30:00Z
-#&gt; 22   3  21  ARS  WHU     TRUE 2018-08-25T14:00:00Z
-#&gt; 23   3  22  BOU  EVE     TRUE 2018-08-25T14:00:00Z
-#&gt; 24   3  24  HUD  CAR     TRUE 2018-08-25T14:00:00Z
-#&gt; 25   3  28  SOU  LEI     TRUE 2018-08-25T14:00:00Z
-#&gt; 26   3  25  LIV  BHA     TRUE 2018-08-25T16:30:00Z
-#&gt; 27   3  29  WAT  CRY     TRUE 2018-08-26T12:30:00Z
-#&gt; 28   3  23  FUL  BUR     TRUE 2018-08-26T15:00:00Z
-#&gt; 29   3  27  NEW  CHE     TRUE 2018-08-26T15:00:00Z
-#&gt; 30   3  26  MUN  TOT     TRUE 2018-08-27T19:00:00Z
-#&gt; 31   4  37  LEI  LIV     TRUE 2018-09-01T11:30:00Z
-#&gt; 32   4  31  BHA  FUL     TRUE 2018-09-01T14:00:00Z
-#&gt; 33   4  34  CHE  BOU     TRUE 2018-09-01T14:00:00Z
-#&gt; 34   4  35  CRY  SOU     TRUE 2018-09-01T14:00:00Z
-#&gt; 35   4  36  EVE  HUD     TRUE 2018-09-01T14:00:00Z
-#&gt; 36   4  40  WHU  WOL     TRUE 2018-09-01T14:00:00Z
-#&gt; 37   4  38  MCI  NEW     TRUE 2018-09-01T16:30:00Z
-#&gt; 38   4  33  CAR  ARS     TRUE 2018-09-02T12:30:00Z
-#&gt; 39   4  32  BUR  MUN     TRUE 2018-09-02T15:00:00Z
-#&gt; 40   4  39  WAT  TOT     TRUE 2018-09-02T15:00:00Z
-#&gt; 41   5  48  TOT  LIV     TRUE 2018-09-15T11:30:00Z
-#&gt; 42   5  41  BOU  LEI     TRUE 2018-09-15T14:00:00Z
-#&gt; 43   5  42  CHE  CAR     TRUE 2018-09-15T14:00:00Z
-#&gt; 44   5  44  HUD  CRY     TRUE 2018-09-15T14:00:00Z
-#&gt; 45   5  45  MCI  FUL     TRUE 2018-09-15T14:00:00Z
-#&gt; 46   5  46  NEW  ARS     TRUE 2018-09-15T14:00:00Z
-#&gt; 47   5  49  WAT  MUN     TRUE 2018-09-15T16:30:00Z
-#&gt; 48   5  50  WOL  BUR     TRUE 2018-09-16T12:30:00Z
-#&gt; 49   5  43  EVE  WHU     TRUE 2018-09-16T15:00:00Z
-#&gt; 50   5  47  SOU  BHA     TRUE 2018-09-17T19:00:00Z
-#&gt; 51   6  56  FUL  WAT     TRUE 2018-09-22T11:30:00Z
-#&gt; 52   6  53  BUR  BOU     TRUE 2018-09-22T14:00:00Z
-#&gt; 53   6  54  CAR  MCI     TRUE 2018-09-22T14:00:00Z
-#&gt; 54   6  55  CRY  NEW     TRUE 2018-09-22T14:00:00Z
-#&gt; 55   6  57  LEI  HUD     TRUE 2018-09-22T14:00:00Z
-#&gt; 56   6  58  LIV  SOU     TRUE 2018-09-22T14:00:00Z
-#&gt; 57   6  59  MUN  WOL     TRUE 2018-09-22T14:00:00Z
-#&gt; 58   6  52  BHA  TOT     TRUE 2018-09-22T16:30:00Z
-#&gt; 59   6  60  WHU  CHE     TRUE 2018-09-23T12:30:00Z
-#&gt; 60   6  51  ARS  EVE     TRUE 2018-09-23T15:00:00Z
-#&gt; 61   7  69  WHU  MUN     TRUE 2018-09-29T11:30:00Z
-#&gt; 62   7  61  ARS  WAT     TRUE 2018-09-29T14:00:00Z
-#&gt; 63   7  65  EVE  FUL     TRUE 2018-09-29T14:00:00Z
-#&gt; 64   7  66  HUD  TOT     TRUE 2018-09-29T14:00:00Z
-#&gt; 65   7  67  MCI  BHA     TRUE 2018-09-29T14:00:00Z
-#&gt; 66   7  68  NEW  LEI     TRUE 2018-09-29T14:00:00Z
-#&gt; 67   7  70  WOL  SOU     TRUE 2018-09-29T14:00:00Z
-#&gt; 68   7  64  CHE  LIV     TRUE 2018-09-29T16:30:00Z
-#&gt; 69   7  63  CAR  BUR     TRUE 2018-09-30T15:00:00Z
-#&gt; 70   7  62  BOU  CRY     TRUE 2018-10-01T19:00:00Z
-#&gt; 71   8  71  BHA  WHU     TRUE 2018-10-05T19:00:00Z
-#&gt; 72   8  72  BUR  HUD     TRUE 2018-10-06T14:00:00Z
-#&gt; 73   8  73  CRY  WOL     TRUE 2018-10-06T14:00:00Z
-#&gt; 74   8  75  LEI  EVE     TRUE 2018-10-06T14:00:00Z
-#&gt; 75   8  79  TOT  CAR     TRUE 2018-10-06T14:00:00Z
-#&gt; 76   8  80  WAT  BOU     TRUE 2018-10-06T14:00:00Z
-#&gt; 77   8  77  MUN  NEW     TRUE 2018-10-06T16:30:00Z
-#&gt; 78   8  74  FUL  ARS     TRUE 2018-10-07T11:00:00Z
-#&gt; 79   8  78  SOU  CHE     TRUE 2018-10-07T13:15:00Z
-#&gt; 80   8  76  LIV  MCI     TRUE 2018-10-07T15:30:00Z
-#&gt; 81   9  84  CHE  MUN     TRUE 2018-10-20T11:30:00Z
-#&gt; 82   9  82  BOU  SOU     TRUE 2018-10-20T14:00:00Z
-#&gt; 83   9  83  CAR  FUL     TRUE 2018-10-20T14:00:00Z
-#&gt; 84   9  87  MCI  BUR     TRUE 2018-10-20T14:00:00Z
-#&gt; 85   9  88  NEW  BHA     TRUE 2018-10-20T14:00:00Z
-#&gt; 86   9  89  WHU  TOT     TRUE 2018-10-20T14:00:00Z
-#&gt; 87   9  90  WOL  WAT     TRUE 2018-10-20T14:00:00Z
-#&gt; 88   9  86  HUD  LIV     TRUE 2018-10-20T16:30:00Z
-#&gt; 89   9  85  EVE  CRY     TRUE 2018-10-21T15:00:00Z
-#&gt; 90   9  81  ARS  LEI     TRUE 2018-10-22T19:00:00Z
-#&gt; 91  10  91  BHA  WOL     TRUE 2018-10-27T14:00:00Z
-#&gt; 92  10  94  FUL  BOU     TRUE 2018-10-27T14:00:00Z
-#&gt; 93  10  96  LIV  CAR     TRUE 2018-10-27T14:00:00Z
-#&gt; 94  10  98  SOU  NEW     TRUE 2018-10-27T14:00:00Z
-#&gt; 95  10 100  WAT  HUD     TRUE 2018-10-27T14:00:00Z
-#&gt; 96  10  95  LEI  WHU     TRUE 2018-10-27T16:30:00Z
-#&gt; 97  10  92  BUR  CHE     TRUE 2018-10-28T13:30:00Z
-#&gt; 98  10  93  CRY  ARS     TRUE 2018-10-28T13:30:00Z
-#&gt; 99  10  97  MUN  EVE     TRUE 2018-10-28T16:00:00Z
-#&gt; 100 10  99  TOT  MCI     TRUE 2018-10-29T20:00:00Z
-#&gt; 101 11 102  BOU  MUN     TRUE 2018-11-03T12:30:00Z
-#&gt; 102 11 103  CAR  LEI     TRUE 2018-11-03T15:00:00Z
-#&gt; 103 11 105  EVE  BHA     TRUE 2018-11-03T15:00:00Z
-#&gt; 104 11 108  NEW  WAT     TRUE 2018-11-03T15:00:00Z
-#&gt; 105 11 109  WHU  BUR     TRUE 2018-11-03T15:00:00Z
-#&gt; 106 11 101  ARS  LIV     TRUE 2018-11-03T17:30:00Z
-#&gt; 107 11 110  WOL  TOT     TRUE 2018-11-03T19:45:00Z
-#&gt; 108 11 107  MCI  SOU     TRUE 2018-11-04T15:00:00Z
-#&gt; 109 11 104  CHE  CRY     TRUE 2018-11-04T16:00:00Z
-#&gt; 110 11 106  HUD  FUL     TRUE 2018-11-05T20:00:00Z
-#&gt; 111 12 112  CAR  BHA     TRUE 2018-11-10T12:30:00Z
-#&gt; 112 12 115  HUD  WHU     TRUE 2018-11-10T15:00:00Z
-#&gt; 113 12 116  LEI  BUR     TRUE 2018-11-10T15:00:00Z
-#&gt; 114 12 119  NEW  BOU     TRUE 2018-11-10T15:00:00Z
-#&gt; 115 12 120  SOU  WAT     TRUE 2018-11-10T15:00:00Z
-#&gt; 116 12 114  CRY  TOT     TRUE 2018-11-10T17:30:00Z
-#&gt; 117 12 117  LIV  FUL     TRUE 2018-11-11T12:00:00Z
-#&gt; 118 12 113  CHE  EVE     TRUE 2018-11-11T14:15:00Z
-#&gt; 119 12 111  ARS  WOL     TRUE 2018-11-11T16:30:00Z
-#&gt; 120 12 118  MCI  MUN     TRUE 2018-11-11T16:30:00Z
-#&gt; 121 13 122  BHA  LEI     TRUE 2018-11-24T15:00:00Z
-#&gt; 122 13 124  EVE  CAR     TRUE 2018-11-24T15:00:00Z
-#&gt; 123 13 125  FUL  SOU     TRUE 2018-11-24T15:00:00Z
-#&gt; 124 13 126  MUN  CRY     TRUE 2018-11-24T15:00:00Z
-#&gt; 125 13 128  WAT  LIV     TRUE 2018-11-24T15:00:00Z
-#&gt; 126 13 129  WHU  MCI     TRUE 2018-11-24T15:00:00Z
-#&gt; 127 13 127  TOT  CHE     TRUE 2018-11-24T17:30:00Z
-#&gt; 128 13 121  BOU  ARS     TRUE 2018-11-25T13:30:00Z
-#&gt; 129 13 130  WOL  HUD     TRUE 2018-11-25T16:00:00Z
-#&gt; 130 13 123  BUR  NEW     TRUE 2018-11-26T20:30:00Z
-#&gt; 131 14 132  CAR  WOL     TRUE 2018-11-30T20:00:00Z
-#&gt; 132 14 134  CRY  BUR     TRUE 2018-12-01T15:00:00Z
-#&gt; 133 14 135  HUD  BHA     TRUE 2018-12-01T15:00:00Z
-#&gt; 134 14 136  LEI  WAT     TRUE 2018-12-01T15:00:00Z
-#&gt; 135 14 138  MCI  BOU     TRUE 2018-12-01T15:00:00Z
-#&gt; 136 14 139  NEW  WHU     TRUE 2018-12-01T15:00:00Z
-#&gt; 137 14 140  SOU  MUN     TRUE 2018-12-01T17:30:00Z
-#&gt; 138 14 133  CHE  FUL     TRUE 2018-12-02T12:00:00Z
-#&gt; 139 14 131  ARS  TOT     TRUE 2018-12-02T14:05:00Z
-#&gt; 140 14 137  LIV  EVE     TRUE 2018-12-02T16:15:00Z
-#&gt; 141 15 141  BOU  HUD     TRUE 2018-12-04T19:45:00Z
-#&gt; 142 15 142  BHA  CRY     TRUE 2018-12-04T19:45:00Z
-#&gt; 143 15 147  WHU  CAR     TRUE 2018-12-04T19:45:00Z
-#&gt; 144 15 146  WAT  MCI     TRUE 2018-12-04T20:00:00Z
-#&gt; 145 15 143  BUR  LIV     TRUE 2018-12-05T19:45:00Z
-#&gt; 146 15 149  EVE  NEW     TRUE 2018-12-05T19:45:00Z
-#&gt; 147 15 144  FUL  LEI     TRUE 2018-12-05T19:45:00Z
-#&gt; 148 15 148  WOL  CHE     TRUE 2018-12-05T19:45:00Z
-#&gt; 149 15 145  MUN  ARS     TRUE 2018-12-05T20:00:00Z
-#&gt; 150 15 150  TOT  SOU     TRUE 2018-12-05T20:00:00Z
-#&gt; 151 16 152  BOU  LIV     TRUE 2018-12-08T12:30:00Z
-#&gt; 152 16 151  ARS  HUD     TRUE 2018-12-08T15:00:00Z
-#&gt; 153 16 153  BUR  BHA     TRUE 2018-12-08T15:00:00Z
-#&gt; 154 16 154  CAR  SOU     TRUE 2018-12-08T15:00:00Z
-#&gt; 155 16 158  MUN  FUL     TRUE 2018-12-08T15:00:00Z
-#&gt; 156 16 160  WHU  CRY     TRUE 2018-12-08T15:00:00Z
-#&gt; 157 16 155  CHE  MCI     TRUE 2018-12-08T17:30:00Z
-#&gt; 158 16 157  LEI  TOT     TRUE 2018-12-08T19:45:00Z
-#&gt; 159 16 159  NEW  WOL     TRUE 2018-12-09T16:00:00Z
-#&gt; 160 16 156  EVE  WAT     TRUE 2018-12-10T20:00:00Z
-#&gt; 161 17 166  MCI  EVE     TRUE 2018-12-15T12:30:00Z
-#&gt; 162 17 162  CRY  LEI     TRUE 2018-12-15T15:00:00Z
-#&gt; 163 17 164  HUD  NEW     TRUE 2018-12-15T15:00:00Z
-#&gt; 164 17 168  TOT  BUR     TRUE 2018-12-15T15:00:00Z
-#&gt; 165 17 169  WAT  CAR     TRUE 2018-12-15T15:00:00Z
-#&gt; 166 17 170  WOL  BOU     TRUE 2018-12-15T15:00:00Z
-#&gt; 167 17 163  FUL  WHU     TRUE 2018-12-15T17:30:00Z
-#&gt; 168 17 161  BHA  CHE     TRUE 2018-12-16T13:30:00Z
-#&gt; 169 17 167  SOU  ARS     TRUE 2018-12-16T13:30:00Z
-#&gt; 170 17 165  LIV  MUN     TRUE 2018-12-16T16:00:00Z
-#&gt; 171 18 180  WOL  LIV     TRUE 2018-12-21T20:00:00Z
-#&gt; 172 18 171  ARS  BUR     TRUE 2018-12-22T12:30:00Z
-#&gt; 173 18 172  BOU  BHA     TRUE 2018-12-22T15:00:00Z
-#&gt; 174 18 174  CHE  LEI     TRUE 2018-12-22T15:00:00Z
-#&gt; 175 18 176  HUD  SOU     TRUE 2018-12-22T15:00:00Z
-#&gt; 176 18 177  MCI  CRY     TRUE 2018-12-22T15:00:00Z
-#&gt; 177 18 178  NEW  FUL     TRUE 2018-12-22T15:00:00Z
-#&gt; 178 18 179  WHU  WAT     TRUE 2018-12-22T15:00:00Z
-#&gt; 179 18 173  CAR  MUN     TRUE 2018-12-22T17:30:00Z
-#&gt; 180 18 175  EVE  TOT     TRUE 2018-12-23T16:00:00Z
-#&gt; 181 19 184  FUL  WOL     TRUE 2018-12-26T12:30:00Z
-#&gt; 182 19 182  BUR  EVE     TRUE 2018-12-26T15:00:00Z
-#&gt; 183 19 183  CRY  CAR     TRUE 2018-12-26T15:00:00Z
-#&gt; 184 19 185  LEI  MCI     TRUE 2018-12-26T15:00:00Z
-#&gt; 185 19 186  LIV  NEW     TRUE 2018-12-26T15:00:00Z
-#&gt; 186 19 187  MUN  HUD     TRUE 2018-12-26T15:00:00Z
-#&gt; 187 19 189  TOT  BOU     TRUE 2018-12-26T15:00:00Z
-#&gt; 188 19 181  BHA  ARS     TRUE 2018-12-26T17:15:00Z
-#&gt; 189 19 190  WAT  CHE     TRUE 2018-12-26T19:30:00Z
-#&gt; 190 19 188  SOU  WHU     TRUE 2018-12-27T19:45:00Z
-#&gt; 191 20 191  BHA  EVE     TRUE 2018-12-29T15:00:00Z
-#&gt; 192 20 194  FUL  HUD     TRUE 2018-12-29T15:00:00Z
-#&gt; 193 20 195  LEI  CAR     TRUE 2018-12-29T15:00:00Z
-#&gt; 194 20 199  TOT  WOL     TRUE 2018-12-29T15:00:00Z
-#&gt; 195 20 200  WAT  NEW     TRUE 2018-12-29T15:00:00Z
-#&gt; 196 20 196  LIV  ARS     TRUE 2018-12-29T17:30:00Z
-#&gt; 197 20 193  CRY  CHE     TRUE 2018-12-30T12:00:00Z
-#&gt; 198 20 192  BUR  WHU     TRUE 2018-12-30T14:15:00Z
-#&gt; 199 20 198  SOU  MCI     TRUE 2018-12-30T14:15:00Z
-#&gt; 200 20 197  MUN  BOU     TRUE 2018-12-30T16:30:00Z
-#&gt; 201 21 205  EVE  LEI     TRUE 2019-01-01T12:30:00Z
-#&gt; 202 21 201  ARS  FUL     TRUE 2019-01-01T15:00:00Z
-#&gt; 203 21 203  CAR  TOT     TRUE 2019-01-01T17:30:00Z
-#&gt; 204 21 202  BOU  WAT     TRUE 2019-01-02T19:45:00Z
-#&gt; 205 21 204  CHE  SOU     TRUE 2019-01-02T19:45:00Z
-#&gt; 206 21 206  HUD  BUR     TRUE 2019-01-02T19:45:00Z
-#&gt; 207 21 209  WHU  BHA     TRUE 2019-01-02T19:45:00Z
-#&gt; 208 21 210  WOL  CRY     TRUE 2019-01-02T19:45:00Z
-#&gt; 209 21 208  NEW  MUN     TRUE 2019-01-02T20:00:00Z
-#&gt; 210 21 207  MCI  LIV     TRUE 2019-01-03T20:00:00Z
-#&gt; 211 22 220  WHU  ARS     TRUE 2019-01-12T12:30:00Z
-#&gt; 212 22 211  BHA  LIV     TRUE 2019-01-12T15:00:00Z
-#&gt; 213 22 212  BUR  FUL     TRUE 2019-01-12T15:00:00Z
-#&gt; 214 22 213  CAR  HUD     TRUE 2019-01-12T15:00:00Z
-#&gt; 215 22 215  CRY  WAT     TRUE 2019-01-12T15:00:00Z
-#&gt; 216 22 217  LEI  SOU     TRUE 2019-01-12T15:00:00Z
-#&gt; 217 22 214  CHE  NEW     TRUE 2019-01-12T17:30:00Z
-#&gt; 218 22 216  EVE  BOU     TRUE 2019-01-13T14:15:00Z
-#&gt; 219 22 219  TOT  MUN     TRUE 2019-01-13T16:30:00Z
-#&gt; 220 22 218  MCI  WOL     TRUE 2019-01-14T20:00:00Z
-#&gt; 221 23 230  WOL  LEI     TRUE 2019-01-19T12:30:00Z
-#&gt; 222 23 222  BOU  WHU     TRUE 2019-01-19T15:00:00Z
-#&gt; 223 23 225  LIV  CRY     TRUE 2019-01-19T15:00:00Z
-#&gt; 224 23 226  MUN  BHA     TRUE 2019-01-19T15:00:00Z
-#&gt; 225 23 227  NEW  CAR     TRUE 2019-01-19T15:00:00Z
-#&gt; 226 23 228  SOU  EVE     TRUE 2019-01-19T15:00:00Z
-#&gt; 227 23 229  WAT  BUR     TRUE 2019-01-19T15:00:00Z
-#&gt; 228 23 221  ARS  CHE     TRUE 2019-01-19T17:30:00Z
-#&gt; 229 23 224  HUD  MCI     TRUE 2019-01-20T13:30:00Z
-#&gt; 230 23 223  FUL  TOT     TRUE 2019-01-20T16:00:00Z
-#&gt; 231 24 231  ARS  CAR     TRUE 2019-01-29T19:45:00Z
-#&gt; 232 24 233  FUL  BHA     TRUE 2019-01-29T19:45:00Z
-#&gt; 233 24 234  HUD  EVE     TRUE 2019-01-29T19:45:00Z
-#&gt; 234 24 236  WOL  WHU     TRUE 2019-01-29T19:45:00Z
-#&gt; 235 24 235  MUN  BUR     TRUE 2019-01-29T20:00:00Z
-#&gt; 236 24 238  NEW  MCI     TRUE 2019-01-29T20:00:00Z
-#&gt; 237 24 232  BOU  CHE     TRUE 2019-01-30T19:45:00Z
-#&gt; 238 24 239  SOU  CRY     TRUE 2019-01-30T19:45:00Z
-#&gt; 239 24 237  LIV  LEI     TRUE 2019-01-30T20:00:00Z
-#&gt; 240 24 240  TOT  WAT     TRUE 2019-01-30T20:00:00Z
-#&gt; 241 25 249  TOT  NEW     TRUE 2019-02-02T12:30:00Z
-#&gt; 242 25 241  BHA  WAT     TRUE 2019-02-02T15:00:00Z
-#&gt; 243 25 242  BUR  SOU     TRUE 2019-02-02T15:00:00Z
-#&gt; 244 25 244  CHE  HUD     TRUE 2019-02-02T15:00:00Z
-#&gt; 245 25 245  CRY  FUL     TRUE 2019-02-02T15:00:00Z
-#&gt; 246 25 246  EVE  WOL     TRUE 2019-02-02T15:00:00Z
-#&gt; 247 25 243  CAR  BOU     TRUE 2019-02-02T17:30:00Z
-#&gt; 248 25 247  LEI  MUN     TRUE 2019-02-03T14:05:00Z
-#&gt; 249 25 248  MCI  ARS     TRUE 2019-02-03T16:30:00Z
-#&gt; 250 25 250  WHU  LIV     TRUE 2019-02-04T20:00:00Z
-#&gt; 251 25 266  EVE  MCI     TRUE 2019-02-06T19:45:00Z
-#&gt; 252 26 253  FUL  MUN     TRUE 2019-02-09T12:30:00Z
-#&gt; 253 26 252  CRY  WHU     TRUE 2019-02-09T15:00:00Z
-#&gt; 254 26 254  HUD  ARS     TRUE 2019-02-09T15:00:00Z
-#&gt; 255 26 255  LIV  BOU     TRUE 2019-02-09T15:00:00Z
-#&gt; 256 26 257  SOU  CAR     TRUE 2019-02-09T15:00:00Z
-#&gt; 257 26 259  WAT  EVE     TRUE 2019-02-09T15:00:00Z
-#&gt; 258 26 251  BHA  BUR     TRUE 2019-02-09T17:30:00Z
-#&gt; 259 26 258  TOT  LEI     TRUE 2019-02-10T13:30:00Z
-#&gt; 260 26 256  MCI  CHE     TRUE 2019-02-10T16:00:00Z
-#&gt; 261 26 260  WOL  NEW     TRUE 2019-02-11T20:00:00Z
-#&gt; 262 27 264  CAR  WAT     TRUE 2019-02-22T19:45:00Z
-#&gt; 263 27 270  WHU  FUL     TRUE 2019-02-22T19:45:00Z
-#&gt; 264 27 263  BUR  TOT     TRUE 2019-02-23T12:30:00Z
-#&gt; 265 27 262  BOU  WOL     TRUE 2019-02-23T15:00:00Z
-#&gt; 266 27 269  NEW  HUD     TRUE 2019-02-23T15:00:00Z
-#&gt; 267 27 267  LEI  CRY     TRUE 2019-02-23T17:30:00Z
-#&gt; 268 27 261  ARS  SOU     TRUE 2019-02-24T14:05:00Z
-#&gt; 269 27 268  MUN  LIV     TRUE 2019-02-24T14:05:00Z
-#&gt; 270 28 272  CAR  EVE     TRUE 2019-02-26T19:45:00Z
-#&gt; 271 28 274  HUD  WOL     TRUE 2019-02-26T19:45:00Z
-#&gt; 272 28 275  LEI  BHA     TRUE 2019-02-26T19:45:00Z
-#&gt; 273 28 279  NEW  BUR     TRUE 2019-02-26T20:00:00Z
-#&gt; 274 28 271  ARS  BOU     TRUE 2019-02-27T19:45:00Z
-#&gt; 275 28 280  SOU  FUL     TRUE 2019-02-27T19:45:00Z
-#&gt; 276 28 276  CHE  TOT     TRUE 2019-02-27T20:00:00Z
-#&gt; 277 28 273  CRY  MUN     TRUE 2019-02-27T20:00:00Z
-#&gt; 278 28 277  LIV  WAT     TRUE 2019-02-27T20:00:00Z
-#&gt; 279 28 278  MCI  WHU     TRUE 2019-02-27T20:00:00Z
-#&gt; 280 29 287  TOT  ARS     TRUE 2019-03-02T12:30:00Z
-#&gt; 281 29 281  BOU  MCI     TRUE 2019-03-02T15:00:00Z
-#&gt; 282 29 282  BHA  HUD     TRUE 2019-03-02T15:00:00Z
-#&gt; 283 29 283  BUR  CRY     TRUE 2019-03-02T15:00:00Z
-#&gt; 284 29 286  MUN  SOU     TRUE 2019-03-02T15:00:00Z
-#&gt; 285 29 290  WOL  CAR     TRUE 2019-03-02T15:00:00Z
-#&gt; 286 29 289  WHU  NEW     TRUE 2019-03-02T17:30:00Z
-#&gt; 287 29 288  WAT  LEI     TRUE 2019-03-03T12:00:00Z
-#&gt; 288 29 285  FUL  CHE     TRUE 2019-03-03T14:05:00Z
-#&gt; 289 29 284  EVE  LIV     TRUE 2019-03-03T16:15:00Z
-#&gt; 290 30 294  CRY  BHA     TRUE 2019-03-09T12:30:00Z
-#&gt; 291 30 292  CAR  WHU     TRUE 2019-03-09T15:00:00Z
-#&gt; 292 30 295  HUD  BOU     TRUE 2019-03-09T15:00:00Z
-#&gt; 293 30 296  LEI  FUL     TRUE 2019-03-09T15:00:00Z
-#&gt; 294 30 299  NEW  EVE     TRUE 2019-03-09T15:00:00Z
-#&gt; 295 30 300  SOU  TOT     TRUE 2019-03-09T15:00:00Z
-#&gt; 296 30 298  MCI  WAT     TRUE 2019-03-09T17:30:00Z
-#&gt; 297 30 297  LIV  BUR     TRUE 2019-03-10T12:00:00Z
-#&gt; 298 30 293  CHE  WOL     TRUE 2019-03-10T14:05:00Z
-#&gt; 299 30 291  ARS  MUN     TRUE 2019-03-10T16:30:00Z
-#&gt; 300 31 301  BOU  NEW     TRUE 2019-03-16T15:00:00Z
-#&gt; 301 31 303  BUR  LEI     TRUE 2019-03-16T15:00:00Z
-#&gt; 302 31 309  WHU  HUD     TRUE 2019-03-16T15:00:00Z
-#&gt; 303 31 305  FUL  LIV     TRUE 2019-03-17T14:15:00Z
-#&gt; 304 31 304  EVE  CHE     TRUE 2019-03-17T16:30:00Z
-#&gt; 305 32 316  FUL  MCI    FALSE 2019-03-30T12:30:00Z
-#&gt; 306 32 312  BHA  SOU    FALSE 2019-03-30T15:00:00Z
-#&gt; 307 32 313  BUR  WOL    FALSE 2019-03-30T15:00:00Z
-#&gt; 308 32 315  CRY  HUD    FALSE 2019-03-30T15:00:00Z
-#&gt; 309 32 317  LEI  BOU    FALSE 2019-03-30T15:00:00Z
-#&gt; 310 32 319  MUN  WAT    FALSE 2019-03-30T15:00:00Z
-#&gt; 311 32 320  WHU  EVE    FALSE 2019-03-30T17:30:00Z
-#&gt; 312 32 314  CAR  CHE    FALSE 2019-03-31T13:05:00Z
-#&gt; 313 32 318  LIV  TOT    FALSE 2019-03-31T15:30:00Z
-#&gt; 314 32 311  ARS  NEW    FALSE 2019-04-01T19:00:00Z
-#&gt; 315 32 329  WAT  FUL    FALSE 2019-04-02T18:45:00Z
-#&gt; 316 32 330  WOL  MUN    FALSE 2019-04-02T18:45:00Z
-#&gt; 317 32 265  CHE  BHA    FALSE 2019-04-03T18:45:00Z
-#&gt; 318 32 325  MCI  CAR    FALSE 2019-04-03T18:45:00Z
-#&gt; 319 32 307  TOT  CRY    FALSE 2019-04-03T18:45:00Z
-#&gt; 320 33 327  SOU  LIV    FALSE 2019-04-05T19:00:00Z
-#&gt; 321 33 321  BOU  BUR    FALSE 2019-04-06T14:00:00Z
-#&gt; 322 33 324  HUD  LEI    FALSE 2019-04-06T14:00:00Z
-#&gt; 323 33 326  NEW  CRY    FALSE 2019-04-06T14:00:00Z
-#&gt; 324 33 323  EVE  ARS    FALSE 2019-04-07T13:05:00Z
-#&gt; 325 33 322  CHE  WHU    FALSE 2019-04-08T19:00:00Z
-#&gt; 326 34 335  LEI  NEW    FALSE 2019-04-12T19:00:00Z
-#&gt; 327 34 339  TOT  HUD    FALSE 2019-04-13T11:30:00Z
-#&gt; 328 34 331  BHA  BOU    FALSE 2019-04-13T14:00:00Z
-#&gt; 329 34 332  BUR  CAR    FALSE 2019-04-13T14:00:00Z
-#&gt; 330 34 334  FUL  EVE    FALSE 2019-04-13T14:00:00Z
-#&gt; 331 34 338  SOU  WOL    FALSE 2019-04-13T14:00:00Z
-#&gt; 332 34 337  MUN  WHU    FALSE 2019-04-13T16:30:00Z
-#&gt; 333 34 333  CRY  MCI    FALSE 2019-04-14T13:05:00Z
-#&gt; 334 34 336  LIV  CHE    FALSE 2019-04-14T15:30:00Z
-#&gt; 335 34 340  WAT  ARS    FALSE 2019-04-15T19:00:00Z
-#&gt; 336 34 302  BHA  CAR    FALSE 2019-04-16T18:45:00Z
-#&gt; 337 35 347  MCI  TOT    FALSE 2019-04-20T11:30:00Z
-#&gt; 338 35 342  BOU  FUL    FALSE 2019-04-20T14:00:00Z
-#&gt; 339 35 346  HUD  WAT    FALSE 2019-04-20T14:00:00Z
-#&gt; 340 35 349  WHU  LEI    FALSE 2019-04-20T14:00:00Z
-#&gt; 341 35 350  WOL  BHA    FALSE 2019-04-20T14:00:00Z
-#&gt; 342 35 348  NEW  SOU    FALSE 2019-04-20T16:30:00Z
-#&gt; 343 35 345  EVE  MUN    FALSE 2019-04-21T12:30:00Z
-#&gt; 344 35 341  ARS  CRY    FALSE 2019-04-21T15:00:00Z
-#&gt; 345 35 343  CAR  LIV    FALSE 2019-04-21T15:00:00Z
-#&gt; 346 35 344  CHE  BUR    FALSE 2019-04-22T19:00:00Z
-#&gt; 347 35 328  TOT  BHA    FALSE 2019-04-23T18:45:00Z
-#&gt; 348 35 308  WAT  SOU    FALSE 2019-04-23T18:45:00Z
-#&gt; 349 35 310  WOL  ARS    FALSE 2019-04-24T18:45:00Z
-#&gt; 350 35 306  MUN  MCI    FALSE 2019-04-24T19:00:00Z
-#&gt; 351 36 356  LIV  HUD    FALSE 2019-04-26T19:00:00Z
-#&gt; 352 36 359  TOT  WHU    FALSE 2019-04-27T11:30:00Z
-#&gt; 353 36 353  CRY  EVE    FALSE 2019-04-27T14:00:00Z
-#&gt; 354 36 354  FUL  CAR    FALSE 2019-04-27T14:00:00Z
-#&gt; 355 36 358  SOU  BOU    FALSE 2019-04-27T14:00:00Z
-#&gt; 356 36 360  WAT  WOL    FALSE 2019-04-27T14:00:00Z
-#&gt; 357 36 351  BHA  NEW    FALSE 2019-04-27T16:30:00Z
-#&gt; 358 36 352  BUR  MCI    FALSE 2019-04-28T13:05:00Z
-#&gt; 359 36 357  MUN  CHE    FALSE 2019-04-28T15:30:00Z
-#&gt; 360 36 355  LEI  ARS    FALSE 2019-04-29T19:00:00Z
-#&gt; 361 37 361  ARS  BHA    FALSE 2019-05-04T14:00:00Z
-#&gt; 362 37 362  BOU  TOT    FALSE 2019-05-04T14:00:00Z
-#&gt; 363 37 363  CAR  CRY    FALSE 2019-05-04T14:00:00Z
-#&gt; 364 37 364  CHE  WAT    FALSE 2019-05-04T14:00:00Z
-#&gt; 365 37 365  EVE  BUR    FALSE 2019-05-04T14:00:00Z
-#&gt; 366 37 366  HUD  MUN    FALSE 2019-05-04T14:00:00Z
-#&gt; 367 37 367  MCI  LEI    FALSE 2019-05-04T14:00:00Z
-#&gt; 368 37 368  NEW  LIV    FALSE 2019-05-04T14:00:00Z
-#&gt; 369 37 369  WHU  SOU    FALSE 2019-05-04T14:00:00Z
-#&gt; 370 37 370  WOL  FUL    FALSE 2019-05-04T14:00:00Z
-#&gt; 371 38 371  BHA  MCI    FALSE 2019-05-12T14:00:00Z
-#&gt; 372 38 372  BUR  ARS    FALSE 2019-05-12T14:00:00Z
-#&gt; 373 38 373  CRY  BOU    FALSE 2019-05-12T14:00:00Z
-#&gt; 374 38 374  FUL  NEW    FALSE 2019-05-12T14:00:00Z
-#&gt; 375 38 375  LEI  CHE    FALSE 2019-05-12T14:00:00Z
-#&gt; 376 38 376  LIV  WOL    FALSE 2019-05-12T14:00:00Z
-#&gt; 377 38 377  MUN  CAR    FALSE 2019-05-12T14:00:00Z
-#&gt; 378 38 378  SOU  HUD    FALSE 2019-05-12T14:00:00Z
-#&gt; 379 38 379  TOT  EVE    FALSE 2019-05-12T14:00:00Z
-#&gt; 380 38 380  WAT  WHU    FALSE 2019-05-12T14:00:00Z</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_game_list</span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: pakke 'bindrcpp' blev bygget under R version 3.4.4</span></div><div class='output co'>#&gt;     GW  id home team_h away team_a finished              kickoff team_h_score
+#&gt; 1    1   1  LIV     10  NOR     14     TRUE 2019-08-09T19:00:00Z            4
+#&gt; 2    1   8  WHU     19  MCI     11    FALSE 2019-08-10T11:30:00Z            0
+#&gt; 3    1   2  BOU      3  SHU     15    FALSE 2019-08-10T14:00:00Z           NA
+#&gt; 4    1   3  BUR      5  SOU     16    FALSE 2019-08-10T14:00:00Z           NA
+#&gt; 5    1   4  CRY      7  EVE      8    FALSE 2019-08-10T14:00:00Z           NA
+#&gt; 6    1   7  WAT     18  BHA      4    FALSE 2019-08-10T14:00:00Z           NA
+#&gt; 7    1   6  TOT     17  AVL      2    FALSE 2019-08-10T16:30:00Z           NA
+#&gt; 8    1   5  LEI      9  WOL     20    FALSE 2019-08-11T13:00:00Z           NA
+#&gt; 9    1  10  NEW     13  ARS      1    FALSE 2019-08-11T13:00:00Z           NA
+#&gt; 10   1   9  MUN     12  CHE      6    FALSE 2019-08-11T15:30:00Z           NA
+#&gt; 11   2  11  ARS      1  BUR      5    FALSE 2019-08-17T11:30:00Z           NA
+#&gt; 12   2  12  AVL      2  BOU      3    FALSE 2019-08-17T14:00:00Z           NA
+#&gt; 13   2  13  BHA      4  WHU     19    FALSE 2019-08-17T14:00:00Z           NA
+#&gt; 14   2  15  EVE      8  WAT     18    FALSE 2019-08-17T14:00:00Z           NA
+#&gt; 15   2  17  NOR     14  NEW     13    FALSE 2019-08-17T14:00:00Z           NA
+#&gt; 16   2  19  SOU     16  LIV     10    FALSE 2019-08-17T14:00:00Z           NA
+#&gt; 17   2  16  MCI     11  TOT     17    FALSE 2019-08-17T16:30:00Z           NA
+#&gt; 18   2  18  SHU     15  CRY      7    FALSE 2019-08-18T13:00:00Z           NA
+#&gt; 19   2  14  CHE      6  LEI      9    FALSE 2019-08-18T15:30:00Z           NA
+#&gt; 20   2  20  WOL     20  MUN     12    FALSE 2019-08-19T19:00:00Z           NA
+#&gt; 21   3  21  AVL      2  EVE      8    FALSE 2019-08-23T19:00:00Z           NA
+#&gt; 22   3  26  NOR     14  CHE      6    FALSE 2019-08-24T11:30:00Z           NA
+#&gt; 23   3  23  BHA      4  SOU     16    FALSE 2019-08-24T14:00:00Z           NA
+#&gt; 24   3  25  MUN     12  CRY      7    FALSE 2019-08-24T14:00:00Z           NA
+#&gt; 25   3  27  SHU     15  LEI      9    FALSE 2019-08-24T14:00:00Z           NA
+#&gt; 26   3  29  WAT     18  WHU     19    FALSE 2019-08-24T14:00:00Z           NA
+#&gt; 27   3  30  WOL     20  BUR      5    FALSE 2019-08-24T14:00:00Z           NA
+#&gt; 28   3  24  LIV     10  ARS      1    FALSE 2019-08-24T16:30:00Z           NA
+#&gt; 29   3  22  BOU      3  MCI     11    FALSE 2019-08-25T13:00:00Z           NA
+#&gt; 30   3  28  TOT     17  NEW     13    FALSE 2019-08-25T15:30:00Z           NA
+#&gt; 31   4  39  SOU     16  MUN     12    FALSE 2019-08-31T11:30:00Z           NA
+#&gt; 32   4  33  CHE      6  SHU     15    FALSE 2019-08-31T14:00:00Z           NA
+#&gt; 33   4  34  CRY      7  AVL      2    FALSE 2019-08-31T14:00:00Z           NA
+#&gt; 34   4  36  LEI      9  BOU      3    FALSE 2019-08-31T14:00:00Z           NA
+#&gt; 35   4  37  MCI     11  BHA      4    FALSE 2019-08-31T14:00:00Z           NA
+#&gt; 36   4  38  NEW     13  WAT     18    FALSE 2019-08-31T14:00:00Z           NA
+#&gt; 37   4  40  WHU     19  NOR     14    FALSE 2019-08-31T14:00:00Z           NA
+#&gt; 38   4  32  BUR      5  LIV     10    FALSE 2019-08-31T16:30:00Z           NA
+#&gt; 39   4  35  EVE      8  WOL     20    FALSE 2019-09-01T13:00:00Z           NA
+#&gt; 40   4  31  ARS      1  TOT     17    FALSE 2019-09-01T15:30:00Z           NA
+#&gt; 41   5  44  LIV     10  NEW     13    FALSE 2019-09-14T11:30:00Z           NA
+#&gt; 42   5  43  BHA      4  BUR      5    FALSE 2019-09-14T14:00:00Z           NA
+#&gt; 43   5  45  MUN     12  LEI      9    FALSE 2019-09-14T14:00:00Z           NA
+#&gt; 44   5  47  SHU     15  SOU     16    FALSE 2019-09-14T14:00:00Z           NA
+#&gt; 45   5  48  TOT     17  CRY      7    FALSE 2019-09-14T14:00:00Z           NA
+#&gt; 46   5  50  WOL     20  CHE      6    FALSE 2019-09-14T14:00:00Z           NA
+#&gt; 47   5  46  NOR     14  MCI     11    FALSE 2019-09-14T16:30:00Z           NA
+#&gt; 48   5  42  BOU      3  EVE      8    FALSE 2019-09-15T13:00:00Z           NA
+#&gt; 49   5  49  WAT     18  ARS      1    FALSE 2019-09-15T15:30:00Z           NA
+#&gt; 50   5  41  AVL      2  WHU     19    FALSE 2019-09-16T19:00:00Z           NA
+#&gt; 51   6  59  SOU     16  BOU      3    FALSE 2019-09-20T19:00:00Z           NA
+#&gt; 52   6  56  LEI      9  TOT     17    FALSE 2019-09-21T11:30:00Z           NA
+#&gt; 53   6  52  BUR      5  NOR     14    FALSE 2019-09-21T14:00:00Z           NA
+#&gt; 54   6  54  CRY      7  WOL     20    FALSE 2019-09-21T14:00:00Z           NA
+#&gt; 55   6  55  EVE      8  SHU     15    FALSE 2019-09-21T14:00:00Z           NA
+#&gt; 56   6  57  MCI     11  WAT     18    FALSE 2019-09-21T14:00:00Z           NA
+#&gt; 57   6  58  NEW     13  BHA      4    FALSE 2019-09-21T16:30:00Z           NA
+#&gt; 58   6  60  WHU     19  MUN     12    FALSE 2019-09-22T13:00:00Z           NA
+#&gt; 59   6  51  ARS      1  AVL      2    FALSE 2019-09-22T15:30:00Z           NA
+#&gt; 60   6  53  CHE      6  LIV     10    FALSE 2019-09-22T15:30:00Z           NA
+#&gt; 61   7  68  SHU     15  LIV     10    FALSE 2019-09-28T11:30:00Z           NA
+#&gt; 62   7  61  AVL      2  BUR      5    FALSE 2019-09-28T14:00:00Z           NA
+#&gt; 63   7  62  BOU      3  WHU     19    FALSE 2019-09-28T14:00:00Z           NA
+#&gt; 64   7  63  CHE      6  BHA      4    FALSE 2019-09-28T14:00:00Z           NA
+#&gt; 65   7  64  CRY      7  NOR     14    FALSE 2019-09-28T14:00:00Z           NA
+#&gt; 66   7  69  TOT     17  SOU     16    FALSE 2019-09-28T14:00:00Z           NA
+#&gt; 67   7  70  WOL     20  WAT     18    FALSE 2019-09-28T14:00:00Z           NA
+#&gt; 68   7  66  LEI      9  NEW     13    FALSE 2019-09-28T16:30:00Z           NA
+#&gt; 69   7  65  EVE      8  MCI     11    FALSE 2019-09-29T15:30:00Z           NA
+#&gt; 70   7  67  MUN     12  ARS      1    FALSE 2019-09-30T19:00:00Z           NA
+#&gt; 71   8  72  BHA      4  TOT     17    FALSE 2019-10-05T11:30:00Z           NA
+#&gt; 72   8  73  BUR      5  EVE      8    FALSE 2019-10-05T14:00:00Z           NA
+#&gt; 73   8  74  LIV     10  LEI      9    FALSE 2019-10-05T14:00:00Z           NA
+#&gt; 74   8  75  MCI     11  WOL     20    FALSE 2019-10-05T14:00:00Z           NA
+#&gt; 75   8  77  NOR     14  AVL      2    FALSE 2019-10-05T14:00:00Z           NA
+#&gt; 76   8  79  WAT     18  SHU     15    FALSE 2019-10-05T14:00:00Z           NA
+#&gt; 77   8  80  WHU     19  CRY      7    FALSE 2019-10-05T16:30:00Z           NA
+#&gt; 78   8  78  SOU     16  CHE      6    FALSE 2019-10-06T13:00:00Z           NA
+#&gt; 79   8  71  ARS      1  BOU      3    FALSE 2019-10-06T15:30:00Z           NA
+#&gt; 80   8  76  NEW     13  MUN     12    FALSE 2019-10-06T15:30:00Z           NA
+#&gt; 81   9  85  EVE      8  WHU     19    FALSE 2019-10-19T11:30:00Z           NA
+#&gt; 82   9  81  AVL      2  BHA      4    FALSE 2019-10-19T14:00:00Z           NA
+#&gt; 83   9  82  BOU      3  NOR     14    FALSE 2019-10-19T14:00:00Z           NA
+#&gt; 84   9  83  CHE      6  NEW     13    FALSE 2019-10-19T14:00:00Z           NA
+#&gt; 85   9  86  LEI      9  BUR      5    FALSE 2019-10-19T14:00:00Z           NA
+#&gt; 86   9  89  TOT     17  WAT     18    FALSE 2019-10-19T14:00:00Z           NA
+#&gt; 87   9  90  WOL     20  SOU     16    FALSE 2019-10-19T14:00:00Z           NA
+#&gt; 88   9  87  MUN     12  LIV     10    FALSE 2019-10-19T16:30:00Z           NA
+#&gt; 89   9  84  CRY      7  MCI     11    FALSE 2019-10-20T15:30:00Z           NA
+#&gt; 90   9  88  SHU     15  ARS      1    FALSE 2019-10-21T19:00:00Z           NA
+#&gt; 91  10  98  SOU     16  LEI      9    FALSE 2019-10-25T19:00:00Z           NA
+#&gt; 92  10  95  MCI     11  AVL      2    FALSE 2019-10-26T11:30:00Z           NA
+#&gt; 93  10  92  BHA      4  EVE      8    FALSE 2019-10-26T14:00:00Z           NA
+#&gt; 94  10  99  WAT     18  BOU      3    FALSE 2019-10-26T14:00:00Z           NA
+#&gt; 95  10 100  WHU     19  SHU     15    FALSE 2019-10-26T14:00:00Z           NA
+#&gt; 96  10  93  BUR      5  CHE      6    FALSE 2019-10-26T16:30:00Z           NA
+#&gt; 97  10  96  NEW     13  WOL     20    FALSE 2019-10-27T14:00:00Z           NA
+#&gt; 98  10  91  ARS      1  CRY      7    FALSE 2019-10-27T16:30:00Z           NA
+#&gt; 99  10  94  LIV     10  TOT     17    FALSE 2019-10-27T16:30:00Z           NA
+#&gt; 100 10  97  NOR     14  MUN     12    FALSE 2019-10-27T16:30:00Z           NA
+#&gt; 101 11 101  ARS      1  WOL     20    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 102 11 102  AVL      2  LIV     10    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 103 11 103  BOU      3  MUN     12    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 104 11 104  BHA      4  NOR     14    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 105 11 105  CRY      7  LEI      9    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 106 11 106  EVE      8  TOT     17    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 107 11 107  MCI     11  SOU     16    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 108 11 108  SHU     15  BUR      5    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 109 11 109  WAT     18  CHE      6    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 110 11 110  WHU     19  NEW     13    FALSE 2019-11-02T15:00:00Z           NA
+#&gt; 111 12 111  BUR      5  WHU     19    FALSE 2019-11-09T15:00:00Z           NA
+#&gt; 112 12 112  CHE      6  CRY      7    FALSE 2019-11-09T15:00:00Z           NA
+#&gt; 113 12 114  LIV     10  MCI     11    FALSE 2019-11-09T15:00:00Z           NA
+#&gt; 114 12 116  NEW     13  BOU      3    FALSE 2019-11-09T15:00:00Z           NA
+#&gt; 115 12 117  NOR     14  WAT     18    FALSE 2019-11-09T15:00:00Z           NA
+#&gt; 116 12 118  SOU     16  EVE      8    FALSE 2019-11-09T15:00:00Z           NA
+#&gt; 117 12 119  TOT     17  SHU     15    FALSE 2019-11-09T15:00:00Z           NA
+#&gt; 118 12 120  WOL     20  AVL      2    FALSE 2019-11-09T15:00:00Z           NA
+#&gt; 119 12 113  LEI      9  ARS      1    FALSE 2019-11-10T15:00:00Z           NA
+#&gt; 120 12 115  MUN     12  BHA      4    FALSE 2019-11-10T15:00:00Z           NA
+#&gt; 121 13 121  ARS      1  SOU     16    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 122 13 122  AVL      2  NEW     13    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 123 13 123  BOU      3  WOL     20    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 124 13 124  BHA      4  LEI      9    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 125 13 125  CRY      7  LIV     10    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 126 13 126  EVE      8  NOR     14    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 127 13 127  MCI     11  CHE      6    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 128 13 128  SHU     15  MUN     12    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 129 13 129  WAT     18  BUR      5    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 130 13 130  WHU     19  TOT     17    FALSE 2019-11-23T15:00:00Z           NA
+#&gt; 131 14 131  BUR      5  CRY      7    FALSE 2019-11-30T15:00:00Z           NA
+#&gt; 132 14 132  CHE      6  WHU     19    FALSE 2019-11-30T15:00:00Z           NA
+#&gt; 133 14 133  LEI      9  EVE      8    FALSE 2019-11-30T15:00:00Z           NA
+#&gt; 134 14 134  LIV     10  BHA      4    FALSE 2019-11-30T15:00:00Z           NA
+#&gt; 135 14 136  NEW     13  MCI     11    FALSE 2019-11-30T15:00:00Z           NA
+#&gt; 136 14 138  SOU     16  WAT     18    FALSE 2019-11-30T15:00:00Z           NA
+#&gt; 137 14 139  TOT     17  BOU      3    FALSE 2019-11-30T15:00:00Z           NA
+#&gt; 138 14 140  WOL     20  SHU     15    FALSE 2019-11-30T15:00:00Z           NA
+#&gt; 139 14 135  MUN     12  AVL      2    FALSE 2019-12-01T15:00:00Z           NA
+#&gt; 140 14 137  NOR     14  ARS      1    FALSE 2019-12-01T15:00:00Z           NA
+#&gt; 141 15 141  ARS      1  BHA      4    FALSE 2019-12-03T19:45:00Z           NA
+#&gt; 142 15 142  BUR      5  MCI     11    FALSE 2019-12-03T19:45:00Z           NA
+#&gt; 143 15 143  LEI      9  WAT     18    FALSE 2019-12-03T19:45:00Z           NA
+#&gt; 144 15 145  SHU     15  NEW     13    FALSE 2019-12-03T19:45:00Z           NA
+#&gt; 145 15 146  WOL     20  WHU     19    FALSE 2019-12-03T19:45:00Z           NA
+#&gt; 146 15 144  MUN     12  TOT     17    FALSE 2019-12-03T20:00:00Z           NA
+#&gt; 147 15 147  CHE      6  AVL      2    FALSE 2019-12-04T19:45:00Z           NA
+#&gt; 148 15 150  SOU     16  NOR     14    FALSE 2019-12-04T19:45:00Z           NA
+#&gt; 149 15 148  CRY      7  BOU      3    FALSE 2019-12-04T20:00:00Z           NA
+#&gt; 150 15 149  LIV     10  EVE      8    FALSE 2019-12-04T20:00:00Z           NA
+#&gt; 151 16 151  AVL      2  LEI      9    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 152 16 152  BOU      3  LIV     10    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 153 16 153  BHA      4  WOL     20    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 154 16 154  EVE      8  CHE      6    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 155 16 155  MCI     11  MUN     12    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 156 16 156  NEW     13  SOU     16    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 157 16 157  NOR     14  SHU     15    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 158 16 158  TOT     17  BUR      5    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 159 16 159  WAT     18  CRY      7    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 160 16 160  WHU     19  ARS      1    FALSE 2019-12-07T15:00:00Z           NA
+#&gt; 161 17 161  ARS      1  MCI     11    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 162 17 162  BUR      5  NEW     13    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 163 17 163  CHE      6  BOU      3    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 164 17 164  CRY      7  BHA      4    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 165 17 165  LEI      9  NOR     14    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 166 17 166  LIV     10  WAT     18    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 167 17 167  MUN     12  EVE      8    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 168 17 168  SHU     15  AVL      2    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 169 17 169  SOU     16  WHU     19    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 170 17 170  WOL     20  TOT     17    FALSE 2019-12-14T15:00:00Z           NA
+#&gt; 171 18 171  AVL      2  SOU     16    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 172 18 172  BOU      3  BUR      5    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 173 18 173  BHA      4  SHU     15    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 174 18 174  EVE      8  ARS      1    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 175 18 175  MCI     11  LEI      9    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 176 18 176  NEW     13  CRY      7    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 177 18 177  NOR     14  WOL     20    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 178 18 178  TOT     17  CHE      6    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 179 18 179  WAT     18  MUN     12    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 180 18 180  WHU     19  LIV     10    FALSE 2019-12-21T15:00:00Z           NA
+#&gt; 181 19 181  AVL      2  NOR     14    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 182 19 182  BOU      3  ARS      1    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 183 19 183  CHE      6  SOU     16    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 184 19 184  CRY      7  WHU     19    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 185 19 185  EVE      8  BUR      5    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 186 19 186  LEI      9  LIV     10    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 187 19 187  MUN     12  NEW     13    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 188 19 188  SHU     15  WAT     18    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 189 19 189  TOT     17  BHA      4    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 190 19 190  WOL     20  MCI     11    FALSE 2019-12-26T15:00:00Z           NA
+#&gt; 191 20 191  ARS      1  CHE      6    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 192 20 192  BHA      4  BOU      3    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 193 20 193  BUR      5  MUN     12    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 194 20 194  LIV     10  WOL     20    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 195 20 195  MCI     11  SHU     15    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 196 20 196  NEW     13  EVE      8    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 197 20 197  NOR     14  TOT     17    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 198 20 198  SOU     16  CRY      7    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 199 20 199  WAT     18  AVL      2    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 200 20 200  WHU     19  LEI      9    FALSE 2019-12-28T15:00:00Z           NA
+#&gt; 201 21 201  ARS      1  MUN     12    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 202 21 202  BHA      4  CHE      6    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 203 21 203  BUR      5  AVL      2    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 204 21 204  LIV     10  SHU     15    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 205 21 205  MCI     11  EVE      8    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 206 21 206  NEW     13  LEI      9    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 207 21 207  NOR     14  CRY      7    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 208 21 208  SOU     16  TOT     17    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 209 21 209  WAT     18  WOL     20    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 210 21 210  WHU     19  BOU      3    FALSE 2020-01-01T15:00:00Z           NA
+#&gt; 211 22 211  AVL      2  MCI     11    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 212 22 212  BOU      3  WAT     18    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 213 22 213  CHE      6  BUR      5    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 214 22 214  CRY      7  ARS      1    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 215 22 215  EVE      8  BHA      4    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 216 22 216  LEI      9  SOU     16    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 217 22 217  MUN     12  NOR     14    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 218 22 218  SHU     15  WHU     19    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 219 22 219  TOT     17  LIV     10    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 220 22 220  WOL     20  NEW     13    FALSE 2020-01-11T15:00:00Z           NA
+#&gt; 221 23 221  ARS      1  SHU     15    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 222 23 222  BHA      4  AVL      2    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 223 23 223  BUR      5  LEI      9    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 224 23 224  LIV     10  MUN     12    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 225 23 225  MCI     11  CRY      7    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 226 23 226  NEW     13  CHE      6    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 227 23 227  NOR     14  BOU      3    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 228 23 228  SOU     16  WOL     20    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 229 23 229  WAT     18  TOT     17    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 230 23 230  WHU     19  EVE      8    FALSE 2020-01-18T15:00:00Z           NA
+#&gt; 231 24 231  AVL      2  WAT     18    FALSE 2020-01-21T19:45:00Z           NA
+#&gt; 232 24 232  BOU      3  BHA      4    FALSE 2020-01-21T19:45:00Z           NA
+#&gt; 233 24 233  EVE      8  NEW     13    FALSE 2020-01-21T19:45:00Z           NA
+#&gt; 234 24 234  LEI      9  WHU     19    FALSE 2020-01-21T19:45:00Z           NA
+#&gt; 235 24 236  SHU     15  MCI     11    FALSE 2020-01-21T19:45:00Z           NA
+#&gt; 236 24 237  WOL     20  LIV     10    FALSE 2020-01-21T19:45:00Z           NA
+#&gt; 237 24 235  MUN     12  BUR      5    FALSE 2020-01-21T20:00:00Z           NA
+#&gt; 238 24 238  CHE      6  ARS      1    FALSE 2020-01-22T19:45:00Z           NA
+#&gt; 239 24 240  TOT     17  NOR     14    FALSE 2020-01-22T19:45:00Z           NA
+#&gt; 240 24 239  CRY      7  SOU     16    FALSE 2020-01-22T20:00:00Z           NA
+#&gt; 241 25 241  BOU      3  AVL      2    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 242 25 242  BUR      5  ARS      1    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 243 25 243  CRY      7  SHU     15    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 244 25 244  LEI      9  CHE      6    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 245 25 245  LIV     10  SOU     16    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 246 25 246  MUN     12  WOL     20    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 247 25 247  NEW     13  NOR     14    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 248 25 248  TOT     17  MCI     11    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 249 25 249  WAT     18  EVE      8    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 250 25 250  WHU     19  BHA      4    FALSE 2020-02-01T15:00:00Z           NA
+#&gt; 251 26 251  ARS      1  NEW     13    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 252 26 252  AVL      2  TOT     17    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 253 26 253  BHA      4  WAT     18    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 254 26 254  CHE      6  MUN     12    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 255 26 255  EVE      8  CRY      7    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 256 26 256  MCI     11  WHU     19    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 257 26 257  NOR     14  LIV     10    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 258 26 258  SHU     15  BOU      3    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 259 26 259  SOU     16  BUR      5    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 260 26 260  WOL     20  LEI      9    FALSE 2020-02-08T15:00:00Z           NA
+#&gt; 261 27 261  ARS      1  EVE      8    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 262 27 262  BUR      5  BOU      3    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 263 27 263  CHE      6  TOT     17    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 264 27 264  CRY      7  NEW     13    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 265 27 265  LEI      9  MCI     11    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 266 27 266  LIV     10  WHU     19    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 267 27 267  MUN     12  WAT     18    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 268 27 268  SHU     15  BHA      4    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 269 27 269  SOU     16  AVL      2    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 270 27 270  WOL     20  NOR     14    FALSE 2020-02-22T15:00:00Z           NA
+#&gt; 271 28 271  AVL      2  SHU     15    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 272 28 272  BOU      3  CHE      6    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 273 28 273  BHA      4  CRY      7    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 274 28 274  EVE      8  MUN     12    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 275 28 275  MCI     11  ARS      1    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 276 28 276  NEW     13  BUR      5    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 277 28 277  NOR     14  LEI      9    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 278 28 278  TOT     17  WOL     20    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 279 28 279  WAT     18  LIV     10    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 280 28 280  WHU     19  SOU     16    FALSE 2020-02-29T15:00:00Z           NA
+#&gt; 281 29 281  ARS      1  WHU     19    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 282 29 282  BUR      5  TOT     17    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 283 29 283  CHE      6  EVE      8    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 284 29 284  CRY      7  WAT     18    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 285 29 285  LEI      9  AVL      2    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 286 29 286  LIV     10  BOU      3    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 287 29 287  MUN     12  MCI     11    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 288 29 288  SHU     15  NOR     14    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 289 29 289  SOU     16  NEW     13    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 290 29 290  WOL     20  BHA      4    FALSE 2020-03-07T15:00:00Z           NA
+#&gt; 291 30 291  AVL      2  CHE      6    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 292 30 292  BOU      3  CRY      7    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 293 30 293  BHA      4  ARS      1    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 294 30 294  EVE      8  LIV     10    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 295 30 295  MCI     11  BUR      5    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 296 30 296  NEW     13  SHU     15    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 297 30 297  NOR     14  SOU     16    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 298 30 298  TOT     17  MUN     12    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 299 30 299  WAT     18  LEI      9    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 300 30 300  WHU     19  WOL     20    FALSE 2020-03-14T15:00:00Z           NA
+#&gt; 301 31 301  BUR      5  WAT     18    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 302 31 302  CHE      6  MCI     11    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 303 31 303  LEI      9  BHA      4    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 304 31 304  LIV     10  CRY      7    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 305 31 305  MUN     12  SHU     15    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 306 31 306  NEW     13  AVL      2    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 307 31 307  NOR     14  EVE      8    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 308 31 308  SOU     16  ARS      1    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 309 31 309  TOT     17  WHU     19    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 310 31 310  WOL     20  BOU      3    FALSE 2020-03-21T15:00:00Z           NA
+#&gt; 311 32 311  ARS      1  NOR     14    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 312 32 312  AVL      2  WOL     20    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 313 32 313  BOU      3  NEW     13    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 314 32 314  BHA      4  MUN     12    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 315 32 315  CRY      7  BUR      5    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 316 32 316  EVE      8  LEI      9    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 317 32 317  MCI     11  LIV     10    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 318 32 318  SHU     15  TOT     17    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 319 32 319  WAT     18  SOU     16    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 320 32 320  WHU     19  CHE      6    FALSE 2020-04-04T14:00:00Z           NA
+#&gt; 321 33 321  BUR      5  SHU     15    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 322 33 322  CHE      6  WAT     18    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 323 33 323  LEI      9  CRY      7    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 324 33 324  LIV     10  AVL      2    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 325 33 325  MUN     12  BOU      3    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 326 33 326  NEW     13  WHU     19    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 327 33 327  NOR     14  BHA      4    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 328 33 328  SOU     16  MCI     11    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 329 33 329  TOT     17  EVE      8    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 330 33 330  WOL     20  ARS      1    FALSE 2020-04-11T14:00:00Z           NA
+#&gt; 331 34 331  ARS      1  LEI      9    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 332 34 332  AVL      2  MUN     12    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 333 34 333  BOU      3  TOT     17    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 334 34 334  BHA      4  LIV     10    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 335 34 335  CRY      7  CHE      6    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 336 34 336  EVE      8  SOU     16    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 337 34 337  MCI     11  NEW     13    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 338 34 338  SHU     15  WOL     20    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 339 34 339  WAT     18  NOR     14    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 340 34 340  WHU     19  BUR      5    FALSE 2020-04-18T14:00:00Z           NA
+#&gt; 341 35 341  AVL      2  CRY      7    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 342 35 342  BOU      3  LEI      9    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 343 35 343  BHA      4  MCI     11    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 344 35 344  LIV     10  BUR      5    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 345 35 345  MUN     12  SOU     16    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 346 35 346  NOR     14  WHU     19    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 347 35 347  SHU     15  CHE      6    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 348 35 348  TOT     17  ARS      1    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 349 35 349  WAT     18  NEW     13    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 350 35 350  WOL     20  EVE      8    FALSE 2020-04-25T14:00:00Z           NA
+#&gt; 351 36 351  ARS      1  LIV     10    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 352 36 352  BUR      5  WOL     20    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 353 36 353  CHE      6  NOR     14    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 354 36 354  CRY      7  MUN     12    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 355 36 355  EVE      8  AVL      2    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 356 36 356  LEI      9  SHU     15    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 357 36 357  MCI     11  BOU      3    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 358 36 358  NEW     13  TOT     17    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 359 36 359  SOU     16  BHA      4    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 360 36 360  WHU     19  WAT     18    FALSE 2020-05-02T14:00:00Z           NA
+#&gt; 361 37 361  AVL      2  ARS      1    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 362 37 362  BOU      3  SOU     16    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 363 37 363  BHA      4  NEW     13    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 364 37 364  LIV     10  CHE      6    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 365 37 365  MUN     12  WHU     19    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 366 37 366  NOR     14  BUR      5    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 367 37 367  SHU     15  EVE      8    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 368 37 368  TOT     17  LEI      9    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 369 37 369  WAT     18  MCI     11    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 370 37 370  WOL     20  CRY      7    FALSE 2020-05-09T14:00:00Z           NA
+#&gt; 371 38 371  ARS      1  WAT     18    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 372 38 372  BUR      5  BHA      4    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 373 38 373  CHE      6  WOL     20    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 374 38 374  CRY      7  TOT     17    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 375 38 375  EVE      8  BOU      3    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 376 38 376  LEI      9  MUN     12    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 377 38 377  MCI     11  NOR     14    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 378 38 378  NEW     13  LIV     10    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 379 38 379  SOU     16  SHU     15    FALSE 2020-05-17T14:00:00Z           NA
+#&gt; 380 38 380  WHU     19  AVL      2    FALSE 2020-05-17T14:00:00Z           NA
+#&gt;     team_a_score
+#&gt; 1              1
+#&gt; 2              5
+#&gt; 3             NA
+#&gt; 4             NA
+#&gt; 5             NA
+#&gt; 6             NA
+#&gt; 7             NA
+#&gt; 8             NA
+#&gt; 9             NA
+#&gt; 10            NA
+#&gt; 11            NA
+#&gt; 12            NA
+#&gt; 13            NA
+#&gt; 14            NA
+#&gt; 15            NA
+#&gt; 16            NA
+#&gt; 17            NA
+#&gt; 18            NA
+#&gt; 19            NA
+#&gt; 20            NA
+#&gt; 21            NA
+#&gt; 22            NA
+#&gt; 23            NA
+#&gt; 24            NA
+#&gt; 25            NA
+#&gt; 26            NA
+#&gt; 27            NA
+#&gt; 28            NA
+#&gt; 29            NA
+#&gt; 30            NA
+#&gt; 31            NA
+#&gt; 32            NA
+#&gt; 33            NA
+#&gt; 34            NA
+#&gt; 35            NA
+#&gt; 36            NA
+#&gt; 37            NA
+#&gt; 38            NA
+#&gt; 39            NA
+#&gt; 40            NA
+#&gt; 41            NA
+#&gt; 42            NA
+#&gt; 43            NA
+#&gt; 44            NA
+#&gt; 45            NA
+#&gt; 46            NA
+#&gt; 47            NA
+#&gt; 48            NA
+#&gt; 49            NA
+#&gt; 50            NA
+#&gt; 51            NA
+#&gt; 52            NA
+#&gt; 53            NA
+#&gt; 54            NA
+#&gt; 55            NA
+#&gt; 56            NA
+#&gt; 57            NA
+#&gt; 58            NA
+#&gt; 59            NA
+#&gt; 60            NA
+#&gt; 61            NA
+#&gt; 62            NA
+#&gt; 63            NA
+#&gt; 64            NA
+#&gt; 65            NA
+#&gt; 66            NA
+#&gt; 67            NA
+#&gt; 68            NA
+#&gt; 69            NA
+#&gt; 70            NA
+#&gt; 71            NA
+#&gt; 72            NA
+#&gt; 73            NA
+#&gt; 74            NA
+#&gt; 75            NA
+#&gt; 76            NA
+#&gt; 77            NA
+#&gt; 78            NA
+#&gt; 79            NA
+#&gt; 80            NA
+#&gt; 81            NA
+#&gt; 82            NA
+#&gt; 83            NA
+#&gt; 84            NA
+#&gt; 85            NA
+#&gt; 86            NA
+#&gt; 87            NA
+#&gt; 88            NA
+#&gt; 89            NA
+#&gt; 90            NA
+#&gt; 91            NA
+#&gt; 92            NA
+#&gt; 93            NA
+#&gt; 94            NA
+#&gt; 95            NA
+#&gt; 96            NA
+#&gt; 97            NA
+#&gt; 98            NA
+#&gt; 99            NA
+#&gt; 100           NA
+#&gt; 101           NA
+#&gt; 102           NA
+#&gt; 103           NA
+#&gt; 104           NA
+#&gt; 105           NA
+#&gt; 106           NA
+#&gt; 107           NA
+#&gt; 108           NA
+#&gt; 109           NA
+#&gt; 110           NA
+#&gt; 111           NA
+#&gt; 112           NA
+#&gt; 113           NA
+#&gt; 114           NA
+#&gt; 115           NA
+#&gt; 116           NA
+#&gt; 117           NA
+#&gt; 118           NA
+#&gt; 119           NA
+#&gt; 120           NA
+#&gt; 121           NA
+#&gt; 122           NA
+#&gt; 123           NA
+#&gt; 124           NA
+#&gt; 125           NA
+#&gt; 126           NA
+#&gt; 127           NA
+#&gt; 128           NA
+#&gt; 129           NA
+#&gt; 130           NA
+#&gt; 131           NA
+#&gt; 132           NA
+#&gt; 133           NA
+#&gt; 134           NA
+#&gt; 135           NA
+#&gt; 136           NA
+#&gt; 137           NA
+#&gt; 138           NA
+#&gt; 139           NA
+#&gt; 140           NA
+#&gt; 141           NA
+#&gt; 142           NA
+#&gt; 143           NA
+#&gt; 144           NA
+#&gt; 145           NA
+#&gt; 146           NA
+#&gt; 147           NA
+#&gt; 148           NA
+#&gt; 149           NA
+#&gt; 150           NA
+#&gt; 151           NA
+#&gt; 152           NA
+#&gt; 153           NA
+#&gt; 154           NA
+#&gt; 155           NA
+#&gt; 156           NA
+#&gt; 157           NA
+#&gt; 158           NA
+#&gt; 159           NA
+#&gt; 160           NA
+#&gt; 161           NA
+#&gt; 162           NA
+#&gt; 163           NA
+#&gt; 164           NA
+#&gt; 165           NA
+#&gt; 166           NA
+#&gt; 167           NA
+#&gt; 168           NA
+#&gt; 169           NA
+#&gt; 170           NA
+#&gt; 171           NA
+#&gt; 172           NA
+#&gt; 173           NA
+#&gt; 174           NA
+#&gt; 175           NA
+#&gt; 176           NA
+#&gt; 177           NA
+#&gt; 178           NA
+#&gt; 179           NA
+#&gt; 180           NA
+#&gt; 181           NA
+#&gt; 182           NA
+#&gt; 183           NA
+#&gt; 184           NA
+#&gt; 185           NA
+#&gt; 186           NA
+#&gt; 187           NA
+#&gt; 188           NA
+#&gt; 189           NA
+#&gt; 190           NA
+#&gt; 191           NA
+#&gt; 192           NA
+#&gt; 193           NA
+#&gt; 194           NA
+#&gt; 195           NA
+#&gt; 196           NA
+#&gt; 197           NA
+#&gt; 198           NA
+#&gt; 199           NA
+#&gt; 200           NA
+#&gt; 201           NA
+#&gt; 202           NA
+#&gt; 203           NA
+#&gt; 204           NA
+#&gt; 205           NA
+#&gt; 206           NA
+#&gt; 207           NA
+#&gt; 208           NA
+#&gt; 209           NA
+#&gt; 210           NA
+#&gt; 211           NA
+#&gt; 212           NA
+#&gt; 213           NA
+#&gt; 214           NA
+#&gt; 215           NA
+#&gt; 216           NA
+#&gt; 217           NA
+#&gt; 218           NA
+#&gt; 219           NA
+#&gt; 220           NA
+#&gt; 221           NA
+#&gt; 222           NA
+#&gt; 223           NA
+#&gt; 224           NA
+#&gt; 225           NA
+#&gt; 226           NA
+#&gt; 227           NA
+#&gt; 228           NA
+#&gt; 229           NA
+#&gt; 230           NA
+#&gt; 231           NA
+#&gt; 232           NA
+#&gt; 233           NA
+#&gt; 234           NA
+#&gt; 235           NA
+#&gt; 236           NA
+#&gt; 237           NA
+#&gt; 238           NA
+#&gt; 239           NA
+#&gt; 240           NA
+#&gt; 241           NA
+#&gt; 242           NA
+#&gt; 243           NA
+#&gt; 244           NA
+#&gt; 245           NA
+#&gt; 246           NA
+#&gt; 247           NA
+#&gt; 248           NA
+#&gt; 249           NA
+#&gt; 250           NA
+#&gt; 251           NA
+#&gt; 252           NA
+#&gt; 253           NA
+#&gt; 254           NA
+#&gt; 255           NA
+#&gt; 256           NA
+#&gt; 257           NA
+#&gt; 258           NA
+#&gt; 259           NA
+#&gt; 260           NA
+#&gt; 261           NA
+#&gt; 262           NA
+#&gt; 263           NA
+#&gt; 264           NA
+#&gt; 265           NA
+#&gt; 266           NA
+#&gt; 267           NA
+#&gt; 268           NA
+#&gt; 269           NA
+#&gt; 270           NA
+#&gt; 271           NA
+#&gt; 272           NA
+#&gt; 273           NA
+#&gt; 274           NA
+#&gt; 275           NA
+#&gt; 276           NA
+#&gt; 277           NA
+#&gt; 278           NA
+#&gt; 279           NA
+#&gt; 280           NA
+#&gt; 281           NA
+#&gt; 282           NA
+#&gt; 283           NA
+#&gt; 284           NA
+#&gt; 285           NA
+#&gt; 286           NA
+#&gt; 287           NA
+#&gt; 288           NA
+#&gt; 289           NA
+#&gt; 290           NA
+#&gt; 291           NA
+#&gt; 292           NA
+#&gt; 293           NA
+#&gt; 294           NA
+#&gt; 295           NA
+#&gt; 296           NA
+#&gt; 297           NA
+#&gt; 298           NA
+#&gt; 299           NA
+#&gt; 300           NA
+#&gt; 301           NA
+#&gt; 302           NA
+#&gt; 303           NA
+#&gt; 304           NA
+#&gt; 305           NA
+#&gt; 306           NA
+#&gt; 307           NA
+#&gt; 308           NA
+#&gt; 309           NA
+#&gt; 310           NA
+#&gt; 311           NA
+#&gt; 312           NA
+#&gt; 313           NA
+#&gt; 314           NA
+#&gt; 315           NA
+#&gt; 316           NA
+#&gt; 317           NA
+#&gt; 318           NA
+#&gt; 319           NA
+#&gt; 320           NA
+#&gt; 321           NA
+#&gt; 322           NA
+#&gt; 323           NA
+#&gt; 324           NA
+#&gt; 325           NA
+#&gt; 326           NA
+#&gt; 327           NA
+#&gt; 328           NA
+#&gt; 329           NA
+#&gt; 330           NA
+#&gt; 331           NA
+#&gt; 332           NA
+#&gt; 333           NA
+#&gt; 334           NA
+#&gt; 335           NA
+#&gt; 336           NA
+#&gt; 337           NA
+#&gt; 338           NA
+#&gt; 339           NA
+#&gt; 340           NA
+#&gt; 341           NA
+#&gt; 342           NA
+#&gt; 343           NA
+#&gt; 344           NA
+#&gt; 345           NA
+#&gt; 346           NA
+#&gt; 347           NA
+#&gt; 348           NA
+#&gt; 349           NA
+#&gt; 350           NA
+#&gt; 351           NA
+#&gt; 352           NA
+#&gt; 353           NA
+#&gt; 354           NA
+#&gt; 355           NA
+#&gt; 356           NA
+#&gt; 357           NA
+#&gt; 358           NA
+#&gt; 359           NA
+#&gt; 360           NA
+#&gt; 361           NA
+#&gt; 362           NA
+#&gt; 363           NA
+#&gt; 364           NA
+#&gt; 365           NA
+#&gt; 366           NA
+#&gt; 367           NA
+#&gt; 368           NA
+#&gt; 369           NA
+#&gt; 370           NA
+#&gt; 371           NA
+#&gt; 372           NA
+#&gt; 373           NA
+#&gt; 374           NA
+#&gt; 375           NA
+#&gt; 376           NA
+#&gt; 377           NA
+#&gt; 378           NA
+#&gt; 379           NA
+#&gt; 380           NA</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
             
       <li><a href="#examples">Examples</a></li>
     </ul>

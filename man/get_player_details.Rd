@@ -4,15 +4,21 @@
 \alias{get_player_details}
 \title{get_player_details}
 \usage{
-get_player_details(playerid = NULL)
+get_player_details(playerid = NULL, name = NULL, season = NULL)
 }
 \arguments{
-\item{playerid}{The player's ID. Can be found using get_player_id(). You can list multiple , e.g. with c(). If blank, the function fetches all current players - note that takes a while to load.}
+\item{playerid}{The player's ID. Can be found using get_player_id(). You can list multiple, e.g. with c(). Won't work with prior season's data.}
+
+\item{name}{Alternatively, the player's full name, as listed on the official Fantasy Premier League site (for instance: "Richarlison de Andrade", not "Richarlison"). If blank, the function fetches all players.}
+
+\item{season}{To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '17' for the 2017/2018 season).}
 }
 \description{
-This function fetches detailed, gameweek-by-gameweek information for the current season on selected players given player ID(s).
+This function fetches detailed, gameweek-by-gameweek information for the current season on selected players. If parameters left blank, the function fetches all current players - note that takes a while to load.
 }
 \examples{
 get_player_details(300)
+
+get_player_details(name="Virgil van Dijk")
 }
 \keyword{player}

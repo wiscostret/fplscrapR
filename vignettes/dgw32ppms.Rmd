@@ -1,5 +1,5 @@
 ---
-title: "Top options for DGW32 by FPL points per 90 mins"
+title: "Top options by FPL points per 90 mins"
 author: "Rasmus Wiscostretford"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose we are interested in the top options for DGW32, measured by FPL points per 90 mins (pp90) so far this season?
+Suppose we are interested in the top options from '18/19, measured by FPL points per 90 mins (pp90)?
 
 With fplscrapR, we can do that just a few lines of code:
 
@@ -19,11 +19,10 @@ library(dplyr)
 ```
 
 ```{r,warning=F}
-df <- get_player_info()
+df <- get_player_info(season=18)
 
 df %>% 
   filter(total_points >= 30) %>% # filtering for players with more than 30 points scored
-  filter(team %in% c(3,5,6,7,9,13,14,17,18,20)) %>% # filtering for teams with a DGW in GW32 
   mutate(pp90 = total_points / minutes * 90) %>% # creating the 'pp90' variable
   select(playername,pp90) %>% # selecting player name and pp90 for our table
   arrange(-pp90) %>% # ordering (arranging) by pp90

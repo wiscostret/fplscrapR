@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose now we are interested in comparing the total BPS scores for each team in a given game? Here we take the example of Manchester United - Leicester from round 1, game id 6.
+Suppose now we are interested in comparing the total BPS scores for each team in a given game? Here we take the example of game ID 1.
 
 First we fetch the game stats using get_game_stats:
 
@@ -17,7 +17,7 @@ First we fetch the game stats using get_game_stats:
 
 library(fplscrapR)
 
-df <- get_game_stats(gameid=6)
+df <- get_game_stats(gameid=1)
 ```
 
 Next we structure a coherent data frame of the two teams' total BPS points, using R base's rbind and dplyr:
@@ -27,7 +27,8 @@ Next we structure a coherent data frame of the two teams' total BPS points, usin
 library(dplyr)
 
 rbind( # combining the two objects containing the home and away team's BPS points
-  data.frame(df$bps$a[[10]],team="away"),
-  data.frame(df$bps$h[[10]],team="home")) %>% 
+  data.frame(df$a[[10]],team="away"),
+  data.frame(df$h[[10]],team="home")) %>% 
   group_by(team) %>% # transformation to group and summarize the value (bps points scored by a given player in the game) at the team variable level
   summarize(sum(value))
+```

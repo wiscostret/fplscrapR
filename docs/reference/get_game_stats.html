@@ -8,6 +8,13 @@
 
 <title>get_game_stats — get_game_stats • fplscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -34,6 +41,8 @@
 <meta property="og:title" content="get_game_stats — get_game_stats" />
 
 <meta property="og:description" content="This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home and away players, e.g. with '$': goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -93,7 +102,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -105,7 +114,13 @@
       <a href="../articles/bpsforgame.html">Comparing total team BPS scores for a given game</a>
     </li>
     <li>
+      <a href="../articles/dgw32ppms.html">Top options by FPL points per 90 mins</a>
+    </li>
+    <li>
       <a href="../articles/entryscores.html">Average and top entry scores for the first 25 gameweeks</a>
+    </li>
+    <li>
+      <a href="../articles/fantasianplayingtime.html">Replicating Fantasian's playing time visualisation</a>
     </li>
     <li>
       <a href="../articles/fdrtable.html">Creating your own 'FDR' fixture table</a>
@@ -117,16 +132,13 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Eden Hazard and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
     </li>
     <li>
-      <a href="../articles/mlmostowned.html">Finding the most owned players amongst the top 20 teams of your favourite mini-league</a>
-    </li>
-    <li>
-      <a href="../articles/mltop.html">Listing the top 20 of your favourite mini-league</a>
+      <a href="../articles/myxpts.html">My Expected Points</a>
     </li>
     <li>
       <a href="../articles/salahpoints.html">Mohamed Salah's points in each gameweek for the first 25 gameweeks</a>
@@ -135,15 +147,18 @@
       <a href="../articles/simplexamodel.html">Building a very simple expected assists (xA) model</a>
     </li>
     <li>
+      <a href="../articles/talismantheory.html">Replicating Who Got The Assist?'s Talisman Theory</a>
+    </li>
+    <li>
       <a href="../articles/topperformers.html">List of top performers by FPL goals and assists</a>
     </li>
     <li>
       <a href="../articles/vizentryhist.html">Visualizing the FPL histories of entries</a>
     </li>
-    <li>
-      <a href="../articles/vizrankprogress.html">Visualizing your in-season Overall Rank progress</a>
-    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -190,72 +205,7 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_game_stats</span>(<span class='fl'>20</span>)</div><div class='output co'>#&gt;    goals_scored.a goals_scored.h    assists.a assists.h own_goals.a own_goals.h
-#&gt; 1    1, 1, 27, 43         1, 417         NULL      NULL        NULL        NULL
-#&gt; 2            NULL           NULL 1, 1, 27, 40    1, 419        NULL        NULL
-#&gt; 3            NULL           NULL         NULL      NULL        NULL        NULL
-#&gt; 4            NULL           NULL         NULL      NULL        NULL        NULL
-#&gt; 5            NULL           NULL         NULL      NULL        NULL        NULL
-#&gt; 6            NULL           NULL         NULL      NULL        NULL        NULL
-#&gt; 7            NULL           NULL         NULL      NULL        NULL        NULL
-#&gt; 8            NULL           NULL         NULL      NULL        NULL        NULL
-#&gt; 9            NULL           NULL         NULL      NULL        NULL        NULL
-#&gt; 10           NULL           NULL         NULL      NULL        NULL        NULL
-#&gt;    penalties_saved.a penalties_saved.h penalties_missed.a penalties_missed.h
-#&gt; 1               NULL              NULL               NULL               NULL
-#&gt; 2               NULL              NULL               NULL               NULL
-#&gt; 3               NULL              NULL               NULL               NULL
-#&gt; 4               NULL              NULL               NULL               NULL
-#&gt; 5               NULL              NULL               NULL               NULL
-#&gt; 6               NULL              NULL               NULL               NULL
-#&gt; 7               NULL              NULL               NULL               NULL
-#&gt; 8               NULL              NULL               NULL               NULL
-#&gt; 9               NULL              NULL               NULL               NULL
-#&gt; 10              NULL              NULL               NULL               NULL
-#&gt;    yellow_cards.a                                 yellow_cards.h red_cards.a
-#&gt; 1            NULL                                           NULL        NULL
-#&gt; 2            NULL                                           NULL        NULL
-#&gt; 3            NULL                                           NULL        NULL
-#&gt; 4            NULL                                           NULL        NULL
-#&gt; 5            NULL                                           NULL        NULL
-#&gt; 6    1, 1, 37, 45 1, 1, 1, 1, 1, 1, 403, 405, 411, 447, 453, 465        NULL
-#&gt; 7            NULL                                           NULL        NULL
-#&gt; 8            NULL                                           NULL        NULL
-#&gt; 9            NULL                                           NULL        NULL
-#&gt; 10           NULL                                           NULL        NULL
-#&gt;    red_cards.h saves.a saves.h      bonus.a bonus.h
-#&gt; 1         NULL    NULL    NULL         NULL    NULL
-#&gt; 2         NULL    NULL    NULL         NULL    NULL
-#&gt; 3         NULL    NULL    NULL         NULL    NULL
-#&gt; 4         NULL    NULL    NULL         NULL    NULL
-#&gt; 5         NULL    NULL    NULL         NULL    NULL
-#&gt; 6         NULL    NULL    NULL         NULL    NULL
-#&gt; 7         NULL    NULL    NULL         NULL    NULL
-#&gt; 8         NULL   4, 24  3, 400         NULL    NULL
-#&gt; 9         NULL    NULL    NULL 3, 1, 27, 40  2, 417
-#&gt; 10        NULL    NULL    NULL         NULL    NULL
-#&gt;                                                                                                bps.a
-#&gt; 1                                                                                               NULL
-#&gt; 2                                                                                               NULL
-#&gt; 3                                                                                               NULL
-#&gt; 4                                                                                               NULL
-#&gt; 5                                                                                               NULL
-#&gt; 6                                                                                               NULL
-#&gt; 7                                                                                               NULL
-#&gt; 8                                                                                               NULL
-#&gt; 9                                                                                               NULL
-#&gt; 10 42, 29, 27, 18, 16, 16, 13, 11, 5, 5, 4, 3, 3, 27, 40, 43, 29, 24, 35, 28, 42, 26, 31, 37, 39, 45
-#&gt;                                                                                                              bps.h
-#&gt; 1                                                                                                             NULL
-#&gt; 2                                                                                                             NULL
-#&gt; 3                                                                                                             NULL
-#&gt; 4                                                                                                             NULL
-#&gt; 5                                                                                                             NULL
-#&gt; 6                                                                                                             NULL
-#&gt; 7                                                                                                             NULL
-#&gt; 8                                                                                                             NULL
-#&gt; 9                                                                                                             NULL
-#&gt; 10 35, 16, 15, 14, 12, 11, 10, 10, 10, 9, 4, 3, 3, 417, 400, 419, 447, 464, 405, 403, 410, 411, 465, 502, 489, 518</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_game_stats</span>(<span class='fl'>20</span>)</div><div class='output co'>#&gt; dataramme med 0 kolonner og 0 rækker</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -11,13 +11,13 @@ vignette: >
 
 Suppose we are interested in tracking the average and top FPL scores by gameweek?
 
-First we fetch the round information for a selection of gameweeks, say 1-25, using the get_round_info function:
+First we fetch the round information for a selection of gameweeks, say 1-25 for the 18/19 season, using the get_round_info function:
 
 ```{r, warning=F}
 
 library(fplscrapR)
 
-df <- get_round_info(1:25)
+df <- get_round_info(round = 1:25, season = 18)
 ```
 
 Next we use dplyr, tidyr and ggplot2 to transform and plot the data, showing the average and top entry progression by gameweek:

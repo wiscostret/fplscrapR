@@ -5,149 +5,9 @@ author: "Rasmus Wiscostretford"
 date: "`r Sys.Date()`"
 ---
 
-## Most expensive teams by average FPL player cost
+## Creating an Alternative FDR' (aFDR) ranking of opponents by FPL points allowed
 
-Suppose we are interested in comparing which Premier League teams have the most expensive FPL players on average?
-
-First we fetch the full summary data on all FPL players using the get_player_info function:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_player_info()
-```
-
-Next we use dplyr and ggplot2 to transform and plot the data, ranking each Premier League by its average FPL player cost:
-
-```{r, message=F,warning=F}
-library(dplyr)
-library(ggplot2)
-```
-
-```{r,warning=F,fig.width=7,fig.height=5}
-df %>% 
-  select(id, team, now_cost) %>% # selecting the relevant columns
-  mutate(now_cost=now_cost/10) %>% # transforming the cost to millions (for some reason the FPL data structures FPL cost as 100.000s)
-  group_by(team) %>% # transformation to group and mean-summarize the costs at the 'team' variable level 
-  summarize(mean(now_cost)) %>%
-    ggplot() + # plotting using ggplot2
-    geom_col(aes(x=reorder(team,-`mean(now_cost)`),y=`mean(now_cost)`),fill="blue") +
-    theme_bw() +
-    scale_x_discrete(
-      labels=c("1"="ARS","2"="BOU","3"="BHA","4"="BUR","5"="CAR","6"="CHE",
-        "7"="CRY","8"="EVE","9"="FUL","10"="HUD","11"="LEI","12"="LIV",
-        "13"="MCI","14"="MUN","15"="NEW","16"="SOU","17"="TOT","18"="WAT",
-        "19"="WHU","20"="WOL")) +
-    labs(x="Team",y="Mean player cost (£m)",
-      title="Mean FPL player cost for Premier League teams",
-      caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
-```
-
-***
-
-## Comparing historical FPL total season scores for Eden Hazard and Alexis Sanchez
-
-Suppose we are interested in how the FPL histories of Eden Hazard and Alexis Sanchez compare?
-
-First we fetch the player histories of those two players using get_player_hist, mobilising their playerids using get_player_id:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_player_hist(playerid=get_player_id(c("Eden Hazard","Alexis Sánchez"))$id)
-```
-
-Next we use dplyr and ggplot2 to transform and plot the data, showing the total FPL scores by season for the two players across their FPL careers:
-
-```{r, message=F,warning=F}
-library(dplyr)
-library(ggplot2)
-```
-
-```{r,warning=F,fig.width=7,fig.height=5}
-df %>% 
-  select(playername,season_name,total_points) %>% # selecting the relevant columns
-  ggplot() + # plotting using ggplot2
-    geom_line(aes(x=season_name,y=total_points,group=playername,colour=playername),size=1) +
-    theme_bw() +
-    labs(x="Season",y="Total score",title="Historical FPL season scores by Hazard and Sanchez",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
-```
-
-***
-
-## Aubameyang ownership and net transfers for the first 25 gameweeks"
-
-Suppose we are interested in how the ownership of Pierre-Emerick Aubameyang has changed through transfers over the course of the first 25 gameweeks of the year?
-
-First we fetch the gameweek-by-gameweek details of the player using get_player_details, mobilising the playerid using get_player_id:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_player_details(get_player_id("Pierre-Emerick Aubameyang")$id)
-```
-
-Next we use dplyr, tidyr and ggplot2 to transform and plot the data, showing the total number of owners and net transfers out for each gameweek:
-
-```{r, message=F,warning=F}
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-```
-
-```{r,warning=F,fig.width=7,fig.height=5}
-df %>% 
-  filter(round %in% 1:25) %>% # filtering for the GWs we are interested in
-  select(round,transfers_balance,selected) %>% # selecting the relevant columns
-  gather("var","value",-round) %>% # transforming from wide to long format for ggplot
-  ggplot() + # plotting using ggplot2
-    geom_line(aes(x=round,y=value,group=var,colour=var),size=1) +
-    theme_bw() +
-    scale_x_continuous(breaks=1:25) +
-    labs(x="Gameweek",title="Aubameyang ownership and net transfers",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
-```
-
-***
-
-## Mohamed Salah's points in each gameweek for the first 25 gameweeks
-
-Suppose we are interested in the progression and variance of Mohamed Salah's FPL score in each gameweek? Here, we take the first 25 gameweeks of the season as an example.
-
-First we fetch the gameweek-by-gameweek details of the player using get_player_details, mobilising the playerid using get_player_id:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_player_details(get_player_id("Mohamed Salah")$id)
-```
-
-Next we use dplyr and ggplot2 to transform and plot the data, showing Salah's round score for each gameweek:
-
-```{r, message=F,warning=F}
-library(dplyr)
-library(ggplot2)
-```
-
-```{r,warning=F,fig.width=7,fig.height=5}
-df %>% 
-  filter(round %in% 1:25) %>% # filtering for the GWs we are interested in
-  select(round,total_points) %>% # selecting the relevant columns
-  ggplot() + # plotting with ggplot2
-    geom_col(aes(x=round,y=total_points),fill="red",size=1) +
-    theme_bw() +
-    scale_x_continuous(breaks=1:25) +
-    labs(x="Gameweek",y="Round score",title="Salah's round score by gameweek",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
-```
-
-***
-
-## List of top performers by FPL goals and assists
-
-Suppose we are interested in listing the top FPL performers by FPL goals and assists? Again, we take the first 25 gameweeks of the season as an example.
+Suppose now we are interested in trying to create an alternative to FPL's "FDR" (Fixture Difficulty Ranking) based on actual FPL points allowed?  Again, we take the first 25 gameweeks of the '18/19 season as an example.
 
 First we fetch the gameweek-by-gameweek details of ALL players using get_player_details:
 
@@ -155,92 +15,7 @@ First we fetch the gameweek-by-gameweek details of ALL players using get_player_
 
 library(fplscrapR)
 
-df <- get_player_details() # this may take a while to load as it fetches ALL player details
-```
-
-Next we use dplyr and ggplot2 to transform and plot the data, showing the top performers:
-
-```{r, message=F,warning=F}
-library(dplyr)
-library(ggplot2)
-```
-
-```{r,warning=F}
-df %>%
-  filter(round %in% 1:25) %>% # filtering for the GWs we are interested in
-  select(playername,goals_scored,assists) %>% # selecting the relevant columns
-  group_by(playername) %>% # transformation to group and summarize the performance at the 'playername' variable level
-  summarize_all(sum) %>% 
-  mutate("involvements"=goals_scored+assists) %>% # adding a new variable that sums the goals scored and assists
-  arrange(-involvements) %>%  # ordering (arranging) the table by top involvements
-  slice(1:20) # showing the top20 only
-```
-
-***
-
-## Building a very simple expected assists (xA) model
-
-Suppose we are interested in trying to build an 'expected assists' (xA) model from the FPL data? Again, we take the first 25 gameweeks of the season as an example.
-
-First we fetch the gameweek-by-gameweek details of ALL players using get_player_details, then create our model dataset by selected information that could predict assist performance, such as Key Passes and Open Play Crosses:
-
-```{r, warning=F,message=F}
-
-library(fplscrapR)
-library(dplyr)
-
-df <- get_player_details() # this may take a while to load as it fetches ALL player details
-
-dfmodel <- df %>% 
-  filter(round %in% 1:25) %>% # filtering out the rounds we are interested in
-  mutate(potentialassists = key_passes+open_play_crosses) %>% # creating a new variable that give us a potential indicator for expected assists, namely the number of key passes and open play crosses for each player
-  select(playername,assists,potentialassists) %>% # selecting the variables we need for our analysis
-  group_by(playername) %>% # transformation to group and summarize all our variables (i.e. the actual and potential assists) at the 'playername' variable level
-  summarize_all(sum) %>%
-  mutate(xA=potentialassists*(sum(assists)/sum(potentialassists))) # creating a new variable called 'xA' that attempts to predict the actual number of assists based on the relationship (from our data) between the number of assists and key passes+open play cross a player has produced
-```
-
-Next we use dplyr and ggplot2 to transform and plot the data, comparing the actual FPL assists with our 'xA' model predictions. We also use the 'ggrepel' package to avoid cluttering of our plot:
-
-```{r, message=F,warning=F}
-library(ggplot2)
-library(ggrepel)
-```
-
-```{r,warning=F,fig.width=7,fig.height=5}
-dfmodel %>% 
-  ggplot(aes(x=xA,y=assists)) +
-  geom_point(alpha=0.5,size=2) +
-  theme_bw() +
-  labs(x="Expected assists",y="Actual assists",title="Expected vs. actual assists",subtitle="Season 2018/2019 - Gameweeks 1-25", caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
-  geom_abline(intercept=0,slope=1,colour="grey",size=0.5) + 
-  geom_text_repel(size=3.75,aes(
-  label=ifelse(xA>quantile(xA,prob=1-1.5/100),as.character(playername),ifelse(assists>quantile(assists,prob=1-1.5/100),as.character(playername),"")))) + #
-  scale_x_continuous(limits=c(0,12),breaks=0:12) +
-  scale_y_continuous(limits=c(0,12),breaks=0:12)
-```
-
-Here we can see that there is a significant variation around our expected assists. Ryan Fraser's ouput is, for instance, well predicted. Raheem Sterling and Leroy Sanés are not - the model firmly under-estimates their assists. Meanwhile, the assists of players like Lucas Digne and Andros Townsend are far over-estimated. 
-
-Finally, we test our xA model to see how it fares in explaining the variation of actual assists, using the summary function from R base:
-
-```{r,warning=F}
-summary(lm(dfmodel,formula=xA ~ assists))
-```
-
-***
-
-## Creating an 'Alternative FDR' (aFDR) ranking of opponents by FPL points allowed
-
-Suppose now we are interested in trying to create an alternative to FPL's "FDR" (Fixture Difficulty Ranking) based on actual FPL points allowed?  Again, we take the first 25 gameweeks of the season as an example.
-
-First we fetch the gameweek-by-gameweek details of ALL players using get_player_details:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_player_details() # this may take a while to load as it fetches ALL player details
+df <- get_player_details(season=18) # this may take a while to load as it fetches ALL player details
 ```
 
 Next we use dplyr and ggplot2 to transform and plot the data, ranking the teams by FPL points allowed:
@@ -266,56 +41,9 @@ df %>%
 
 ***
 
-## Creating a simple fixture table
-
-Suppose now we are interested in creating a simple overview of FPL fixtures? Again, we take the first 25 gameweeks of the season as an example.
-
-First we fetch the full fixture list using get_game_list:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-gamelist <- get_game_list()
-```
-
-FPL only lists the fixtures once, as HOME-AWAY, but we need both HOME-AWAY and AWAY-HOME to plot the full fixture table. We need to plot every fixture twice, once as a home game for the one team, and once as an away game for the other team.
-
-Using R base's rbind and dplyr's mutate (creating new variables) we essentially just duplicate the fixture table:
-
-```{r, message=F,warning=F}
-library(dplyr)
-```
-
-```{r, warning=F}
-
-allfixtures <- rbind(
-  gamelist %>% mutate(team=home,oppo=away,homeaway="home"),
-  gamelist %>% mutate(team=away,oppo=tolower(home),homeaway="away"))
-```
-
-Next we use dplyr and ggplot2 to transform and plot the data, ranking the teams by FPL points allowed:
-
-```{r,warning=F,fig.width=7,fig.height=5}
-library(ggplot2)
-
-allfixtures %>% 
-  filter(GW %in% 1:25) %>% # filtering for the gameweeks we are interested in
-    ggplot() +
-      geom_tile(aes(x=GW,y=team),fill="white",colour="lightgrey") +
-      geom_text(aes(x=GW,y=team,label=oppo),size=2) +
-      theme_void() +
-      theme(axis.text = element_text(face = "bold")) +
-      theme(axis.text.y = element_text(margin=margin(0,-20,0,0))) + # fixing the margins on the tile
-      scale_x_continuous(position="top",breaks=1:25) +
-      labs(caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
-```
-
-***
-
 ## Creating an 'Alternative FDR' (aFDR) fixture table
 
-Suppose now we are interested in creating an FPL fixture table that ranks fixtures by the 'Alternative FDR' (aFDR) metric? Again, we take the first 25 gameweeks of the season as an example.
+Suppose now we are interested in creating an FPL fixture table that ranks fixtures by the 'Alternative FDR' (aFDR) metric? Again, we take the first 25 gameweeks of the '18 season as an example.
 
 First we create the aFDR rankings table, by fetching the gameweek-by-gameweek details of ALL players using get_player_details, and then transforming that using dplyr:
 
@@ -324,7 +52,7 @@ First we create the aFDR rankings table, by fetching the gameweek-by-gameweek de
 library(fplscrapR)
 library(dplyr)
 
-df <- get_player_details() # this may take a while to load as it fetches ALL player details
+df <- get_player_details(season = 18) # this may take a while to load as it fetches ALL player details
 
 afdrranks <- df %>% 
   filter(round %in% 1:25) %>% # filtering for the gameweeks we are interested in.
@@ -338,7 +66,7 @@ Next, we fetch the full fixture list using get_game_list:
 
 ```{r, warning=F}
 
-gamelist <- get_game_list()
+gamelist <- get_game_list(season = 18)
 
 ```
 
@@ -381,9 +109,206 @@ afdrfixtures %>%
 
 ***
 
+## Aubameyang ownership and net transfers for the first 25 gameweeks
+
+Suppose we are interested in how the ownership of Pierre-Emerick Aubameyang has changed through transfers over the course of the first 25 gameweeks of the 18/19 season?
+
+First we fetch the gameweek-by-gameweek details of the player using get_player_details, mobilising the playerid using get_player_id:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_details(name="Pierre-Emerick Aubameyang",season=18)
+```
+
+Next we use dplyr, tidyr and ggplot2 to transform and plot the data, showing the total number of owners and net transfers out for each gameweek:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+df %>% 
+  filter(round %in% 1:25) %>% # filtering for the GWs we are interested in
+  select(round,transfers_balance,selected) %>% # selecting the relevant columns
+  gather("var","value",-round) %>% # transforming from wide to long format for ggplot
+  ggplot() + # plotting using ggplot2
+    geom_line(aes(x=round,y=value,group=var,colour=var),size=1) +
+    theme_bw() +
+    scale_x_continuous(breaks=1:25) +
+    labs(x="Gameweek",title="Aubameyang ownership and net transfers",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```
+
+***
+
+## Most expensive teams by average FPL player cost
+
+
+Suppose we are interested in comparing which Premier League teams have the most expensive FPL players on average?
+
+First we fetch the full summary data on all FPL players using the get_player_info function:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_info()
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, ranking each Premier League by its average FPL player cost:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+df %>% 
+  select(id, team, now_cost) %>% # selecting the relevant columns
+  mutate(now_cost=now_cost/10) %>% # transforming the cost to millions (for some reason the FPL data structures FPL cost as 100.000s)
+  group_by(team) %>% # transformation to group and mean-summarize the costs at the 'team' variable level 
+  summarize(mean=mean(now_cost)) %>%
+    mutate(teamshort = get_fdr()$short_name) %>% # using the short team names from the get_fdr function instead of codes %>% 
+    arrange(-mean) %>% # arranging by the mean cost
+    ggplot() + # plotting using ggplot2
+    geom_col(aes(x=reorder(teamshort,-mean),y=mean),fill="blue") +
+    theme_bw() +
+    labs(x="Team",y="Mean player cost (£m)",
+      title="Mean FPL player cost for Premier League teams",
+      caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```
+
+***
+
+## Comparing total team BPS scores for a given game
+
+Suppose now we are interested in comparing the total BPS scores for each team in a given game? Here we take the example of game ID 1.
+
+First we fetch the game stats using get_game_stats:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_game_stats(gameid=1)
+```
+
+Next we structure a coherent data frame of the two teams' total BPS points, using R base's rbind and dplyr:
+
+```{r, warning=F}
+
+library(dplyr)
+
+rbind( # combining the two objects containing the home and away team's BPS points
+  data.frame(df$a[[10]],team="away"),
+  data.frame(df$h[[10]],team="home")) %>% 
+  group_by(team) %>% # transformation to group and summarize the value (bps points scored by a given player in the game) at the team variable level
+  summarize(sum(value))
+```
+
+***
+
+## Top options by FPL points per 90 mins
+
+Suppose we are interested in the top options from '18/19, measured by FPL points per 90 mins (pp90)?
+
+With fplscrapR, we can do that just a few lines of code:
+
+```{r, message=F,warning=F}
+library(fplscrapR)
+library(dplyr)
+```
+
+```{r,warning=F}
+df <- get_player_info(season=18)
+
+df %>% 
+  filter(total_points >= 30) %>% # filtering for players with more than 30 points scored
+  mutate(pp90 = total_points / minutes * 90) %>% # creating the 'pp90' variable
+  select(playername,pp90) %>% # selecting player name and pp90 for our table
+  arrange(-pp90) %>% # ordering (arranging) by pp90
+  slice(1:20) # showing just the top20
+```
+
+***
+
+## Average and top entry scores for the first 25 gameweeks
+
+Suppose we are interested in tracking the average and top FPL scores by gameweek?
+
+First we fetch the round information for a selection of gameweeks, say 1-25 for the 18/19 season, using the get_round_info function:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_round_info(round = 1:25, season = 18)
+```
+
+Next we use dplyr, tidyr and ggplot2 to transform and plot the data, showing the average and top entry progression by gameweek:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+df %>% 
+  select(id,average_entry_score,highest_score) %>% # selecting the relevant columns
+  gather("var","value",-id) %>% # transforming from wide to long format for ggplot
+  ggplot() + # plotting using ggplot2
+    geom_line(aes(x=id,y=value,colour=var),size=1) +
+    theme_bw() +
+    scale_x_continuous(breaks=1:25) +
+    labs(x="Gameweek",y="Score",title="Average and top FPL entry scores by gameweek",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```
+
+***
+
+## Replicating Fantasian's playing time visualisation
+
+Suppose we are interested in replicating [Fantasian's](https://twitter.com/FantasianPL) visualisation of playing time?
+
+With fplscrapR, it's just a few lines of code away. Here, we take the example of Tottenham players across the whole 18/19 season.
+
+First, we fetch the player stats using get_player_details:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_details(season = 18)
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data in a 'tile' format, showing the playing time for each player across gameweeks:
+
+```{r, message=F,warning=F}
+
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+
+df %>% 
+  filter(element %in% 351:372) %>%  # selecting the 'elements' (players) from Tottenham
+  ggplot() +
+    geom_tile(aes(x=round,y=reorder(playername,-element),fill=minutes)) +
+    theme_bw() +
+    scale_x_continuous(position="top") +
+    labs(x="Gameweek",y="Player",caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
+    scale_fill_gradient2(guide=F,low="#FFFFFF",high="#132257") # filling each tile based on the 'minutes' value, from 'low' (white) to 'high' (the 'Spurs blue')
+```
+
+***
+
 ## Creating your own 'FDR' fixture table
 
-Suppose now we are interested in creating an FPL fixture table like the FPL's official 'Fixture Difficulty Ranking'? Again, we take the first 25 gameweeks of the season as an example.
+Suppose now we are interested in creating an FPL fixture table like the FPL's official 'Fixture Difficulty Ranking'? Let's take the first 15 gameweeks of the season as an example.
 
 First we fetch the official FDR rankings using get_fdr:
 
@@ -433,14 +358,14 @@ Next we use dplyr and ggplot2 to plot the data in a fixture table:
 library(ggplot2)
 
 fdrfixtures %>% 
-  filter(GW %in% 1:25) %>%  # filtering for the gameweeks we are interested in
+  filter(GW %in% 1:15) %>%  # filtering for the gameweeks we are interested in
     ggplot() +
       geom_tile(aes(x=GW,y=team,fill=fdr),colour="lightgrey") +
       geom_text(aes(x=GW,y=team,label=oppo),size=2) +
       theme_void() +
       theme(axis.text = element_text(face = "bold")) +
       theme(axis.text.y = element_text(margin=margin(0,-20,0,0))) + # fixing the margins
-      scale_x_continuous(position="top",breaks=1:25) +
+      scale_x_continuous(position="top",breaks=1:15) +
       labs(caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
       scale_fill_gradient2(guide=F,low="#00FF87",mid="#D6DCD8",high="#7F002D",midpoint=median(fdrfixtures$fdr)) # creating a gradient colour-coding that spans from toughest FDR ranking (coloured red) to easiest (coloured green)
 ```
@@ -449,24 +374,15 @@ fdrfixtures %>%
 
 ## Finding the names of goalscorers in a given fixture
 
-Suppose now we are interested in finding the names of the goalscorers in a given game? Here we take the example of the fixture West Ham - Crystal Palace.
+Suppose now we are interested in finding the names of the goalscorers in a given game? Here we take the example of the first fixture of the season.
 
-First we find the gameid using get_game_list and dplyr:
+First we fetch the game stats using get_game_stats:
 
 ```{r, warning=F}
 
 library(fplscrapR)
-library(dplyr)
 
-gameid <- get_game_list() %>% filter(home=="WHU",away=="CRY") %>% select(id)
-
-```
-
-Next we fetch the game stats using get_game_stats:
-
-```{r, warning=F}
-
-df <- get_game_stats(gameid=gameid)
+df <- get_game_stats(gameid=1)
 ```
 
 Next we identify the goalscorers' playerids:
@@ -481,6 +397,85 @@ Finally we fetch the playernames of goalscorers using get_player_name:
 ```{r, warning=F}
 
 get_player_name(playerid=goalscorerids)
+```
+
+***
+
+## Creating a simple fixture table
+
+
+Suppose now we are interested in creating a simple overview of FPL fixtures? Again, we take the first 25 gameweeks of the season as an example.
+
+First we fetch the full fixture list using get_game_list:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+gamelist <- get_game_list()
+```
+
+FPL only lists the fixtures once, as HOME-AWAY, but we need both HOME-AWAY and AWAY-HOME to plot the full fixture table. We need to plot every fixture twice, once as a home game for the one team, and once as an away game for the other team.
+
+Using R base's rbind and dplyr's mutate (creating new variables) we essentially just duplicate the fixture table:
+
+```{r, message=F,warning=F}
+library(dplyr)
+```
+
+```{r, warning=F}
+
+allfixtures <- rbind(
+  gamelist %>% mutate(team=home,oppo=away,homeaway="home"),
+  gamelist %>% mutate(team=away,oppo=tolower(home),homeaway="away"))
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, ranking the teams by FPL points allowed:
+
+```{r,warning=F,fig.width=7,fig.height=5}
+library(ggplot2)
+
+allfixtures %>% 
+  filter(GW %in% 1:25) %>% # filtering for the gameweeks we are interested in
+    ggplot() +
+      geom_tile(aes(x=GW,y=team),fill="white",colour="lightgrey") +
+      geom_text(aes(x=GW,y=team,label=oppo),size=2) +
+      theme_void() +
+      theme(axis.text = element_text(face = "bold")) +
+      theme(axis.text.y = element_text(margin=margin(0,-20,0,0))) + # fixing the margins on the tile
+      scale_x_continuous(position="top",breaks=1:25) +
+      labs(caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```
+
+***
+
+## Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez
+
+Suppose we are interested in how the FPL histories of Mesut Özil and Alexis Sanchez compare?
+
+First we fetch the player histories of those two players using get_player_hist, mobilising their playerids using get_player_id:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_hist(playerid=get_player_id(c("Mesut Özil","Alexis Sánchez"))$id)
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, showing the total FPL scores by season for the two players across their FPL careers:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+df %>% 
+  select(playername,season_name,total_points) %>% # selecting the relevant columns
+  ggplot() + # plotting using ggplot2
+    geom_line(aes(x=season_name,y=total_points,group=playername,colour=playername),size=1) +
+    theme_bw() +
+    labs(x="Season",y="Total score",title="Historical FPL season scores by Özil and Sanchez",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
 ```
 
 ***
@@ -512,17 +507,230 @@ df$leagues$classic %>%
 
 ***
 
-## Visualizing the FPL histories of entries
+## My Expected Points
 
-Suppose now we are interested in visualizing the FPL history of select entries, e.g myself (current FPL ID: 1076) and an FPL legend such as James Eggersdorff (current FPL ID: 64342)?
+Suppose we are interested in how many points our team is expected to score in the next GW?
 
-First we fetch the entry histories using get_entry_hist:
+With fplscrapR, it's just a few lines of code away.
+
+First, we fetch the player selection using get_entry_picks. Here I use the example of random team for GW2.
 
 ```{r, warning=F}
 
 library(fplscrapR)
 
-entryhist <- get_entry_hist(entryid=c(1076,64342))
+picks <- get_entry_picks(entryid=1076,gw=1)$picks
+```
+
+Next we fetch the Official FPL Expected Points projections using get_player_info() and select only what we need: the player id (renamed 'element' for merging later), the player name, and the expected points projection ('ep_next'), which we indicate is a numeric vector.
+
+```{r, message=F,warning=F}
+library(dplyr)
+
+df <- get_player_info() %>% 
+  select(id,playername,ep_next) %>% 
+  mutate("element"=id)
+
+df$ep_next <- as.numeric(df$ep_next)
+
+```
+
+Finally we merge the two, select out the variables of interest, display the projections, and sum up the total expected points from our starting 11:
+
+```{r, message=F,warning=F}
+
+df2 <- left_join(picks,df,by="element") %>% select(playername,is_captain,is_vice_captain,ep_next)
+
+df2
+
+sum(df2$ep_next[1:11])
+```
+
+***
+
+## Mohamed Salah's points in each gameweek for the first 25 gameweeks
+
+Suppose we are interested in the progression and variance of Mohamed Salah's FPL score in each gameweek in '18/19? Here, we take the first 25 gameweeks of the season as an example.
+
+First we fetch the gameweek-by-gameweek details of the player using get_player_details, mobilising the playerid using get_player_id:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_details(name="Mohamed Salah",season=18)
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, showing Salah's round score for each gameweek:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+df %>% 
+  filter(round %in% 1:25) %>% # filtering for the GWs we are interested in
+  select(round,total_points) %>% # selecting the relevant columns
+  ggplot() + # plotting with ggplot2
+    geom_col(aes(x=round,y=total_points),fill="red",size=1) +
+    theme_bw() +
+    scale_x_continuous(breaks=1:25) +
+    labs(x="Gameweek",y="Round score",title="Salah's round score by gameweek",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```
+
+***
+
+## Building a very simple expected assists (xA) model
+
+Suppose we are interested in trying to build an 'expected assists' (xA) model from the FPL data? Again, we take the first 25 gameweeks of the 18/19 season as an example.
+
+First we fetch the gameweek-by-gameweek details of ALL players using get_player_details, then create our model dataset by selected information that could predict assist performance, such as Key Passes and Open Play Crosses:
+
+```{r, warning=F,message=F}
+
+library(fplscrapR)
+library(dplyr)
+
+df <- get_player_details(season=18) # this may take a while to load as it fetches ALL player details
+
+dfmodel <- df %>% 
+  filter(round %in% 1:25) %>% # filtering out the rounds we are interested in
+  mutate(potentialassists = key_passes+open_play_crosses) %>% # creating a new variable that give us a potential indicator for expected assists, namely the number of key passes and open play crosses for each player
+  select(playername,assists,potentialassists) %>% # selecting the variables we need for our analysis
+  group_by(playername) %>% # transformation to group and summarize all our variables (i.e. the actual and potential assists) at the 'playername' variable level
+  summarize_all(sum) %>%
+  mutate(xA=potentialassists*(sum(assists)/sum(potentialassists))) # creating a new variable called 'xA' that attempts to predict the actual number of assists based on the relationship (from our data) between the number of assists and key passes+open play cross a player has produced
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, comparing the actual FPL assists with our 'xA' model predictions. We also use the 'ggrepel' package to avoid cluttering of our plot:
+
+```{r, message=F,warning=F}
+library(ggplot2)
+library(ggrepel)
+```
+
+```{r,warning=F,fig.width=7,fig.height=5}
+dfmodel %>% 
+  ggplot(aes(x=xA,y=assists)) +
+  geom_point(alpha=0.5,size=2) +
+  theme_bw() +
+  labs(x="Expected assists",y="Actual assists",title="Expected vs. actual assists",subtitle="Season 2018/2019 - Gameweeks 1-25", caption=paste("Data from fplscrapR | ",Sys.Date(),sep="")) +
+  geom_abline(intercept=0,slope=1,colour="grey",size=0.5) + 
+  geom_text_repel(size=3.75,aes(
+  label=ifelse(xA>quantile(xA,prob=1-1.5/100),as.character(playername),ifelse(assists>quantile(assists,prob=1-1.5/100),as.character(playername),"")))) + #
+  scale_x_continuous(limits=c(0,12),breaks=0:12) +
+  scale_y_continuous(limits=c(0,12),breaks=0:12)
+```
+
+Here we can see that there is a significant variation around our expected assists. Ryan Fraser's ouput is, for instance, well predicted. Raheem Sterling and Leroy Sanés are not - the model firmly under-estimates their assists. Meanwhile, the assists of players like Lucas Digne and Andros Townsend are far over-estimated. 
+
+Finally, we test our xA model to see how it fares in explaining the variation of actual assists, using the summary function from R base:
+
+```{r,warning=F}
+summary(lm(dfmodel,formula=xA ~ assists))
+```
+
+***
+
+## Replicating Who Got The Assist?'s Talisman Theory
+
+Suppose we are interested in replicating 'Who Got The Assist?'s famous 'Talisman Theory' analysis for the 18/19 season, looking at the 'key men' for Premier League teams, players who score the largest proportion of team points. Specifically, selected non-appearance points that can be attributed to the individual player rather than the team as a whole.
+
+With fplscrapR, we can do this analysis very easily.
+
+First, we fetch the player stats using get_player_info:
+
+```{r, warning=F,message=F}
+
+library(fplscrapR)
+
+df <- get_player_info(season=18)
+```
+
+Next we manipulate the data frame to represent our needs in several steps, using dplyr:
+
+```{r, warning=F,message=F}
+library(dplyr)
+```
+
+```{r,warning=F,message=F}
+
+df2 <- 
+  df %>% 
+  mutate( # creating the 'non-appearance points' variable based on goals, assists, saves, penalty saves, and bonus points, with the exact scoring diferent for each position (element_type)
+    napts = case_when(
+      element_type == 1 ~ round(goals_scored * 6 + assists * 3 + saves/3 + penalties_saved*6 + bonus,0),
+      element_type == 2 ~ goals_scored * 6 + assists * 3 + bonus,
+      element_type == 3 ~ goals_scored * 5 + assists * 3 + bonus,
+      element_type == 4 ~ goals_scored * 4 + assists * 3 + bonus)) %>% 
+  group_by(team) %>% 
+  mutate(teamtotal = sum(napts)) %>% # summarising team totals
+  mutate(naptsprop = round(napts/teamtotal,2)) %>% # calculating the player proportion of the team total (and rounding) 
+  top_n(n=1) # selecting the top player from each team
+```  
+
+Finally, we create a nice-looking plot of our data, using ggplot2:
+
+```{r, warning=F}
+library(ggplot2)
+```
+
+```{r,fig.width=7,fig.height=5}
+df2 %>% 
+  ggplot() + 
+    geom_col(aes(x=reorder(second_name,naptsprop),y=naptsprop)) +
+    theme_bw() +
+    coord_flip() +
+    labs(title="Who Got The Assists?'s Talisman Theory", x="Player",y="Proportion of team's non-appearance points scored",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+```
+
+***
+
+## List of top performers by FPL goals and assists
+
+Suppose we are interested in listing the top FPL performers by FPL goals and assists? Again, we take the first 25 gameweeks of the 18/19 season as an example.
+
+First we fetch the gameweek-by-gameweek details of ALL players using get_player_details:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+df <- get_player_details(season=18) # this may take a while to load as it fetches ALL player details
+```
+
+Next we use dplyr and ggplot2 to transform and plot the data, showing the top performers:
+
+```{r, message=F,warning=F}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r,warning=F}
+df %>%
+  filter(round %in% 1:25) %>% # filtering for the GWs we are interested in
+  select(playername,goals_scored,assists) %>% # selecting the relevant columns
+  group_by(playername) %>% # transformation to group and summarize the performance at the 'playername' variable level
+  summarize_all(sum) %>% 
+  mutate("involvements"=goals_scored+assists) %>% # adding a new variable that sums the goals scored and assists
+  arrange(-involvements) %>%  # ordering (arranging) the table by top involvements
+  slice(1:20) # showing the top20 only
+```
+
+***
+
+## Visualizing the FPL histories of entries
+
+Suppose now we are interested in visualizing the FPL history of two entries.
+
+First we fetch the entry histories of two random entries using get_entry_hist:
+
+```{r, warning=F}
+
+library(fplscrapR)
+
+entryhist <- get_entry_hist(entryid=c(1001,2002))
 
 ```
 
@@ -544,182 +752,3 @@ entryhist %>%
 ```
 
 ***
-
-## Visualizing your in-season Overall Rank progress
-
-Suppose now we are interested in visualizing the rank progression within the current season of our own FPL teams?
-
-First I fetch my own entry season using get_entry_season:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-myseason <- get_entry_season(entryid=1076)
-```
-
-Next we plot the historical performance using dplyr and ggplot2:
-
-```{r, message=F,warning=F}
-library(dplyr)
-library(ggplot2)
-```
-
-```{r, warning=F,fig.width=7,fig.height=5}
-myseason %>% 
-  ggplot() +
-  geom_line(aes(x=event,y=overall_rank,group=name)) +
-  theme_bw() +
-  labs(x="Gameweek",y="Overall Rank",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
-
-```
-
-***
-
-## Listing the top 20 of your favourite mini-league
-
-Suppose now we are interested in listing the top20 teams in your favourite mini-league? Here we take the example of the current 'Who Got the Assist? Mini-League'.
-
-First we fetch the league data using get_league:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_league(leagueid = 441,leaguetype = "classic")
-```
-
-Next we show the top20 ranking teams at the moment using dplyr:
-
-```{r, message=F,warning=F}
-library(dplyr)
-```
-
-```{r, warning=F}
-df$standings$results %>% # selecting the standings and results data
-  select(entry,entry_name,player_name,rank,total) %>% # selecting the columns we are interested in displaying
-  filter(rank %in% 1:20) # filtering for the top20 ranks
-
-```
-
-***
-
-## Finding the most owned players amongst the top 20 teams of your favourite mini-league
-
-Suppose now we are interested in finding the most owned players in the top20 teams in your favourite mini-league? Here we take the example of the current 'Who Got the Assist? Mini-League'.
-
-First we fetch the league data using get_league:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_league(leagueid = 441,leaguetype = "classic")
-```
-
-Next we save in a new data frame the entry ids' of the top20 ranking teams at the moment, using dplyr:
-
-```{r, message=F,warning=F}
-library(dplyr)
-library(tidyr)
-```
-
-```{r, warning=F}
-top20entries <- df$standings$results %>% # selecting the standings and results data
-  filter(rank %in% 1:20) %>%  # filtering for the top20 ranks
-  select(entry) # selecting only the entry ids
-```
-
-Now we want to know the most selected players by these teams in a given gameweek, say gameweek 31. So we set the gameweek number and collect the players picks by each of the top20 entries using get_entry_picks. We do so through a loop (which is decidedly not the most efficient method), binding the picks together in a new data frame called 'top20picks':
-
-```{r, warning=F}
-
-gameweek <- 31
-
-top20picks <- data.frame()
-
-for (i in 1:nrow(top20entries)){
-  picks <- get_entry_picks(entryid=top20entries[i,],gw=gameweek)
-  top20picks <- rbind(top20picks,picks$picks)
-}
-```
-
-Finally we list the top20 most owned players amongst the top20 managers in the WGTA Mini-League using dplyr:
-
-```{r, warning=F}
-
-top20picks %>% # working with our newly created data.frame
-  group_by(element) %>% # transformation to group and summarize the count (number of times a given player was selected) at the element (the player) variable level
-  summarize(n()) %>%
-  arrange(-`n()`) %>% # arranging by most selected
-  slice(1:20) %>% # slicing so we just see the top20 selected players
-  arrange(element) %>% # arranging by element id in order to allow us to mutate (create a new variable) the element ids into player names 
-  mutate(name=lapply(element,get_player_name)) %>% # adding the playername data
-  tidyr::unnest(name) %>% # unnesting the playername data via tidyr
-  select(playername,`n()`) %>% # selecting the variables of interest for our final list
-  arrange(-`n()`) # arranging by most selected again
-
-```
-
-***
-
-## Comparing total team BPS scores for a given game
-
-Suppose now we are interested in comparing the total BPS scores for each team in a given game? Here we take the example of Manchester United - Leicester from round 1, game id 6.
-
-First we fetch the game stats using get_game_stats:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_game_stats(gameid=6)
-```
-
-Next we structure a coherent data frame of the two teams' total BPS points, using R base's rbind and dplyr:
-
-```{r, warning=F}
-
-library(dplyr)
-
-rbind( # combining the two objects containing the home and away team's BPS points
-  data.frame(df$bps$a[[10]],team="away"),
-  data.frame(df$bps$h[[10]],team="home")) %>% 
-  group_by(team) %>% # transformation to group and summarize the value (bps points scored by a given player in the game) at the team variable level
-  summarize(sum(value))
-```
-
-***
-
-## Average and top entry scores for the first 25 gameweeks
-
-Suppose we are interested in tracking the average and top FPL scores by gameweek?
-
-First we fetch the round information for a selection of gameweeks, say 1-25, using the get_round_info function:
-
-```{r, warning=F}
-
-library(fplscrapR)
-
-df <- get_round_info(1:25)
-```
-
-Next we use dplyr, tidyr and ggplot2 to transform and plot the data, showing the average and top entry progression by gameweek:
-
-```{r, message=F,warning=F}
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-```
-
-```{r,warning=F,fig.width=7,fig.height=5}
-df %>% 
-  select(id,average_entry_score,highest_score) %>% # selecting the relevant columns
-  gather("var","value",-id) %>% # transforming from wide to long format for ggplot
-  ggplot() + # plotting using ggplot2
-    geom_line(aes(x=id,y=value,colour=var),size=1) +
-    theme_bw() +
-    scale_x_continuous(breaks=1:25) +
-    labs(x="Gameweek",y="Score",title="Average and top FPL entry scores by gameweek",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
-```
-

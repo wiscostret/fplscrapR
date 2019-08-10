@@ -8,6 +8,13 @@
 
 <title>get_entry_picks — get_entry_picks • fplscrapR</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
@@ -33,7 +40,9 @@
 
 <meta property="og:title" content="get_entry_picks — get_entry_picks" />
 
-<meta property="og:description" content="This function fetches player picks for a Fantasy Premier League entry given the entry ID and GW. IMPORTANT NOTE: FPL generally asks scrapers NOT to abuse the /entry sites (see: https://fantasy.premierleague.com/robots.txt)." />
+<meta property="og:description" content="This function fetches player picks for a Fantasy Premier League entry given the entry ID and GW." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -64,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -93,7 +102,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -105,7 +114,13 @@
       <a href="../articles/bpsforgame.html">Comparing total team BPS scores for a given game</a>
     </li>
     <li>
+      <a href="../articles/dgw32ppms.html">Top options by FPL points per 90 mins</a>
+    </li>
+    <li>
       <a href="../articles/entryscores.html">Average and top entry scores for the first 25 gameweeks</a>
+    </li>
+    <li>
+      <a href="../articles/fantasianplayingtime.html">Replicating Fantasian's playing time visualisation</a>
     </li>
     <li>
       <a href="../articles/fdrtable.html">Creating your own 'FDR' fixture table</a>
@@ -117,16 +132,13 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Eden Hazard and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
     </li>
     <li>
-      <a href="../articles/mlmostowned.html">Finding the most owned players amongst the top 20 teams of your favourite mini-league</a>
-    </li>
-    <li>
-      <a href="../articles/mltop.html">Listing the top 20 of your favourite mini-league</a>
+      <a href="../articles/myxpts.html">My Expected Points</a>
     </li>
     <li>
       <a href="../articles/salahpoints.html">Mohamed Salah's points in each gameweek for the first 25 gameweeks</a>
@@ -135,15 +147,18 @@
       <a href="../articles/simplexamodel.html">Building a very simple expected assists (xA) model</a>
     </li>
     <li>
+      <a href="../articles/talismantheory.html">Replicating Who Got The Assist?'s Talisman Theory</a>
+    </li>
+    <li>
       <a href="../articles/topperformers.html">List of top performers by FPL goals and assists</a>
     </li>
     <li>
       <a href="../articles/vizentryhist.html">Visualizing the FPL histories of entries</a>
     </li>
-    <li>
-      <a href="../articles/vizrankprogress.html">Visualizing your in-season Overall Rank progress</a>
-    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -173,7 +188,7 @@
 
     <div class="ref-description">
     
-    <p>This function fetches player picks for a Fantasy Premier League entry given the entry ID and GW. IMPORTANT NOTE: FPL generally asks scrapers NOT to abuse the /entry sites (see: https://fantasy.premierleague.com/robots.txt).</p>
+    <p>This function fetches player picks for a Fantasy Premier League entry given the entry ID and GW.</p>
     
     </div>
 
@@ -188,126 +203,71 @@
     </tr>
     <tr>
       <th>gw</th>
-      <td><p>The GW for which player picks is requested</p></td>
+      <td><p>The GW for which player picks is requested.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_entry_picks</span>(<span class='fl'>1076</span>,<span class='fl'>31</span>)</div><div class='output co'>#&gt; $active_chip
-#&gt; [1] ""
+    <pre class="examples"><div class='input'>
+<span class='fu'>get_entry_picks</span>(<span class='fl'>1076</span>,<span class='fl'>1</span>)</div><div class='output co'>#&gt; $active_chip
+#&gt; NULL
 #&gt; 
 #&gt; $automatic_subs
 #&gt; list()
 #&gt; 
 #&gt; $entry_history
-#&gt; $entry_history$id
-#&gt; [1] 176584247
-#&gt; 
-#&gt; $entry_history$movement
-#&gt; [1] "new"
+#&gt; $entry_history$event
+#&gt; [1] 1
 #&gt; 
 #&gt; $entry_history$points
-#&gt; [1] 42
+#&gt; [1] 37
 #&gt; 
 #&gt; $entry_history$total_points
-#&gt; [1] 1878
+#&gt; [1] 37
 #&gt; 
 #&gt; $entry_history$rank
-#&gt; [1] 923657
-#&gt; 
-#&gt; $entry_history$rank_sort
-#&gt; [1] 923663
-#&gt; 
-#&gt; $entry_history$overall_rank
-#&gt; [1] 11142
-#&gt; 
-#&gt; $entry_history$targets
 #&gt; NULL
 #&gt; 
-#&gt; $entry_history$event_transfers
-#&gt; [1] 3
+#&gt; $entry_history$rank_sort
+#&gt; NULL
 #&gt; 
-#&gt; $entry_history$event_transfers_cost
-#&gt; [1] 4
+#&gt; $entry_history$overall_rank
+#&gt; [1] 107510
+#&gt; 
+#&gt; $entry_history$bank
+#&gt; [1] 0
 #&gt; 
 #&gt; $entry_history$value
-#&gt; [1] 1046
+#&gt; [1] 1000
+#&gt; 
+#&gt; $entry_history$event_transfers
+#&gt; [1] 0
+#&gt; 
+#&gt; $entry_history$event_transfers_cost
+#&gt; [1] 0
 #&gt; 
 #&gt; $entry_history$points_on_bench
 #&gt; [1] 0
 #&gt; 
-#&gt; $entry_history$bank
-#&gt; [1] 17
-#&gt; 
-#&gt; $entry_history$entry
-#&gt; [1] 1076
-#&gt; 
-#&gt; $entry_history$event
-#&gt; [1] 31
-#&gt; 
-#&gt; 
-#&gt; $event
-#&gt; $event$id
-#&gt; [1] 31
-#&gt; 
-#&gt; $event$name
-#&gt; [1] "Gameweek 31"
-#&gt; 
-#&gt; $event$deadline_time
-#&gt; [1] "2019-03-16T14:00:00Z"
-#&gt; 
-#&gt; $event$average_entry_score
-#&gt; [1] 26
-#&gt; 
-#&gt; $event$finished
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $event$data_checked
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $event$highest_scoring_entry
-#&gt; [1] 4093932
-#&gt; 
-#&gt; $event$deadline_time_epoch
-#&gt; [1] 1552744800
-#&gt; 
-#&gt; $event$deadline_time_game_offset
-#&gt; [1] 0
-#&gt; 
-#&gt; $event$deadline_time_formatted
-#&gt; [1] "16 Mar 14:00"
-#&gt; 
-#&gt; $event$highest_score
-#&gt; [1] 101
-#&gt; 
-#&gt; $event$is_previous
-#&gt; [1] FALSE
-#&gt; 
-#&gt; $event$is_current
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $event$is_next
-#&gt; [1] FALSE
-#&gt; 
 #&gt; 
 #&gt; $picks
-#&gt;    element position is_captain is_vice_captain multiplier
-#&gt; 1      400        1      FALSE           FALSE          1
-#&gt; 2      247        2      FALSE           FALSE          1
-#&gt; 3      221        3      FALSE           FALSE          1
-#&gt; 4      116        4      FALSE           FALSE          1
-#&gt; 5      253        5       TRUE           FALSE          2
-#&gt; 6      122        6      FALSE            TRUE          1
-#&gt; 7      251        7      FALSE           FALSE          1
-#&gt; 8      465        8      FALSE           FALSE          1
-#&gt; 9       40        9      FALSE           FALSE          1
-#&gt; 10     493       10      FALSE           FALSE          1
-#&gt; 11      43       11      FALSE           FALSE          1
-#&gt; 12     155       12      FALSE           FALSE          1
-#&gt; 13     312       13      FALSE           FALSE          1
-#&gt; 14     145       14      FALSE           FALSE          1
-#&gt; 15     437       15      FALSE           FALSE          1
+#&gt;    element position multiplier is_captain is_vice_captain
+#&gt; 1       93        1          1      FALSE           FALSE
+#&gt; 2      182        2          1      FALSE            TRUE
+#&gt; 3      206        3          1      FALSE           FALSE
+#&gt; 4      183        4          1      FALSE           FALSE
+#&gt; 5      141        5          1      FALSE           FALSE
+#&gt; 6      265        6          1      FALSE           FALSE
+#&gt; 7       75        7          1      FALSE           FALSE
+#&gt; 8      191        8          2       TRUE           FALSE
+#&gt; 9      214        9          1      FALSE           FALSE
+#&gt; 10      67       10          1      FALSE           FALSE
+#&gt; 11     410       11          1      FALSE           FALSE
+#&gt; 12      48       12          0      FALSE           FALSE
+#&gt; 13     458       13          0      FALSE           FALSE
+#&gt; 14     420       14          0      FALSE           FALSE
+#&gt; 15     387       15          0      FALSE           FALSE
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -9,12 +9,13 @@ get_entry_picks(entryid = NULL, gw = NULL)
 \arguments{
 \item{entryid}{The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.}
 
-\item{gw}{The GW for which player picks is requested}
+\item{gw}{The GW for which player picks is requested.}
 }
 \description{
-This function fetches player picks for a Fantasy Premier League entry given the entry ID and GW. IMPORTANT NOTE: FPL generally asks scrapers NOT to abuse the /entry sites (see: https://fantasy.premierleague.com/robots.txt).
+This function fetches player picks for a Fantasy Premier League entry given the entry ID and GW.
 }
 \examples{
-get_entry_picks(1076,31)
+
+get_entry_picks(1076,1)
 }
 \keyword{entry}

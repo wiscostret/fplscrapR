@@ -12,9 +12,6 @@ get_league(leagueid = NULL, leaguetype = "classic")
 \item{leaguetype}{The league type: 'classic' or 'h2h'.}
 }
 \description{
-This function fetches statistics for a Fantasy Premier League mini-league given the league ID and type. IMPORTANT NOTE: FPL generally asks scrapers NOT to abuse the /league sites (see: https://fantasy.premierleague.com/robots.txt).
-}
-\examples{
-get_league(441,"classic")
+This function fetches basic information for a Fantasy Premier League mini-league given the league ID and type. In the new FPL API for 19/20, this information requires authentication - so you'll also need to post your FPL login and password to retrieve the data.
 }
 \keyword{league}

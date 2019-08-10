@@ -10,7 +10,7 @@ get_entry_season(entryid = NULL)
 \item{entryid}{The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history. You can list multiple, e.g. with c().}
 }
 \description{
-This function fetches in-season statistics for a Fantasy Premier League entry given the entry ID(s). IMPORTANT NOTE: FPL generally asks scrapers NOT to abuse the /entry sites (see: https://fantasy.premierleague.com/robots.txt).
+This function fetches in-season statistics for a Fantasy Premier League entry given the entry ID(s).
 }
 \examples{
 get_entry_season(1076)

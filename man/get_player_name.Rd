@@ -10,7 +10,7 @@ get_player_name(playerid = NULL)
 \item{playerid}{The player's FPL ID. You can list multiple, e.g. with c().}
 }
 \description{
-This function fetches a player's full name given FPL ID.
+This function fetches a player's full name given FPL ID. If blank, the function fetches all current players.
 }
 \examples{
 get_player_name(playerid=300)

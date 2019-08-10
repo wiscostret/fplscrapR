@@ -3,22 +3,34 @@
 #' get_game_list
 #'
 #' This function fetches a basic list of games.
+#' @param season To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '18' for the 2018/2019 season).
 #' @keywords game
 #' @export
 #' @examples
 #' get_game_list()
 
-get_game_list <- function(){
-  shorts <- get_fdr() %>% select(short_name)
+get_game_list <- function(season = NULL){
+  ifelse(
+    !is.null(season),
+    {
+      gamelist <- read.csv(paste0("https://raw.githubusercontent.com/wiscostret/histfpldata/master/getgamelist",season,".csv"),encoding="UTF-8")
+      return(gamelist)
+    },
+    {
+  shorts <- get_fdr() %>% dplyr::select(short_name)
   fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/fixtures/")
-  data.frame(
+  gamelist <- data.frame(
     "GW"=fixtures$event,
     "id"=fixtures$id,
     "home"=fixtures$team_h,
+    "team_h"=fixtures$team_h,
     "away"=fixtures$team_a,
+    "team_a"=fixtures$team_a,
     "finished"=fixtures$finished,
-    "kickoff"=fixtures$kickoff_time) %>%
-    dplyr:: mutate(home = case_when(
+    "kickoff"=fixtures$kickoff_time,
+    "team_h_score"=fixtures$team_h_score,
+    "team_a_score"=fixtures$team_a_score) %>%
+    dplyr:: mutate(home = dplyr::case_when(
       home == "1" ~ shorts[1,],
       home == "2" ~ shorts[2,],
       home == "3" ~ shorts[3,],
@@ -40,7 +52,7 @@ get_game_list <- function(){
       home == "19" ~ shorts[19,],
       home == "20" ~ shorts[20,]
     )) %>%
-    dplyr:: mutate(away = case_when(
+    dplyr:: mutate(away = dplyr::case_when(
       away == "1" ~ shorts[1,],
       away == "2" ~ shorts[2,],
       away == "3" ~ shorts[3,],
@@ -62,6 +74,9 @@ get_game_list <- function(){
       away == "19" ~ shorts[19,],
       away == "20" ~ shorts[20,]
     ))
+  return(gamelist)
+    }
+  )
 }
 
 # get_game_stats
@@ -76,13 +91,10 @@ get_game_list <- function(){
 #' get_game_stats(20)
 
 get_game_stats <- function(gameid = NULL){
-  ifelse(
-    is.null(gameid),
-    return(print("You'll need to input a game ID, mate.")),
-    ifelse(length(gameid) != 1,"One at a time, please",
-           {
-             fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/fixtures")
-             return((fixtures %>% dplyr::filter(id %in% gameid))$stats[[1]])
-           }
-    ))
+  if(is.null(gameid)) stop("You'll need to input at least one game ID, mate.")
+  if(length(gameid) != 1) stop("One at a time, please")
+   {
+     fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/fixtures")
+     return((fixtures %>% dplyr::filter(id %in% gameid))$stats[[1]])
+   }
 }
