@@ -15,6 +15,6 @@ get_player_info(name = NULL, season = NULL)
 This function fetches selected summary information on selected players given full player name(s).
 }
 \examples{
-get_player_info(name=c("Jesse Lingard","Aleksandar Mitrovic"))
+get_player_info(name=c("Jesse Lingard","Virgil van Dijk"))
 }
 \keyword{player}

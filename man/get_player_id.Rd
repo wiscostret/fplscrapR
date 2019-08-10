@@ -13,8 +13,6 @@ get_player_id(name = NULL)
 This function fetches the FPL ID of a player given the player's full name. If blank, the function fetches all current players.
 }
 \examples{
-get_player_id(name="Aleksandar Mitrovic")
-
-get_player_id(name=c("Petr Cech","Bernd Leno"))
+get_player_id(name="Virgil van Dijk")
 }
 \keyword{player}
