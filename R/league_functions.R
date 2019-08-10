@@ -48,11 +48,11 @@ get_league_entries <- function(leagueid = NULL, leaguetype = "classic", pages = 
     fplfetchhandle <- curl::new_handle()
     curl::handle_setform(fplfetchhandle,
       login=readline("Please enter your FPL login email: "),
-      login=getPass::getPass(msg="Please enter your FPL login email: "),
+      password=getPass::getPass(msg="Please enter your FPL password:"),
       redirect_uri="https://fantasy.premierleague.com/a/login",
       app="plfpl-web")
     fplfetchmemory <- curl::curl_fetch_memory("https://users.premierleague.com/accounts/login/", handle = fplfetchhandle)
-  }
+    }
 
   if(fplfetchmemory$url != "https://fantasy.premierleague.com/a/login?state=success") stop("The authentication didn't work. You've most likely entered an incorrect FPL email and/or password.")
 
