@@ -13,7 +13,7 @@ get_entry <- function(entryid = NULL){
   if(is.null(entryid)) stop("You'll need to input at least one entry ID, mate.")
   if(length(entryid) != 1) stop("One at a time, please")
    {
-     entry <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid,sep=""))
+     entry <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid,"/",sep=""))
      return(entry)
    }
 }
@@ -34,8 +34,8 @@ get_entry_hist <- function(entryid = NULL){
     {
       entryhistory2 <- data.frame()
       for (i in 1:length(entryid)){
-        entry <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],sep=""))
-        entryhistory <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/history",sep=""))
+        entry <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/",sep=""))
+        entryhistory <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/history","/",sep=""))
         if(length(entryhistory$past)==0) {entryhistory$past <- data.frame(season_name="",total_points="",rank="")}
         entryhistory2 <- rbind(entryhistory2,data.frame(entryhistory$past,name=paste(entry$player_first_name,entry$player_last_name)))
       }
@@ -59,8 +59,8 @@ get_entry_season <- function(entryid = NULL){
     {
       entryseason2 <- data.frame()
       for (i in 1:length(entryid)){
-        entry <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],sep=""))
-        entryseason <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/history",sep=""))
+        entry <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/",sep=""))
+        entryseason <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/history","/",sep=""))
         entryseason2 <- rbind(entryseason2,data.frame(entryseason$current,name=paste(entry$player_first_name,entry$player_last_name)))
       }
       return(entryseason2)
@@ -86,7 +86,7 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
 
   roundinfo <- get_round_info()
 
-  picks <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid,"/event/",gw,"/picks",sep=""))
+  picks <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid,"/event/",gw,"/picks","/",sep=""))
 
   return(picks)
 }

@@ -3,7 +3,7 @@
 #' get_game_list
 #'
 #' This function fetches a basic list of games.
-#' @param season To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '18' for the 2018/2019 season).
+#' @param season To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '18' for the 2018/2019 season).
 #' @keywords game
 #' @export
 #' @examples
@@ -94,7 +94,7 @@ get_game_stats <- function(gameid = NULL){
   if(is.null(gameid)) stop("You'll need to input at least one game ID, mate.")
   if(length(gameid) != 1) stop("One at a time, please")
    {
-     fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/fixtures")
+     fixtures <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/fixtures/")
      return((fixtures %>% dplyr::filter(id %in% gameid))$stats[[1]])
    }
 }

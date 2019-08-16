@@ -21,12 +21,12 @@ if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
 get_player_id <- function(name = NULL){
   ifelse(
     is.null(name),
-      {elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$elements
+      {elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static/")$elements
       elements$playername <- paste(elements$first_name,elements$second_name)
       return(elements %>% dplyr::select(playername,id))}
     ,
     {
-      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$elements
+      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static/")$elements
       elements$playername <- paste(elements$first_name,elements$second_name)
       return(elements %>% dplyr::filter(playername %in% name) %>% dplyr::select(playername,id))
     }
@@ -50,13 +50,13 @@ get_player_name <- function(playerid = NULL){
   ifelse(
     is.null(playerid),
     {
-      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$elements
+      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static/")$elements
       elements$playername <- paste(elements$first_name,elements$second_name)
       return(elements %>% dplyr::select(playername,id))
     }
     ,
     {
-      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$elements
+      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static/")$elements
       elements$playername <- paste(elements$first_name,elements$second_name)
       return(elements %>% dplyr::filter(id %in% playerid) %>% dplyr::select(playername,id))
     }
@@ -69,7 +69,7 @@ get_player_name <- function(playerid = NULL){
 #'
 #' This function fetches selected summary information on selected players given full player name(s).
 #' @param name The player's full name, as listed on the official Fantasy Premier League site (for instance: "Richarlison de Andrade", not "Richarlison"). If blank, the function fetches all players.
-#' @param season To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '17' for the 2017/2018 season).
+#' @param season To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '17' for the 2017/2018 season).
 #' @keywords player
 #' @export
 #' @examples
@@ -79,7 +79,7 @@ get_player_info <- function(name = NULL, season = NULL){
   ifelse(
     is.null(season),
     {
-      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$elements
+      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static/")$elements
       elements$playername <- paste(elements$first_name,elements$second_name)
     },
     {
@@ -107,21 +107,21 @@ get_player_info <- function(name = NULL, season = NULL){
 #' get_player_hist(playerid=get_player_id("Sead Kolasinac")$id)
 
 get_player_hist <- function(playerid = NULL){
-  elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$elements
+  elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static/")$elements
   elements$playername <- paste(elements$first_name,elements$second_name)
   ifelse(
     is.null(playerid),
     {
       histinfo <- data.frame()
       for (i in 1:nrow(elements)){
-        fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],sep="")))$history_past
+        fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],"/",sep="")))$history_past
         histinfo <- rbind(histinfo,data.frame(fplboot,playername=rep(elements$playername[which(elements$id==elements$id[i])],length(unique(fplboot$season_name)))))}
       return(histinfo)
     },
     {
       histinfo <- data.frame()
       for (i in 1:length(playerid)){
-        fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],sep="")))$history_past
+        fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],"/",sep="")))$history_past
         histinfo <- rbind(histinfo,data.frame(fplboot,playername=rep(elements$playername[which(elements$id==playerid[i])],length(unique(fplboot$season_name)))))}
       return(histinfo)})
 }
@@ -133,7 +133,7 @@ get_player_hist <- function(playerid = NULL){
 #' This function fetches detailed, gameweek-by-gameweek information for the current season on selected players. If parameters left blank, the function fetches all current players - note that takes a while to load.
 #' @param playerid The player's ID. Can be found using get_player_id(). You can list multiple, e.g. with c(). Won't work with prior season's data.
 #' @param name Alternatively, the player's full name, as listed on the official Fantasy Premier League site (for instance: "Richarlison de Andrade", not "Richarlison"). If blank, the function fetches all players.
-#' @param season To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '17' for the 2017/2018 season).
+#' @param season To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '17' for the 2017/2018 season).
 #' @keywords player
 #' @export
 #' @examples
@@ -159,7 +159,7 @@ get_player_details <- function(playerid = NULL, name = NULL, season = NULL){
       )
     },
     {
-      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static")$elements
+      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static/")$elements
       elements$playername <- paste(elements$first_name,elements$second_name)
 
       ifelse(
@@ -169,7 +169,7 @@ get_player_details <- function(playerid = NULL, name = NULL, season = NULL){
           {
             detinfo <- data.frame()
             for (i in 1:nrow(elements)){
-              fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],sep="")))$history
+              fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],"/",sep="")))$history
               detinfo <- rbind(detinfo,data.frame(fplboot,playername=elements$playername[which(elements$id==elements$id[i])]))}
             return(detinfo)
           },
@@ -177,14 +177,14 @@ get_player_details <- function(playerid = NULL, name = NULL, season = NULL){
             detinfo <- data.frame()
             selection <- elements %>% dplyr::filter(playername %in% name) %>% dplyr::select(id) %>% unlist() %>% as.numeric()
             for (i in 1:length(selection)){
-              fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",selection[i],sep="")))$history
+              fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",selection[i],"/",sep="")))$history
               detinfo <- rbind(detinfo,data.frame(fplboot,playername=elements$playername[which(elements$id==selection[i])]))}
             return(detinfo)
           }),
         {
           detinfo <- data.frame()
           for (i in 1:length(playerid)){
-            fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],sep="")))$history
+            fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],"/",sep="")))$history
             detinfo <- rbind(detinfo,data.frame(fplboot,playername=elements$playername[which(elements$id==playerid[i])]))}
           return(detinfo)
         }
