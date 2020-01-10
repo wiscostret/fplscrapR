@@ -3,6 +3,7 @@
 #' @import dplyr
 #' @import curl
 #' @import getPass
+#' @importFrom plyr rbind.fill
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
@@ -170,7 +171,7 @@ get_player_details <- function(playerid = NULL, name = NULL, season = NULL){
             detinfo <- data.frame()
             for (i in 1:nrow(elements)){
               fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",elements$id[i],"/",sep="")))$history
-              detinfo <- rbind(detinfo,data.frame(fplboot,playername=elements$playername[which(elements$id==elements$id[i])]))}
+              detinfo <- plyr::rbind.fill(detinfo,data.frame(cbind(fplboot,playername=elements$playername[which(elements$id==elements$id[i])])))}
             return(detinfo)
           },
           {
@@ -178,14 +179,14 @@ get_player_details <- function(playerid = NULL, name = NULL, season = NULL){
             selection <- elements %>% dplyr::filter(playername %in% name) %>% dplyr::select(id) %>% unlist() %>% as.numeric()
             for (i in 1:length(selection)){
               fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",selection[i],"/",sep="")))$history
-              detinfo <- rbind(detinfo,data.frame(fplboot,playername=elements$playername[which(elements$id==selection[i])]))}
+              detinfo <- plyr::rbind.fill(detinfo,data.frame(cbind(fplboot,playername=elements$playername[which(elements$id==selection[i])])))}
             return(detinfo)
           }),
         {
           detinfo <- data.frame()
           for (i in 1:length(playerid)){
             fplboot <- jsonlite::fromJSON(url(paste("https://fantasy.premierleague.com/api/element-summary/",playerid[i],"/",sep="")))$history
-            detinfo <- rbind(detinfo,data.frame(fplboot,playername=elements$playername[which(elements$id==playerid[i])]))}
+            detinfo <- plyr::rbind.fill(detinfo,data.frame(cbind(fplboot,playername=elements$playername[which(elements$id==playerid[i])])))}
           return(detinfo)
         }
       )
