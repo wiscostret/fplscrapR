@@ -84,10 +84,16 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
   if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
 
-  roundinfo <- get_round_info()
+  picks2 <- list()
+  for (i in 1:length(entryid)) {
+    picks <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/event/",gw,"/picks","/",sep=""))
+    if (length(entryid) > 1) {
+      picks2[[as.character(entryid[i])]] <- picks
+    } else {
+      picks2 <- picks
+    }
+  }
 
-  picks <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid,"/event/",gw,"/picks","/",sep=""))
-
-  return(picks)
+  return(picks2)
 }
 
