@@ -91,6 +91,18 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
 
 # get_entry_player_picks()
 
+#' get_entry_player_picks
+#'
+#' This function fetches detailed information for a Fantasy Premier League entry given the entry ID(s) and GW(s).
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param gw The GW(s) for which player picks is requested.
+#' @keywords entry
+#' @return A data.frame of player picks for the requested entry ID(s) and GW(s).
+#' @export
+#' @examples
+#'
+#' get_entry_player_picks(c(1076, 1077), 1:10)
+
 get_entry_player_picks <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
   if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
@@ -119,6 +131,19 @@ get_entry_player_picks <- function(entryid = NULL, gw = NULL){
   
   return(picks3)
 }
+
+# get_entry_captain()
+
+#' get_entry_captain
+#'
+#' This function fetches the captain for a Fantasy Premier League entry given the entry ID(s) and GW(s).
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param gw The GW(s) for which player picks is requested.
+#' @keywords entry
+#' @return A data.frame of captain(s) for the requested entry ID(s) and GW(s). If the selected captain was benched, the vice captain is returned. If both captain picks are benched, the intended captain is returned.
+#' @export
+#' @examples
+#' get_entry_captain(c(1076, 1077), 1:10)
 
 get_entry_captain <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
