@@ -61,7 +61,7 @@ get_entry_season <- function(entryid = NULL){
       for (i in 1:length(entryid)){
         entry <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/",sep=""))
         entryseason <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[i],"/history","/",sep=""))
-        entryseason2 <- rbind(entryseason2,data.frame(entryseason$current,entry=entryid[i],name=paste(entry$player_first_name,entry$player_last_name)))
+        entryseason2 <- rbind(entryseason2,data.frame(entryseason$current,name=paste(entry$player_first_name,entry$player_last_name)))
       }
       return(entryseason2)
     }
@@ -89,32 +89,5 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
   picks <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid,"/event/",gw,"/picks","/",sep=""))
 
   return(picks)
-}
-
-get_entry_captain <- function(entryid = NULL, gw = NULL, player_names = FALSE){
-  if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
-  if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
-  
-  captain3 <- data.frame()
-  for (i in 1:length(gw)) {
-    captain2 <- data.frame()
-    for (j in 1:length(entryid)) {
-      picks <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[j],"/event/",gw[i],"/picks","/",sep=""))
-      captain <- data.frame("id" = picks$picks[picks$picks$multiplier %in% c(2, 3), "element"])
-      captain$entry <- entryid[j]
-      captain2 <- rbind(captain2, captain)
-    }
-    captain2$event <- gw[i]
-    captain3 <- rbind(captain3, captain2)
-  }
-  
-  if (player_names == TRUE) {
-    player_names <- get_player_name(unique(captain3$captain))
-    captain3 <- merge(captain3, player_names, by = "id")
-    captain3 <- captain3[c(1, 4, 2, 3)]
-    names(captain3) <- c("captain_id", "captain_name", "entry", "event")
-  }
-  
-  return(captain3)
 }
 
