@@ -15,22 +15,29 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,12 +45,11 @@
 
 
 
+
 <meta property="og:title" content="get_round_info — get_round_info" />
-
 <meta property="og:description" content="This function fetches basic summary information on FPL Gameweeks." />
-
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -57,9 +63,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -102,7 +109,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
+      <a href="../articles/allvignettes.html">allvignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -161,10 +168,9 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/wiscostret/fplscrapR">
+  <a href="http://github.com/wiscostret/fplscrapR/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -176,24 +182,23 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>get_round_info</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wiscostret/fplscrapR/blob/master/R/round_functions.R'><code>R/round_functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/wiscostret/fplscrapR/blob/master/R/round_functions.R'><code>R/round_functions.R</code></a></small>
     <div class="hidden name"><code>get_round_info.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>This function fetches basic summary information on FPL Gameweeks.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>get_round_info</span>(<span class='kw'>round</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>season</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -203,43 +208,44 @@
     </tr>
     <tr>
       <th>season</th>
-      <td><p>To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '18' for the 2018/2019 season).</p></td>
+      <td><p>To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '18' for the 2018/2019 season).</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>get_round_info</span>(<span class='fl'>2</span>:<span class='fl'>4</span>)</div><div class='output co'>#&gt;   id       name        deadline_time average_entry_score finished data_checked
-#&gt; 1  2 Gameweek 2 2019-08-17T10:30:00Z                   0    FALSE        FALSE
-#&gt; 2  3 Gameweek 3 2019-08-23T18:00:00Z                   0    FALSE        FALSE
-#&gt; 3  4 Gameweek 4 2019-08-31T10:30:00Z                   0    FALSE        FALSE
+#&gt; 1  2 Gameweek 2 2019-08-17T10:30:00Z                  41     TRUE        FALSE
+#&gt; 2  3 Gameweek 3 2019-08-23T18:00:00Z                  44     TRUE        FALSE
+#&gt; 3  4 Gameweek 4 2019-08-31T10:30:00Z                  57     TRUE        FALSE
 #&gt;   highest_scoring_entry deadline_time_epoch deadline_time_game_offset
-#&gt; 1                    NA          1566037800                         0
-#&gt; 2                    NA          1566583200                         0
-#&gt; 3                    NA          1567247400                         0
-#&gt;   highest_score is_previous is_current is_next chip_plays most_selected
-#&gt; 1            NA       FALSE      FALSE    TRUE       NULL            NA
-#&gt; 2            NA       FALSE      FALSE   FALSE       NULL            NA
-#&gt; 3            NA       FALSE      FALSE   FALSE       NULL            NA
-#&gt;   most_transferred_in top_element transfers_made most_captained
-#&gt; 1                  NA          NA              0             NA
-#&gt; 2                  NA          NA              0             NA
-#&gt; 3                  NA          NA              0             NA
-#&gt;   most_vice_captained
-#&gt; 1                  NA
-#&gt; 2                  NA
-#&gt; 3                  NA</div></pre>
+#&gt; 1               6106693          1566037800                         0
+#&gt; 2               5087809          1566583200                         0
+#&gt; 3               6372519          1567247400                         0
+#&gt;   highest_score is_previous is_current is_next
+#&gt; 1           119       FALSE      FALSE   FALSE
+#&gt; 2           107       FALSE      FALSE   FALSE
+#&gt; 3           136       FALSE      FALSE   FALSE
+#&gt;                                                      chip_plays most_selected
+#&gt; 1 bboost, freehit, wildcard, 3xc, 114585, 89437, 263066, 216711           183
+#&gt; 2 bboost, freehit, wildcard, 3xc, 79958, 104304, 414347, 166101           183
+#&gt; 3 bboost, freehit, wildcard, 3xc, 72741, 108397, 429973, 198605           183
+#&gt;   most_transferred_in top_element top_element_info.id top_element_info.points
+#&gt; 1                 235         278                 278                      17
+#&gt; 2                 278         191                 191                      15
+#&gt; 3                 278         166                 166                      16
+#&gt;   transfers_made most_captained most_vice_captained
+#&gt; 1        9998839            191                 214
+#&gt; 2       13387638            214                 191
+#&gt; 3       13215999            214                 191</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -247,13 +253,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

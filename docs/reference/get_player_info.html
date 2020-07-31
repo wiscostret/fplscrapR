@@ -15,22 +15,29 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,12 +45,11 @@
 
 
 
+
 <meta property="og:title" content="get_player_info — get_player_info" />
-
 <meta property="og:description" content="This function fetches selected summary information on selected players given full player name(s)." />
-
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -57,9 +63,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -161,10 +168,9 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/wiscostret/fplscrapR">
+  <a href="http://github.com/wiscostret/fplscrapR/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -176,24 +182,23 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>get_player_info</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wiscostret/fplscrapR/blob/master/R/player_functions.R'><code>R/player_functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/wiscostret/fplscrapR/blob/master/R/player_functions.R'><code>R/player_functions.R</code></a></small>
     <div class="hidden name"><code>get_player_info.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>This function fetches selected summary information on selected players given full player name(s).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>get_player_info</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>season</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -203,53 +208,59 @@
     </tr>
     <tr>
       <th>season</th>
-      <td><p>To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '17' for the 2017/2018 season).</p></td>
+      <td><p>To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '17' for the 2017/2018 season).</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_player_info</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Jesse Lingard"</span>,<span class='st'>"Virgil van Dijk"</span>))</div><div class='output co'>#&gt;   chance_of_playing_next_round chance_of_playing_this_round   code
-#&gt; 1                           NA                           NA  97032
-#&gt; 2                           NA                           NA 109322
+    <pre class="examples"><div class='input'><span class='fu'>get_player_info</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Jesse Lingard"</span>,<span class='st'>"Virgil van Dijk"</span>))</div><div class='output co'>#&gt;   chance_of_playing_next_round chance_of_playing_this_round   code
+#&gt; 1                          100                          100  97032
+#&gt; 2                          100                          100 109322
 #&gt;   cost_change_event cost_change_event_fall cost_change_start
 #&gt; 1                 0                      0                 0
-#&gt; 2                 0                      0                 0
+#&gt; 2                 0                      0                -2
 #&gt;   cost_change_start_fall dreamteam_count element_type ep_next ep_this
-#&gt; 1                      0               1            2     4.5     5.0
-#&gt; 2                      0               0            3     2.7     2.2
-#&gt;   event_points first_name form  id in_dreamteam news news_added now_cost
-#&gt; 1            8     Virgil  8.0 183         TRUE            &lt;NA&gt;       65
-#&gt; 2            0      Jesse  0.0 241        FALSE            &lt;NA&gt;       65
-#&gt;        photo points_per_game second_name selected_by_percent special
-#&gt; 1  97032.jpg             8.0    van Dijk                50.5   FALSE
-#&gt; 2 109322.jpg             0.0     Lingard                 1.5   FALSE
-#&gt;   squad_number status team team_code total_points transfers_in
-#&gt; 1           NA      a   10        14            8        11493
-#&gt; 2           NA      a   12         1            0         1257
-#&gt;   transfers_in_event transfers_out transfers_out_event value_form value_season
-#&gt; 1              11493          2235                2235        1.2          1.2
-#&gt; 2               1257           922                 922        0.0          0.0
-#&gt;   web_name minutes goals_scored assists clean_sheets goals_conceded own_goals
-#&gt; 1 van Dijk      90            1       0            0              1         0
-#&gt; 2  Lingard       0            0       0            0              0         0
-#&gt;   penalties_saved penalties_missed yellow_cards red_cards saves bonus bps
-#&gt; 1               0                0            0         0     0     0  27
-#&gt; 2               0                0            0         0     0     0   0
-#&gt;   influence creativity threat ict_index      playername
-#&gt; 1       0.0        0.0    0.0       0.0 Virgil van Dijk
-#&gt; 2       0.0        0.0    0.0       0.0   Jesse Lingard</div></pre>
+#&gt; 1                      0               2            2     3.2     4.1
+#&gt; 2                      2               0            3     0.7     1.7
+#&gt;   event_points first_name form  id in_dreamteam news
+#&gt; 1            9     Virgil  3.1 183         TRUE     
+#&gt; 2            6      Jesse  1.2 241        FALSE     
+#&gt;                    news_added now_cost      photo points_per_game second_name
+#&gt; 1 2019-10-27T20:00:16.725016Z       65  97032.jpg             4.7    van Dijk
+#&gt; 2 2020-03-13T10:30:19.085305Z       63 109322.jpg             1.5     Lingard
+#&gt;   selected_by_percent special squad_number status team team_code total_points
+#&gt; 1                42.4   FALSE           NA      a   10        14          178
+#&gt; 2                 0.7   FALSE           NA      a   12         1           32
+#&gt;   transfers_in transfers_in_event transfers_out transfers_out_event value_form
+#&gt; 1      2145436                  0       2817026                   0        0.5
+#&gt; 2        64075                  0        129253                   0        0.2
+#&gt;   value_season web_name minutes goals_scored assists clean_sheets
+#&gt; 1         27.4 van Dijk    3420            5       2           15
+#&gt; 2          5.1  Lingard     923            1       0            1
+#&gt;   goals_conceded own_goals penalties_saved penalties_missed yellow_cards
+#&gt; 1             33         0               0                0            1
+#&gt; 2             14         0               0                0            3
+#&gt;   red_cards saves bonus bps influence creativity threat ict_index
+#&gt; 1         0     0    14 804     930.2      152.4  467.0     154.8
+#&gt; 2         0     0     0  99     109.0      278.2  297.0      68.2
+#&gt;   influence_rank influence_rank_type creativity_rank creativity_rank_type
+#&gt; 1             12                   2             236                   62
+#&gt; 2            375                 157             151                   95
+#&gt;   threat_rank threat_rank_type ict_index_rank ict_index_rank_type
+#&gt; 1          80                4             61                   6
+#&gt; 2         135               73            241                 117
+#&gt;        playername
+#&gt; 1 Virgil van Dijk
+#&gt; 2   Jesse Lingard</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -257,13 +268,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

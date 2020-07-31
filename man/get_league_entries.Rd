@@ -4,8 +4,7 @@
 \alias{get_league_entries}
 \title{get_league_entries}
 \usage{
-get_league_entries(leagueid = NULL, leaguetype = "classic",
-  pages = 1)
+get_league_entries(leagueid = NULL, leaguetype = "classic", pages = 1)
 }
 \arguments{
 \item{leagueid}{The league ID(s). Can be found on the FPL website.}
