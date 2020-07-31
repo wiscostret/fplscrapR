@@ -9,7 +9,7 @@ get_round_info(round = NULL, season = NULL)
 \arguments{
 \item{round}{The FPL Gameweek number for which basic summary information is requested, e.g. 20. You can list multiple rounds, e.g. with c(). If blank, the function fetches all Gameweeks.}
 
-\item{season}{To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '18' for the 2018/2019 season).}
+\item{season}{To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '18' for the 2018/2019 season).}
 }
 \description{
 This function fetches basic summary information on FPL Gameweeks.

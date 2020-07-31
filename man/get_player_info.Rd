@@ -9,7 +9,7 @@ get_player_info(name = NULL, season = NULL)
 \arguments{
 \item{name}{The player's full name, as listed on the official Fantasy Premier League site (for instance: "Richarlison de Andrade", not "Richarlison"). If blank, the function fetches all players.}
 
-\item{season}{To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '17' for the 2017/2018 season).}
+\item{season}{To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '17' for the 2017/2018 season).}
 }
 \description{
 This function fetches selected summary information on selected players given full player name(s).

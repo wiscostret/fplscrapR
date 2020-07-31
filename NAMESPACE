@@ -2,6 +2,7 @@
 
 export("%>%")
 export(get_entry)
+export(get_entry_captain)
 export(get_entry_hist)
 export(get_entry_picks)
 export(get_entry_season)
@@ -21,3 +22,4 @@ import(dplyr)
 import(getPass)
 import(jsonlite)
 importFrom(magrittr,"%>%")
+importFrom(plyr,rbind.fill)

@@ -11,7 +11,7 @@ get_player_details(playerid = NULL, name = NULL, season = NULL)
 
 \item{name}{Alternatively, the player's full name, as listed on the official Fantasy Premier League site (for instance: "Richarlison de Andrade", not "Richarlison"). If blank, the function fetches all players.}
 
-\item{season}{To retrieve prior season data, enter a 2-digit year corresponding to the start of the FPL season of interest (e.g. '17' for the 2017/2018 season).}
+\item{season}{To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '17' for the 2017/2018 season).}
 }
 \description{
 This function fetches detailed, gameweek-by-gameweek information for the current season on selected players. If parameters left blank, the function fetches all current players - note that takes a while to load.
