@@ -91,6 +91,18 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
   return(picks)
 }
 
+# get_entry_captain()
+
+#' get_entry_captain
+#'
+#' This function fetches captain information for a Fantasy Premier League entry given the entry ID(s) and GW(s).
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param gw The gameweek(s) for which captain is requested.
+#' @keywords entry
+#' @export
+#' @examples
+#' get_entry_captain(1076,5)
+
 get_entry_captain <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
   if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
