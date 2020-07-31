@@ -21,6 +21,14 @@ On the [fplscrapR website](https://wiscostret.github.io/fplscrapR/), you can fin
 
 ## News
 
+Two new functions added in July 2020:
+
+* get_entry_captain() - allowing you to pull captain info for any entry(s) and gw(s) as a dataframe.
+
+* get_entry_player_picks() - allowing you to grab team selections for any entry(s) and gw(s) as a dataframe.
+
+This information was already available through get_entry_picks() but required data manipulation to access given the structure of the nested list return. This should be more targeted, straightforward and user-friendly.
+
 Key changes to fplscrapR v0.2.0:
 
 * All functions updated to align with FPL's restructured API for the '19/20 season.
@@ -43,4 +51,4 @@ Key changes to fplscrapR v0.2.0:
 
 ## Questions
 
-If you have an questions or wish to collaborate, etc., find me on [GitHub](https://github.com/wiscostret) or [Twitter](https://www.twitter.com/wiscostretford) 
+If you have an questions or wish to collaborate, etc., find me on [GitHub](https://github.com/wiscostret) or [Twitter](https://www.twitter.com/fplscrapR) 
