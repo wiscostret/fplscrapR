@@ -84,11 +84,50 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
   if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
 
-  roundinfo <- get_round_info()
-
   picks <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid,"/event/",gw,"/picks","/",sep=""))
 
   return(picks)
+}
+
+# get_entry_player_picks()
+
+#' get_entry_player_picks()
+#'
+#' This function fetches player picks for a Fantasy Premier League entry given the entry ID(s) and GW(s).
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param gw The gameweek(s) for which player picks are requested.
+#' @keywords entry
+#' @export
+#' @examples
+#' get_entry_player_picks(1076,5)
+
+get_entry_player_picks <- function(entryid = NULL, gw = NULL){
+  if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
+  if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
+  
+  picks3 <- data.frame()
+  for (j in 1:length(entryid)) {
+    picks2 <- data.frame()
+    gw_started <- get_entry(entryid[j])[["started_event"]]
+    gw_thisentry <- gw[gw >= gw_started]
+    for (i in 1:length(gw_thisentry)) {
+      picks_list <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[j],"/event/",gw_thisentry[i],"/picks","/",sep=""))
+      picks <- picks_list$picks
+    
+      picks$event <- gw_thisentry[i]
+      picks2 <- rbind(picks2, picks)
+    }
+    picks2$entry <- entryid[j]
+    picks3 <- rbind(picks3, picks2)
+  }
+  
+  player_names <- get_player_name(unique(picks3$element))
+  picks3 <- merge(player_names, picks3, by.x = "id", by.y = "element")
+  names(picks3) <- c("id", "playername", "position", "multiplier", "is_captain", "is_vice_captain", "event", "entry")
+  
+  picks3 <- picks3[order(picks3$entry, picks3$event), ]
+  
+  return(picks3)
 }
 
 # get_entry_captain()
