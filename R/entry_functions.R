@@ -91,6 +91,16 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
 
 # get_entry_player_picks()
 
+#' get_entry_player_picks()
+#'
+#' This function fetches player picks for a Fantasy Premier League entry given the entry ID(s) and GW(s).
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param gw The gameweek(s) for which player picks are requested.
+#' @keywords entry
+#' @export
+#' @examples
+#' get_entry_player_picks(1076,5)
+
 get_entry_player_picks <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
   if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
@@ -120,3 +130,45 @@ get_entry_player_picks <- function(entryid = NULL, gw = NULL){
   return(picks3)
 }
 
+# get_entry_captain()
+
+#' get_entry_captain
+#'
+#' This function fetches captain information for a Fantasy Premier League entry given the entry ID(s) and GW(s).
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param gw The gameweek(s) for which captain is requested.
+#' @keywords entry
+#' @export
+#' @examples
+#' get_entry_captain(1076,5)
+
+get_entry_captain <- function(entryid = NULL, gw = NULL){
+  if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
+  if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
+  
+  captain3 <- data.frame()
+  for (j in 1:length(entryid)) {
+    captain2 <- data.frame()
+    gw_started <- get_entry(entryid[j])[["started_event"]]
+    gw_thisentry <- gw[gw >= gw_started]
+    for (i in 1:length(gw_thisentry)) {
+      picks <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[j],"/event/",gw_thisentry[i],"/picks","/",sep=""))
+      captain <- data.frame("id" = picks$picks[picks$picks$multiplier %in% c(2, 3), "element"])
+      if(nrow(captain) == 0) {
+        captain <- data.frame("id" = picks$picks[picks$picks$is_captain == TRUE, "element"])
+      }
+      captain$event <- gw_thisentry[i]
+      captain2 <- rbind(captain2, captain)
+    }
+    captain2$entry <- entryid[j]
+    captain3 <- rbind(captain3, captain2)
+  }
+  
+  player_names <- get_player_name(unique(captain3$captain))
+  captain3 <- merge(captain3, player_names, by = "id")
+  captain3 <- captain3[c(1, 4, 3, 2)]
+  names(captain3) <- c("id", "playername", "entry", "event")
+  captain3 <- captain3[order(captain3$entry,captain3$event), ]
+  
+  return(captain3)
+}
