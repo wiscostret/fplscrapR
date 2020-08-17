@@ -29,6 +29,8 @@ Two new functions added in July 2020:
 
 This information was already available through get_entry_picks() but required data manipulation to access given the structure of the nested list return. This should be more targeted, straightforward and user-friendly.
 
+---
+
 Key changes to fplscrapR v0.2.0:
 
 * All functions updated to align with FPL's restructured API for the '19/20 season.
