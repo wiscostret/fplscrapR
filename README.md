@@ -21,6 +21,12 @@ On the [fplscrapR website](https://wiscostret.github.io/fplscrapR/), you can fin
 
 ## News
 
+August 2020 update: 
+
+19/20 season data has been added. Remember you don´t need to update the package to grab the data from the new FPL season, or from prior seasons. Use any function to grab current season (20/21) data. Or apply the ´season´ parameter to get data from prior seasons.
+
+---
+
 Two new functions added in July 2020:
 
 * get_entry_captain() - allowing you to pull captain info for any entry(s) and gw(s) as a dataframe.
