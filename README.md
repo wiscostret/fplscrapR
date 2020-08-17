@@ -27,7 +27,7 @@ August 2020 update:
 
 ---
 
-Two new functions added in July 2020:
+Two new functions added in July 2020 thanks to [eivindhammers](https://github.com/eivindhammers):
 
 * get_entry_captain() - allowing you to pull captain info for any entry(s) and gw(s) as a dataframe.
 
