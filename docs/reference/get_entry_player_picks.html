@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">All Vignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -139,7 +139,7 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Juan Mata</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
@@ -204,7 +204,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>entryid</th>
-      <td><p>The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.</p></td>
+      <td><p>The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/entry/XXXXXX/history.</p></td>
     </tr>
     <tr>
       <th>gw</th>
@@ -214,38 +214,7 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_entry_player_picks</span>(<span class='fl'>1076</span>,<span class='fl'>5</span>)</div><div class='output co'>#&gt;     id             playername position multiplier is_captain is_vice_captain
-#&gt; 1   48           David Button       12          0      FALSE           FALSE
-#&gt; 2   90          Ashley Barnes       10          1      FALSE           FALSE
-#&gt; 3   93              Nick Pope        1          1      FALSE           FALSE
-#&gt; 4  128           Martin Kelly       15          0      FALSE           FALSE
-#&gt; 5  141            Lucas Digne        4          1      FALSE           FALSE
-#&gt; 6  182 Trent Alexander-Arnold        2          1      FALSE           FALSE
-#&gt; 7  191          Mohamed Salah        6          1      FALSE            TRUE
-#&gt; 8  208       Nicolás Otamendi        3          1      FALSE           FALSE
-#&gt; 9  214        Raheem Sterling        7          2       TRUE           FALSE
-#&gt; 10 215        Kevin De Bruyne        5          1      FALSE           FALSE
-#&gt; 11 234        Mason Greenwood       14          0      FALSE           FALSE
-#&gt; 12 287          Todd Cantwell        9          1      FALSE           FALSE
-#&gt; 13 297         John Lundstram       13          0      FALSE           FALSE
-#&gt; 14 460          Tammy Abraham       11          1      FALSE           FALSE
-#&gt; 15 463            Mason Mount        8          1      FALSE           FALSE
-#&gt;    event entry
-#&gt; 1      5  1076
-#&gt; 2      5  1076
-#&gt; 3      5  1076
-#&gt; 4      5  1076
-#&gt; 5      5  1076
-#&gt; 6      5  1076
-#&gt; 7      5  1076
-#&gt; 8      5  1076
-#&gt; 9      5  1076
-#&gt; 10     5  1076
-#&gt; 11     5  1076
-#&gt; 12     5  1076
-#&gt; 13     5  1076
-#&gt; 14     5  1076
-#&gt; 15     5  1076</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_entry_player_picks</span>(<span class='fl'>1076</span>,<span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='error'>Error in open.connection(con, "rb"): HTTP error 404.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

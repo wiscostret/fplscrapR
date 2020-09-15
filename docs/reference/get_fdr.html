@@ -15,22 +15,29 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,12 +45,11 @@
 
 
 
+
 <meta property="og:title" content="get_fdr — get_fdr" />
-
 <meta property="og:description" content="This function fetches FPL's 'team strength' measures, which form the basis of the 'FDR' (Fixture Difficulty Rating)" />
-
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -57,9 +63,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -102,7 +109,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
+      <a href="../articles/allvignettes.html">All Vignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -132,7 +139,7 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Juan Mata</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
@@ -161,10 +168,9 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/wiscostret/fplscrapR">
+  <a href="http://github.com/wiscostret/fplscrapR/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -176,120 +182,118 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>get_fdr</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wiscostret/fplscrapR/blob/master/R/other_functions.R'><code>R/other_functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/wiscostret/fplscrapR/blob/master/R/other_functions.R'><code>R/other_functions.R</code></a></small>
     <div class="hidden name"><code>get_fdr.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>This function fetches FPL's 'team strength' measures, which form the basis of the 'FDR' (Fixture Difficulty Rating)</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>get_fdr</span>()</pre>
-        
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>get_fdr</span>()</div><div class='output co'>#&gt;    code draw form id loss           name played points position short_name
 #&gt; 1     3    0   NA  1    0        Arsenal      0      0        0        ARS
 #&gt; 2     7    0   NA  2    0    Aston Villa      0      0        0        AVL
-#&gt; 3    91    0   NA  3    0    Bournemouth      0      0        0        BOU
-#&gt; 4    36    0   NA  4    0       Brighton      0      0        0        BHA
-#&gt; 5    90    0   NA  5    0        Burnley      0      0        0        BUR
-#&gt; 6     8    0   NA  6    0        Chelsea      0      0        0        CHE
-#&gt; 7    31    0   NA  7    0 Crystal Palace      0      0        0        CRY
-#&gt; 8    11    0   NA  8    0        Everton      0      0        0        EVE
+#&gt; 3    36    0   NA  3    0       Brighton      0      0        0        BHA
+#&gt; 4    90    0   NA  4    0        Burnley      0      0        0        BUR
+#&gt; 5     8    0   NA  5    0        Chelsea      0      0        0        CHE
+#&gt; 6    31    0   NA  6    0 Crystal Palace      0      0        0        CRY
+#&gt; 7    11    0   NA  7    0        Everton      0      0        0        EVE
+#&gt; 8    54    0   NA  8    0         Fulham      0      0        0        FUL
 #&gt; 9    13    0   NA  9    0      Leicester      0      0        0        LEI
-#&gt; 10   14    0   NA 10    0      Liverpool      0      0        0        LIV
-#&gt; 11   43    0   NA 11    0       Man City      0      0        0        MCI
-#&gt; 12    1    0   NA 12    0        Man Utd      0      0        0        MUN
-#&gt; 13    4    0   NA 13    0      Newcastle      0      0        0        NEW
-#&gt; 14   45    0   NA 14    0        Norwich      0      0        0        NOR
+#&gt; 10    2    0   NA 10    0          Leeds      0      0        0        LEE
+#&gt; 11   14    0   NA 11    0      Liverpool      0      0        0        LIV
+#&gt; 12   43    0   NA 12    0       Man City      0      0        0        MCI
+#&gt; 13    1    0   NA 13    0        Man Utd      0      0        0        MUN
+#&gt; 14    4    0   NA 14    0      Newcastle      0      0        0        NEW
 #&gt; 15   49    0   NA 15    0  Sheffield Utd      0      0        0        SHU
 #&gt; 16   20    0   NA 16    0    Southampton      0      0        0        SOU
 #&gt; 17    6    0   NA 17    0          Spurs      0      0        0        TOT
-#&gt; 18   57    0   NA 18    0        Watford      0      0        0        WAT
+#&gt; 18   35    0   NA 18    0      West Brom      0      0        0        WBA
 #&gt; 19   21    0   NA 19    0       West Ham      0      0        0        WHU
 #&gt; 20   39    0   NA 20    0         Wolves      0      0        0        WOL
 #&gt;    strength team_division unavailable win strength_overall_home
-#&gt; 1         4            NA       FALSE   0                  1250
-#&gt; 2         2            NA       FALSE   0                   990
-#&gt; 3         3            NA       FALSE   0                  1050
-#&gt; 4         2            NA       FALSE   0                  1000
-#&gt; 5         3            NA       FALSE   0                  1070
-#&gt; 6         4            NA       FALSE   0                  1280
-#&gt; 7         3            NA       FALSE   0                  1130
-#&gt; 8         3            NA       FALSE   0                  1100
-#&gt; 9         3            NA       FALSE   0                  1110
-#&gt; 10        5            NA       FALSE   0                  1340
-#&gt; 11        5            NA       FALSE   0                  1340
-#&gt; 12        4            NA       FALSE   0                  1310
-#&gt; 13        3            NA       FALSE   0                  1080
-#&gt; 14        2            NA       FALSE   0                   990
-#&gt; 15        2            NA       FALSE   0                   990
-#&gt; 16        3            NA       FALSE   0                  1060
-#&gt; 17        4            NA       FALSE   0                  1320
-#&gt; 18        3            NA       FALSE   0                  1110
-#&gt; 19        3            NA       FALSE   0                  1100
-#&gt; 20        3            NA       FALSE   0                  1110
+#&gt; 1         4            NA       FALSE   0                  1190
+#&gt; 2         2            NA       FALSE   0                  1050
+#&gt; 3         2            NA       FALSE   0                  1070
+#&gt; 4         3            NA       FALSE   0                  1140
+#&gt; 5         4            NA       FALSE   0                  1200
+#&gt; 6         3            NA       FALSE   0                  1080
+#&gt; 7         3            NA       FALSE   0                  1100
+#&gt; 8         2            NA       FALSE   0                  1000
+#&gt; 9         4            NA       FALSE   0                  1180
+#&gt; 10        2            NA       FALSE   0                  1030
+#&gt; 11        5            NA       FALSE   0                  1320
+#&gt; 12        5            NA       FALSE   0                  1310
+#&gt; 13        4            NA       FALSE   0                  1250
+#&gt; 14        3            NA       FALSE   0                  1090
+#&gt; 15        3            NA       FALSE   0                  1170
+#&gt; 16        3            NA       FALSE   0                  1150
+#&gt; 17        4            NA       FALSE   0                  1200
+#&gt; 18        2            NA       FALSE   0                  1020
+#&gt; 19        3            NA       FALSE   0                  1070
+#&gt; 20        3            NA       FALSE   0                  1200
 #&gt;    strength_overall_away strength_attack_home strength_attack_away
-#&gt; 1                   1330                 1240                 1270
-#&gt; 2                   1050                 1050                 1050
-#&gt; 3                   1140                 1040                 1100
-#&gt; 4                   1070                 1040                 1140
-#&gt; 5                   1090                  990                 1030
-#&gt; 6                   1310                 1270                 1340
-#&gt; 7                   1080                 1030                 1180
-#&gt; 8                   1220                 1070                 1120
-#&gt; 9                   1120                 1130                 1180
-#&gt; 10                  1350                 1330                 1360
-#&gt; 11                  1360                 1320                 1330
-#&gt; 12                  1330                 1250                 1260
-#&gt; 13                  1110                 1070                 1110
-#&gt; 14                  1060                 1050                 1050
-#&gt; 15                  1060                 1060                 1080
-#&gt; 16                  1090                 1040                 1070
-#&gt; 17                  1310                 1270                 1340
-#&gt; 18                  1110                 1100                 1100
-#&gt; 19                  1160                 1090                 1100
-#&gt; 20                  1200                 1180                 1200
-#&gt;    strength_defence_home strength_defence_away
-#&gt; 1                   1290                  1330
-#&gt; 2                   1030                  1070
-#&gt; 3                   1120                  1170
-#&gt; 4                   1050                  1070
-#&gt; 5                   1060                  1070
-#&gt; 6                   1280                  1330
-#&gt; 7                   1100                  1070
-#&gt; 8                   1120                  1210
-#&gt; 9                   1110                  1110
-#&gt; 10                  1330                  1360
-#&gt; 11                  1340                  1370
-#&gt; 12                  1310                  1340
-#&gt; 13                  1070                  1090
-#&gt; 14                  1060                  1080
-#&gt; 15                  1030                  1050
-#&gt; 16                  1100                  1110
-#&gt; 17                  1320                  1330
-#&gt; 18                  1110                  1120
-#&gt; 19                  1080                  1200
-#&gt; 20                  1080                  1150</div></pre>
+#&gt; 1                   1270                 1190                 1200
+#&gt; 2                   1080                 1010                 1080
+#&gt; 3                   1070                 1100                 1130
+#&gt; 4                   1150                 1130                 1240
+#&gt; 5                   1260                 1140                 1270
+#&gt; 6                   1070                 1080                 1190
+#&gt; 7                   1180                 1090                 1190
+#&gt; 8                   1030                 1010                 1030
+#&gt; 9                   1230                 1180                 1260
+#&gt; 10                  1040                 1040                 1070
+#&gt; 11                  1350                 1280                 1320
+#&gt; 12                  1350                 1250                 1340
+#&gt; 13                  1250                 1250                 1260
+#&gt; 14                  1120                 1040                 1170
+#&gt; 15                  1220                 1160                 1280
+#&gt; 16                  1060                 1140                 1060
+#&gt; 17                  1260                 1100                 1240
+#&gt; 18                  1030                 1030                 1030
+#&gt; 19                  1100                 1090                 1090
+#&gt; 20                  1190                 1230                 1250
+#&gt;    strength_defence_home strength_defence_away pulse_id
+#&gt; 1                   1160                  1270        1
+#&gt; 2                   1000                  1110        2
+#&gt; 3                   1060                  1060      131
+#&gt; 4                   1050                  1170       43
+#&gt; 5                   1240                  1250        4
+#&gt; 6                   1010                  1040        6
+#&gt; 7                   1150                  1180        7
+#&gt; 8                   1000                  1050       34
+#&gt; 9                   1220                  1250       26
+#&gt; 10                   990                   990        9
+#&gt; 11                  1300                  1340       10
+#&gt; 12                  1340                  1350       11
+#&gt; 13                  1200                  1290       12
+#&gt; 14                  1020                  1070       23
+#&gt; 15                  1010                  1150       18
+#&gt; 16                  1190                  1090       20
+#&gt; 17                  1200                  1260       21
+#&gt; 18                  1020                  1150       36
+#&gt; 19                  1040                  1210       25
+#&gt; 20                  1170                  1200       38</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -297,13 +301,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

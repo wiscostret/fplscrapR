@@ -1,15 +1,15 @@
 ---
-title: "Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez"
+title: "Comparing historical FPL total season scores for Mesut Özil and Juan Mata"
 author: "Rasmus Wiscostretford"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Comparing historical FPL total season scores for Mesut Özil and Juan Mata}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-Suppose we are interested in how the FPL histories of Mesut Özil and Alexis Sanchez compare?
+Suppose we are interested in how the FPL histories of Mesut Özil and Juan Mata compare?
 
 First we fetch the player histories of those two players using get_player_hist, mobilising their playerids using get_player_id:
 
@@ -17,7 +17,7 @@ First we fetch the player histories of those two players using get_player_hist, 
 
 library(fplscrapR)
 
-df <- get_player_hist(playerid=get_player_id(c("Mesut Özil","Alexis Sánchez"))$id)
+df <- get_player_hist(playerid=get_player_id(c("Mesut Özil","Juan Mata"))$id)
 ```
 
 Next we use dplyr and ggplot2 to transform and plot the data, showing the total FPL scores by season for the two players across their FPL careers:
@@ -33,5 +33,5 @@ df %>%
   ggplot() + # plotting using ggplot2
     geom_line(aes(x=season_name,y=total_points,group=playername,colour=playername),size=1) +
     theme_bw() +
-    labs(x="Season",y="Total score",title="Historical FPL season scores by Özil and Sanchez",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
+    labs(x="Season",y="Total score",title="Historical FPL season scores by Özil and Mata",caption=paste("Data from fplscrapR | ",Sys.Date(),sep=""))
 ```

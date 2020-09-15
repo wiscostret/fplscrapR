@@ -7,10 +7,6 @@ This package enables those interested in [Fantasy Premier League](https://fantas
 You can install the released version of fplscrapR from [GitHub](https://github.com/wiscostret/fplscrapR/) with:
 
 ``` r
-if (!require(remotes)) {
-  install.packages("remotes") 
-}
-
 remotes::install_github("wiscostret/fplscrapR")
 
 library(fplscrapR)
@@ -21,19 +17,17 @@ On the [fplscrapR website](https://wiscostret.github.io/fplscrapR/), you can fin
 
 ## News
 
-August 2020 update: 
+Key changes to fplscrapR v0.2.5:
 
-19/20 season data has been added. Remember you don´t need to update the package to grab the data from the new FPL season, or from prior seasons. Use any function to grab current season (20/21) data. Or apply the ´season´ parameter to get data from prior seasons.
+* All functions updated to align with FPL's updated API for the 20/21 season.
 
----
+* Added two new functions - get_entry_captain() and get_entry_player_picks() - allowing you to pull captain and player picks for any entry(s) and GW(s) in an easily accessible format.
 
-Two new functions added in July 2020 thanks to [eivindhammers](https://github.com/eivindhammers):
+* Added access to key FPL data from the 19/20 season. There is now full coverage going back to 16/17.
 
-* get_entry_captain() - allowing you to pull captain info for any entry(s) and gw(s) as a dataframe.
+* Vignettes updated
 
-* get_entry_player_picks() - allowing you to grab team selections for any entry(s) and gw(s) as a dataframe.
-
-This information was already available through get_entry_picks() but required data manipulation to access given the structure of the nested list return. This should be more targeted, straightforward and user-friendly.
+* Various bug fixes
 
 ---
 

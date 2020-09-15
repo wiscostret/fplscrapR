@@ -7,7 +7,7 @@
 get_entry_hist(entryid = NULL)
 }
 \arguments{
-\item{entryid}{The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history. You can list multiple, e.g. with c().}
+\item{entryid}{The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/entry/XXXXXX/history. You can list multiple, e.g. with c().}
 }
 \description{
 This function fetches historical statistics for a Fantasy Premier League entry given the entry ID(s).

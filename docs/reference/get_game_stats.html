@@ -15,22 +15,29 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,12 +45,11 @@
 
 
 
+
 <meta property="og:title" content="get_game_stats — get_game_stats" />
-
 <meta property="og:description" content="This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home (h) and away (a) players: goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps." />
-
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -57,9 +63,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -102,7 +109,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">All Vignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -132,7 +139,7 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Juan Mata</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
@@ -161,10 +168,9 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/wiscostret/fplscrapR">
+  <a href="http://github.com/wiscostret/fplscrapR/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -176,24 +182,23 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>get_game_stats</h1>
-    <small class="dont-index">Source: <a href='https://github.com/wiscostret/fplscrapR/blob/master/R/game_functions.R'><code>R/game_functions.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/wiscostret/fplscrapR/blob/master/R/game_functions.R'><code>R/game_functions.R</code></a></small>
     <div class="hidden name"><code>get_game_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>This function fetches detailed statistics for a game given the game ID. It fetches ten variables that are accessed as lists with home (h) and away (a) players: goals_scored, assists, own_goals, penalties_saved, yellow_cards, red_cards, saves, bonus, and bps.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>get_game_stats</span>(<span class='kw'>gameid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -202,10 +207,10 @@
       <td><p>The game ID. Can be found with get_game_list().</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_game_stats</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: package ‘bindrcpp’ was built under R version 3.4.4</span></div><div class='output co'>#&gt;          identifier
+    <pre class="examples"><div class='input'><span class='fu'>get_game_stats</span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt;          identifier
 #&gt; 1      goals_scored
 #&gt; 2           assists
 #&gt; 3         own_goals
@@ -216,39 +221,36 @@
 #&gt; 8             saves
 #&gt; 9             bonus
 #&gt; 10              bps
-#&gt;                                                                                                                   a
-#&gt; 1                                                                                                            1, 278
-#&gt; 2                                                                                                            1, 283
-#&gt; 3                                                                                                            1, 277
-#&gt; 4                                                                                                              NULL
-#&gt; 5                                                                                                              NULL
-#&gt; 6                                                                                                    1, 1, 283, 288
-#&gt; 7                                                                                                              NULL
-#&gt; 8                                                                                                            4, 280
-#&gt; 9                                                                                                            1, 278
-#&gt; 10 32, 19, 18, 16, 16, 15, 12, 11, 10, 3, 2, 1, -3, 278, 280, 273, 274, 283, 276, 286, 290, 287, 434, 277, 285, 288
-#&gt;                                                                                                                           h
-#&gt; 1                                                                                                    1, 1, 1, 183, 188, 191
-#&gt; 2                                                                                            1, 1, 1, 1, 182, 187, 188, 191
-#&gt; 3                                                                                                                      NULL
-#&gt; 4                                                                                                                      NULL
-#&gt; 5                                                                                                                      NULL
-#&gt; 6                                                                                                                      NULL
-#&gt; 7                                                                                                                      NULL
-#&gt; 8                                                                                                            2, 2, 189, 526
-#&gt; 9                                                                                                            3, 2, 188, 191
-#&gt; 10 46, 40, 27, 26, 24, 18, 15, 12, 11, 10, 7, 7, 3, 3, 188, 191, 183, 187, 182, 197, 181, 198, 199, 184, 189, 526, 192, 200</div></pre>
+#&gt;                                                                                                                         a
+#&gt; 1                                                                                                                    NULL
+#&gt; 2                                                                                                                    NULL
+#&gt; 3                                                                                                                    NULL
+#&gt; 4                                                                                                                    NULL
+#&gt; 5                                                                                                                    NULL
+#&gt; 6                                                                                                                  1, 375
+#&gt; 7                                                                                                                    NULL
+#&gt; 8                                                                                                                  2, 363
+#&gt; 9                                                                                                                    NULL
+#&gt; 10 19, 17, 15, 15, 13, 12, 12, 11, 5, 4, 4, 4, 3, 1, 369, 363, 362, 370, 364, 367, 375, 376, 365, 361, 379, 382, 377, 366
+#&gt;                                                                                                                 h
+#&gt; 1                                                                                                          1, 141
+#&gt; 2                                                                                                          1, 137
+#&gt; 3                                                                                                            NULL
+#&gt; 4                                                                                                            NULL
+#&gt; 5                                                                                                            NULL
+#&gt; 6                                                                                                  1, 1, 131, 142
+#&gt; 7                                                                                                            NULL
+#&gt; 8                                                                                                          5, 128
+#&gt; 9                                                                                          3, 2, 1, 128, 137, 486
+#&gt; 10 31, 26, 24, 23, 22, 18, 14, 6, 5, 3, 3, 3, -7, 128, 137, 486, 146, 134, 141, 130, 138, 131, 133, 142, 489, 140</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -256,13 +258,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

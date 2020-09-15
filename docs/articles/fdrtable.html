@@ -5,27 +5,27 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creating your own ‘FDR’ fixture table • fplscrapR</title>
+<title>Creating your own 'FDR' fixture table • fplscrapR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Creating your own ‘FDR’ fixture table">
-<meta property="og:description" content="">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Creating your own 'FDR' fixture table">
+<meta property="og:description" content="fplscrapR">
 <meta property="og:image" content="/logo.png">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -67,7 +67,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">UNKNOWN TITLE</a>
+      <a href="../articles/allvignettes.html">All Vignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -97,7 +97,7 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Juan Mata</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
@@ -128,7 +128,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/wiscostret/fplscrapR">
+  <a href="http://github.com/wiscostret/fplscrapR/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -142,15 +142,16 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Creating your own ‘FDR’ fixture table</h1>
+      <h1 data-toc-skip>Creating your own ‘FDR’ fixture table</h1>
                         <h4 class="author">Rasmus Wiscostretford</h4>
             
-            <h4 class="date">2019-08-10</h4>
+            <h4 class="date">2020-09-15</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/wiscostret/fplscrapR/blob/master/vignettes/fdrtable.Rmd"><code>vignettes/fdrtable.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="http://github.com/wiscostret/fplscrapR/blob/master/vignettes/fdrtable.Rmd"><code>vignettes/fdrtable.Rmd</code></a></small>
       <div class="hidden name"><code>fdrtable.Rmd</code></div>
 
     </div>
@@ -159,44 +160,46 @@
     
 <p>Suppose now we are interested in creating an FPL fixture table like the FPL’s official ‘Fixture Difficulty Ranking’? Let’s take the first 15 gameweeks of the season as an example.</p>
 <p>First we fetch the official FDR rankings using get_fdr:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fplscrapR)</a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3">fdr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_fdr.html">get_fdr</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">fplscrapR</span>)
+
+<span class="no">fdr</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_fdr.html">get_fdr</a></span>()</pre></body></html></div>
 <p>Next we fetch the full fixture list using get_game_list:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">gamelist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_game_list.html">get_game_list</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">gamelist</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_game_list.html">get_game_list</a></span>()</pre></body></html></div>
 <p>FPL only lists the fixtures once, as HOME-AWAY, but we need both HOME-AWAY and AWAY-HOME to plot the full fixture table. We need to plot every fixture twice, once as a home game for the one team, and once as an away game for the other team.</p>
 <p>Using R base’s rbind and dplyr’s mutate (creating new variables) we essentially just duplicate the fixture table:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">fdrfixtures &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(</a>
-<a class="sourceLine" id="cb4-2" title="2">  gamelist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">team=</span>home,<span class="dt">oppo=</span>away,<span class="dt">homeaway=</span><span class="st">"home"</span>),</a>
-<a class="sourceLine" id="cb4-3" title="3">  gamelist <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">team=</span>away,<span class="dt">oppo=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/chartr">tolower</a></span>(home),<span class="dt">homeaway=</span><span class="st">"away"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">fdrfixtures</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(
+  <span class="no">gamelist</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">team</span><span class="kw">=</span><span class="no">home</span>,<span class="kw">oppo</span><span class="kw">=</span><span class="no">away</span>,<span class="kw">homeaway</span><span class="kw">=</span><span class="st">"home"</span>),
+  <span class="no">gamelist</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">team</span><span class="kw">=</span><span class="no">away</span>,<span class="kw">oppo</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span>(<span class="no">home</span>),<span class="kw">homeaway</span><span class="kw">=</span><span class="st">"away"</span>))</pre></body></html></div>
 <p>Then we need to add in the FDR ranking for each fixture, doing so through a loop (which is decidedly not the most efficient method). For each row, we identify the data point in the fdr data frame that provides the FDR ranking for each team in question, depending on whether the fixture is home or away:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(fdrfixtures)){</a>
-<a class="sourceLine" id="cb5-2" title="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ifelse">ifelse</a></span>(fdrfixtures<span class="op">$</span>homeaway[i]<span class="op">==</span><span class="st">"home"</span>,</a>
-<a class="sourceLine" id="cb5-3" title="3">    fdrfixtures<span class="op">$</span>fdr[i] &lt;-<span class="st"> </span>fdr<span class="op">$</span>strength_overall_away[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(fdr<span class="op">$</span>short_name<span class="op">==</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/chartr">toupper</a></span>(fdrfixtures<span class="op">$</span>oppo[i]))],</a>
-<a class="sourceLine" id="cb5-4" title="4">    fdrfixtures<span class="op">$</span>fdr[i] &lt;-<span class="st"> </span>fdr<span class="op">$</span>strength_overall_home[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(fdr<span class="op">$</span>short_name<span class="op">==</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/chartr">toupper</a></span>(fdrfixtures<span class="op">$</span>oppo[i]))])</a>
-<a class="sourceLine" id="cb5-5" title="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">fdrfixtures</span>)){
+  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="no">fdrfixtures</span>$<span class="no">homeaway</span>[<span class="no">i</span>]<span class="kw">==</span><span class="st">"home"</span>,
+    <span class="no">fdrfixtures</span>$<span class="no">fdr</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">fdr</span>$<span class="no">strength_overall_away</span>[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">fdr</span>$<span class="no">short_name</span><span class="kw">==</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span>(<span class="no">fdrfixtures</span>$<span class="no">oppo</span>[<span class="no">i</span>]))],
+    <span class="no">fdrfixtures</span>$<span class="no">fdr</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">fdr</span>$<span class="no">strength_overall_home</span>[<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">fdr</span>$<span class="no">short_name</span><span class="kw">==</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span>(<span class="no">fdrfixtures</span>$<span class="no">oppo</span>[<span class="no">i</span>]))])
+}</pre></body></html></div>
 <p>Next we use dplyr and ggplot2 to plot the data in a fixture table:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb6-2" title="2"></a>
-<a class="sourceLine" id="cb6-3" title="3">fdrfixtures <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(GW <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">15</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># filtering for the gameweeks we are interested in</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">    </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">      </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">x=</span>GW,<span class="dt">y=</span>team,<span class="dt">fill=</span>fdr),<span class="dt">colour=</span><span class="st">"lightgrey"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="st">      </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x=</span>GW,<span class="dt">y=</span>team,<span class="dt">label=</span>oppo),<span class="dt">size=</span><span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="st">      </span><span class="kw">theme_void</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="st">      </span><span class="kw">theme</span>(<span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">face =</span> <span class="st">"bold"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="st">      </span><span class="kw">theme</span>(<span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">margin=</span><span class="kw">margin</span>(<span class="dv">0</span>,<span class="op">-</span><span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">0</span>))) <span class="op">+</span><span class="st"> </span><span class="co"># fixing the margins</span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="st">      </span><span class="kw">scale_x_continuous</span>(<span class="dt">position=</span><span class="st">"top"</span>,<span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">15</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="st">      </span><span class="kw">labs</span>(<span class="dt">caption=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Data from fplscrapR | "</span>,<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date</a></span>(),<span class="dt">sep=</span><span class="st">""</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="st">      </span><span class="kw">scale_fill_gradient2</span>(<span class="dt">guide=</span>F,<span class="dt">low=</span><span class="st">"#00FF87"</span>,<span class="dt">mid=</span><span class="st">"#D6DCD8"</span>,<span class="dt">high=</span><span class="st">"#7F002D"</span>,<span class="dt">midpoint=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/median">median</a></span>(fdrfixtures<span class="op">$</span>fdr)) <span class="co"># creating a gradient colour-coding that spans from toughest FDR ranking (coloured red) to easiest (coloured green)</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+
+<span class="no">fdrfixtures</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">GW</span> <span class="kw">%in%</span> <span class="fl">1</span>:<span class="fl">15</span>) <span class="kw">%&gt;%</span>  <span class="co"># filtering for the gameweeks we are interested in</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() +
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">GW</span>,<span class="kw">y</span><span class="kw">=</span><span class="no">team</span>,<span class="kw">fill</span><span class="kw">=</span><span class="no">fdr</span>),<span class="kw">colour</span><span class="kw">=</span><span class="st">"lightgrey"</span>) +
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">GW</span>,<span class="kw">y</span><span class="kw">=</span><span class="no">team</span>,<span class="kw">label</span><span class="kw">=</span><span class="no">oppo</span>),<span class="kw">size</span><span class="kw">=</span><span class="fl">2</span>) +
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span>() +
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">axis.text</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">face</span> <span class="kw">=</span> <span class="st">"bold"</span>)) +
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">axis.text.y</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">margin</span><span class="kw">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span>(<span class="fl">0</span>,-<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">0</span>))) + <span class="co"># fixing the margins</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="kw">position</span><span class="kw">=</span><span class="st">"top"</span>,<span class="kw">breaks</span><span class="kw">=</span><span class="fl">1</span>:<span class="fl">15</span>) +
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">caption</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Data from fplscrapR | "</span>,<span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>(),<span class="kw">sep</span><span class="kw">=</span><span class="st">""</span>)) +
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient2</a></span>(<span class="kw">guide</span><span class="kw">=</span><span class="no">F</span>,<span class="kw">low</span><span class="kw">=</span><span class="st">"#00FF87"</span>,<span class="kw">mid</span><span class="kw">=</span><span class="st">"#D6DCD8"</span>,<span class="kw">high</span><span class="kw">=</span><span class="st">"#7F002D"</span>,<span class="kw">midpoint</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(<span class="no">fdrfixtures</span>$<span class="no">fdr</span>)) <span class="co"># creating a gradient colour-coding that spans from toughest FDR ranking (coloured red) to easiest (coloured green)</span></pre></body></html></div>
 <p><img src="fdrtable_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
       </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -204,12 +207,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

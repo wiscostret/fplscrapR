@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">All Vignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -139,7 +139,7 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Juan Mata</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
@@ -215,44 +215,47 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>get_player_info</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Jesse Lingard"</span>,<span class='st'>"Virgil van Dijk"</span>))</div><div class='output co'>#&gt;   chance_of_playing_next_round chance_of_playing_this_round   code
-#&gt; 1                          100                          100  97032
-#&gt; 2                          100                          100 109322
+#&gt; 1                           NA                           NA  97032
+#&gt; 2                           NA                           NA 109322
 #&gt;   cost_change_event cost_change_event_fall cost_change_start
 #&gt; 1                 0                      0                 0
-#&gt; 2                 0                      0                -2
+#&gt; 2                 0                      0                 0
 #&gt;   cost_change_start_fall dreamteam_count element_type ep_next ep_this
-#&gt; 1                      0               2            2     3.2     4.1
-#&gt; 2                      2               0            3     0.7     1.7
-#&gt;   event_points first_name form  id in_dreamteam news
-#&gt; 1            9     Virgil  3.1 183         TRUE     
-#&gt; 2            6      Jesse  1.2 241        FALSE     
-#&gt;                    news_added now_cost      photo points_per_game second_name
-#&gt; 1 2019-10-27T20:00:16.725016Z       65  97032.jpg             4.7    van Dijk
-#&gt; 2 2020-03-13T10:30:19.085305Z       63 109322.jpg             1.5     Lingard
-#&gt;   selected_by_percent special squad_number status team team_code total_points
-#&gt; 1                42.4   FALSE           NA      a   10        14          178
-#&gt; 2                 0.7   FALSE           NA      a   12         1           32
-#&gt;   transfers_in transfers_in_event transfers_out transfers_out_event value_form
-#&gt; 1      2145436                  0       2817026                   0        0.5
-#&gt; 2        64075                  0        129253                   0        0.2
-#&gt;   value_season web_name minutes goals_scored assists clean_sheets
-#&gt; 1         27.4 van Dijk    3420            5       2           15
-#&gt; 2          5.1  Lingard     923            1       0            1
-#&gt;   goals_conceded own_goals penalties_saved penalties_missed yellow_cards
-#&gt; 1             33         0               0                0            1
-#&gt; 2             14         0               0                0            3
-#&gt;   red_cards saves bonus bps influence creativity threat ict_index
-#&gt; 1         0     0    14 804     930.2      152.4  467.0     154.8
-#&gt; 2         0     0     0  99     109.0      278.2  297.0      68.2
-#&gt;   influence_rank influence_rank_type creativity_rank creativity_rank_type
-#&gt; 1             12                   2             236                   62
-#&gt; 2            375                 157             151                   95
-#&gt;   threat_rank threat_rank_type ict_index_rank ict_index_rank_type
-#&gt; 1          80                4             61                   6
-#&gt; 2         135               73            241                 117
-#&gt;        playername
-#&gt; 1 Virgil van Dijk
-#&gt; 2   Jesse Lingard</div></pre>
+#&gt; 1                      0               0            2     3.8     4.8
+#&gt; 2                      0               0            3     2.6     0.0
+#&gt;   event_points first_name form  id in_dreamteam news news_added now_cost
+#&gt; 1            7     Virgil  7.0 250        FALSE            &lt;NA&gt;       65
+#&gt; 2            0      Jesse  0.0 301        FALSE            &lt;NA&gt;       60
+#&gt;        photo points_per_game second_name selected_by_percent special
+#&gt; 1  97032.jpg             7.0    van Dijk                27.9   FALSE
+#&gt; 2 109322.jpg             0.0     Lingard                 0.2   FALSE
+#&gt;   squad_number status team team_code total_points transfers_in
+#&gt; 1           NA      a   11        14            7        43453
+#&gt; 2           NA      a   13         1            0          760
+#&gt;   transfers_in_event transfers_out transfers_out_event value_form value_season
+#&gt; 1              43453         47164               47164        1.1          1.1
+#&gt; 2                760          1007                1007        0.0          0.0
+#&gt;   web_name minutes goals_scored assists clean_sheets goals_conceded own_goals
+#&gt; 1 van Dijk      90            1       0            0              3         0
+#&gt; 2  Lingard       0            0       0            0              0         0
+#&gt;   penalties_saved penalties_missed yellow_cards red_cards saves bonus bps
+#&gt; 1               0                0            0         0     0     0  19
+#&gt; 2               0                0            0         0     0     0   0
+#&gt;   influence creativity threat ict_index influence_rank influence_rank_type
+#&gt; 1      37.6        0.8   37.0       7.5             22                   8
+#&gt; 2       0.0        0.0    0.0       0.0            484                 189
+#&gt;   creativity_rank creativity_rank_type threat_rank threat_rank_type
+#&gt; 1             161                   46          18                2
+#&gt; 2             486                  191         479              184
+#&gt;   ict_index_rank ict_index_rank_type corners_and_indirect_freekicks_order
+#&gt; 1             31                   8                                   NA
+#&gt; 2            487                 190                                   NA
+#&gt;   corners_and_indirect_freekicks_text direct_freekicks_order
+#&gt; 1                                                         NA
+#&gt; 2                                                         NA
+#&gt;   direct_freekicks_text penalties_order penalties_text      playername
+#&gt; 1                                    NA                Virgil van Dijk
+#&gt; 2                                     6                  Jesse Lingard</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <a href="../articles/afdrtable.html">Creating an 'Alternative FDR' (aFDR) fixture table</a>
     </li>
     <li>
-      <a href="../articles/allvignettes.html">allvignettes</a>
+      <a href="../articles/allvignettes.html">All Vignettes</a>
     </li>
     <li>
       <a href="../articles/aubatransfers.html">Aubameyang ownership and net transfers for the first 25 gameweeks</a>
@@ -139,7 +139,7 @@
       <a href="../articles/fixtable.html">Creating a simple fixture table</a>
     </li>
     <li>
-      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Alexis Sanchez</a>
+      <a href="../articles/hazalexishist.html">Comparing historical FPL total season scores for Mesut Özil and Juan Mata</a>
     </li>
     <li>
       <a href="../articles/listmyleagues.html">List your classic mini-leagues and current ranks</a>
@@ -218,328 +218,18 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_player_details</span>(<span class='fl'>300</span>)</div><div class='output co'>#&gt;    element fixture opponent_team total_points was_home         kickoff_time
-#&gt; 1      300       2             3            0    FALSE 2019-08-10T14:00:00Z
-#&gt; 2      300      18             7            0     TRUE 2019-08-18T13:00:00Z
-#&gt; 3      300      27             9            0     TRUE 2019-08-24T14:00:00Z
-#&gt; 4      300      33             6            0    FALSE 2019-08-31T14:00:00Z
-#&gt; 5      300      47            16            0     TRUE 2019-09-14T14:00:00Z
-#&gt; 6      300      55             8            0    FALSE 2019-09-21T14:00:00Z
-#&gt; 7      300      68            10            0     TRUE 2019-09-28T11:30:00Z
-#&gt; 8      300      79            18            0    FALSE 2019-10-05T14:00:00Z
-#&gt; 9      300      88             1            0     TRUE 2019-10-21T19:00:00Z
-#&gt; 10     300     100            19            0    FALSE 2019-10-26T14:00:00Z
-#&gt; 11     300     108             5            0     TRUE 2019-11-02T15:00:00Z
-#&gt; 12     300     119            17            0    FALSE 2019-11-09T15:00:00Z
-#&gt; 13     300     128            12            0     TRUE 2019-11-24T16:30:00Z
-#&gt; 14     300     140            20            0    FALSE 2019-12-01T14:00:00Z
-#&gt; 15     300     145            13            0     TRUE 2019-12-05T19:30:00Z
-#&gt; 16     300     157            14            0    FALSE 2019-12-08T14:00:00Z
-#&gt; 17     300     168             2            0     TRUE 2019-12-14T15:00:00Z
-#&gt; 18     300     173             4            0    FALSE 2019-12-21T15:00:00Z
-#&gt; 19     300     188            18            0     TRUE 2019-12-26T15:00:00Z
-#&gt; 20     300     195            11            0    FALSE 2019-12-29T18:00:00Z
-#&gt; 21     300     204            10            0    FALSE 2020-01-02T20:00:00Z
-#&gt; 22     300     218            19            0     TRUE 2020-01-10T20:00:00Z
-#&gt; 23     300     221             1            0    FALSE 2020-01-18T15:00:00Z
-#&gt; 24     300     236            11            0     TRUE 2020-01-21T19:30:00Z
-#&gt; 25     300     243             7            0    FALSE 2020-02-01T15:00:00Z
-#&gt; 26     300     258             3            0     TRUE 2020-02-09T14:00:00Z
-#&gt; 27     300     268             4            0     TRUE 2020-02-22T15:00:00Z
-#&gt; 28     300     288            14            0     TRUE 2020-03-07T15:00:00Z
-#&gt; 29     300     271             2            0    FALSE 2020-06-17T17:00:00Z
-#&gt; 30     300     296            13            0    FALSE 2020-06-21T13:00:00Z
-#&gt; 31     300     305            12            0    FALSE 2020-06-24T17:00:00Z
-#&gt;    team_h_score team_a_score round minutes goals_scored assists clean_sheets
-#&gt; 1             1            1     1       0            0       0            0
-#&gt; 2             1            0     2       0            0       0            0
-#&gt; 3             1            2     3       0            0       0            0
-#&gt; 4             2            2     4       0            0       0            0
-#&gt; 5             0            1     5       0            0       0            0
-#&gt; 6             0            2     6       0            0       0            0
-#&gt; 7             0            1     7       0            0       0            0
-#&gt; 8             0            0     8       0            0       0            0
-#&gt; 9             1            0     9       0            0       0            0
-#&gt; 10            1            1    10       0            0       0            0
-#&gt; 11            3            0    11       0            0       0            0
-#&gt; 12            1            1    12       0            0       0            0
-#&gt; 13            3            3    13       0            0       0            0
-#&gt; 14            1            1    14       0            0       0            0
-#&gt; 15            0            2    15       0            0       0            0
-#&gt; 16            1            2    16       0            0       0            0
-#&gt; 17            2            0    17       0            0       0            0
-#&gt; 18            0            1    18       0            0       0            0
-#&gt; 19            1            1    19       0            0       0            0
-#&gt; 20            2            0    20       0            0       0            0
-#&gt; 21            2            0    21       0            0       0            0
-#&gt; 22            1            0    22       0            0       0            0
-#&gt; 23            1            1    23       0            0       0            0
-#&gt; 24            0            1    24       0            0       0            0
-#&gt; 25            0            1    25       0            0       0            0
-#&gt; 26            2            1    26       0            0       0            0
-#&gt; 27            1            1    27       0            0       0            0
-#&gt; 28            1            0    29       0            0       0            0
-#&gt; 29            0            0    39       0            0       0            0
-#&gt; 30            3            0    39       0            0       0            0
-#&gt; 31            3            0    40       0            0       0            0
-#&gt;    goals_conceded own_goals penalties_saved penalties_missed yellow_cards
-#&gt; 1               0         0               0                0            0
-#&gt; 2               0         0               0                0            0
-#&gt; 3               0         0               0                0            0
-#&gt; 4               0         0               0                0            0
-#&gt; 5               0         0               0                0            0
-#&gt; 6               0         0               0                0            0
-#&gt; 7               0         0               0                0            0
-#&gt; 8               0         0               0                0            0
-#&gt; 9               0         0               0                0            0
-#&gt; 10              0         0               0                0            0
-#&gt; 11              0         0               0                0            0
-#&gt; 12              0         0               0                0            0
-#&gt; 13              0         0               0                0            0
-#&gt; 14              0         0               0                0            0
-#&gt; 15              0         0               0                0            0
-#&gt; 16              0         0               0                0            0
-#&gt; 17              0         0               0                0            0
-#&gt; 18              0         0               0                0            0
-#&gt; 19              0         0               0                0            0
-#&gt; 20              0         0               0                0            0
-#&gt; 21              0         0               0                0            0
-#&gt; 22              0         0               0                0            0
-#&gt; 23              0         0               0                0            0
-#&gt; 24              0         0               0                0            0
-#&gt; 25              0         0               0                0            0
-#&gt; 26              0         0               0                0            0
-#&gt; 27              0         0               0                0            0
-#&gt; 28              0         0               0                0            0
-#&gt; 29              0         0               0                0            0
-#&gt; 30              0         0               0                0            0
-#&gt; 31              0         0               0                0            0
-#&gt;    red_cards saves bonus bps influence creativity threat ict_index value
-#&gt; 1          0     0     0   0       0.0        0.0    0.0       0.0    55
-#&gt; 2          0     0     0   0       0.0        0.0    0.0       0.0    55
-#&gt; 3          0     0     0   0       0.0        0.0    0.0       0.0    54
-#&gt; 4          0     0     0   0       0.0        0.0    0.0       0.0    54
-#&gt; 5          0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 6          0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 7          0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 8          0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 9          0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 10         0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 11         0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 12         0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 13         0     0     0   0       0.0        0.0    0.0       0.0    53
-#&gt; 14         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 15         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 16         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 17         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 18         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 19         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 20         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 21         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 22         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 23         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 24         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 25         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 26         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 27         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 28         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 29         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 30         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt; 31         0     0     0   0       0.0        0.0    0.0       0.0    52
-#&gt;    transfers_balance selected transfers_in transfers_out playername
-#&gt; 1                  0     6067            0             0 Mark Duffy
-#&gt; 2              -2198     3837           28          2226 Mark Duffy
-#&gt; 3               -998     2929           15          1013 Mark Duffy
-#&gt; 4               -664     2288           17           681 Mark Duffy
-#&gt; 5               -353     1955           20           373 Mark Duffy
-#&gt; 6               -161     1797            9           170 Mark Duffy
-#&gt; 7               -125     1674           20           145 Mark Duffy
-#&gt; 8                -84     1603            9            93 Mark Duffy
-#&gt; 9                -54     1548            9            63 Mark Duffy
-#&gt; 10               -33     1519            8            41 Mark Duffy
-#&gt; 11               -30     1492           12            42 Mark Duffy
-#&gt; 12               -22     1475           16            38 Mark Duffy
-#&gt; 13               -38     1443           17            55 Mark Duffy
-#&gt; 14               -23     1424           11            34 Mark Duffy
-#&gt; 15               -11     1417            3            14 Mark Duffy
-#&gt; 16               -15     1400            6            21 Mark Duffy
-#&gt; 17               -17     1390           11            28 Mark Duffy
-#&gt; 18                -8     1385           11            19 Mark Duffy
-#&gt; 19                -3     1388           17            20 Mark Duffy
-#&gt; 20                -9     1381            9            18 Mark Duffy
-#&gt; 21               -16     1367            8            24 Mark Duffy
-#&gt; 22               -13     1355            6            19 Mark Duffy
-#&gt; 23                -8     1349            8            16 Mark Duffy
-#&gt; 24               -11     1339            3            14 Mark Duffy
-#&gt; 25                -9     1335            8            17 Mark Duffy
-#&gt; 26                 1     1339            9             8 Mark Duffy
-#&gt; 27                -4     1334            7            11 Mark Duffy
-#&gt; 28                -3     1331           10            13 Mark Duffy
-#&gt; 29                -5     1327           42            47 Mark Duffy
-#&gt; 30                -5     1327           42            47 Mark Duffy
-#&gt; 31                 0     1331           10            10 Mark Duffy
-#&gt;  [ reached 'max' / getOption("max.print") -- omitted 7 rows ]</div><div class='input'>
-<span class='fu'>get_player_details</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"Virgil van Dijk"</span>)</div><div class='output co'>#&gt;    element fixture opponent_team total_points was_home         kickoff_time
-#&gt; 1      183       1            14            8     TRUE 2019-08-09T19:00:00Z
-#&gt; 2      183      19            16            2    FALSE 2019-08-17T14:00:00Z
-#&gt; 3      183      24             1            2     TRUE 2019-08-24T16:30:00Z
-#&gt; 4      183      32             5            7    FALSE 2019-08-31T16:30:00Z
-#&gt; 5      183      44            13            2     TRUE 2019-09-14T11:30:00Z
-#&gt; 6      183      53             6            2    FALSE 2019-09-22T15:30:00Z
-#&gt; 7      183      68            15            8    FALSE 2019-09-28T11:30:00Z
-#&gt; 8      183      74             9            2     TRUE 2019-10-05T14:00:00Z
-#&gt; 9      183      87            12            2    FALSE 2019-10-20T15:30:00Z
-#&gt; 10     183      94            17            2     TRUE 2019-10-27T16:30:00Z
-#&gt; 11     183     102             2            1    FALSE 2019-11-02T15:00:00Z
-#&gt; 12     183     114            11            2     TRUE 2019-11-10T16:30:00Z
-#&gt; 13     183     125             7            2    FALSE 2019-11-23T15:00:00Z
-#&gt; 14     183     134             4           17     TRUE 2019-11-30T15:00:00Z
-#&gt; 15     183     149             8            1     TRUE 2019-12-04T20:15:00Z
-#&gt; 16     183     152             3            6    FALSE 2019-12-07T15:00:00Z
-#&gt; 17     183     166            18            7     TRUE 2019-12-14T12:30:00Z
-#&gt; 18     183     186             9            6    FALSE 2019-12-26T20:00:00Z
-#&gt; 19     183     194            20            6     TRUE 2019-12-29T16:30:00Z
-#&gt; 20     183     204            15            7     TRUE 2020-01-02T20:00:00Z
-#&gt; 21     183     219            17            6    FALSE 2020-01-11T17:30:00Z
-#&gt; 22     183     224            12           15     TRUE 2020-01-19T16:30:00Z
-#&gt; 23     183     237            20            2    FALSE 2020-01-23T20:00:00Z
-#&gt; 24     183     180            19            6    FALSE 2020-01-29T19:45:00Z
-#&gt; 25     183     245            16            6     TRUE 2020-02-01T15:00:00Z
-#&gt; 26     183     257            14            6    FALSE 2020-02-15T17:30:00Z
-#&gt; 27     183     266            19            1     TRUE 2020-02-24T20:00:00Z
-#&gt; 28     183     279            18            1    FALSE 2020-02-29T17:30:00Z
-#&gt; 29     183     286             3            6     TRUE 2020-03-07T12:30:00Z
-#&gt; 30     183     294             8            6    FALSE 2020-06-21T18:00:00Z
-#&gt; 31     183     304             7            9     TRUE 2020-06-24T19:15:00Z
-#&gt;    team_h_score team_a_score round minutes goals_scored assists clean_sheets
-#&gt; 1             4            1     1      90            1       0            0
-#&gt; 2             1            2     2      90            0       0            0
-#&gt; 3             3            1     3      90            0       0            0
-#&gt; 4             0            3     4      90            0       0            1
-#&gt; 5             3            1     5      90            0       0            0
-#&gt; 6             1            2     6      90            0       0            0
-#&gt; 7             0            1     7      90            0       0            1
-#&gt; 8             2            1     8      90            0       0            0
-#&gt; 9             1            1     9      90            0       0            0
-#&gt; 10            2            1    10      90            0       0            0
-#&gt; 11            1            2    11      90            0       0            0
-#&gt; 12            3            1    12      90            0       0            0
-#&gt; 13            1            2    13      90            0       0            0
-#&gt; 14            2            1    14      90            2       0            0
-#&gt; 15            5            2    15      90            0       0            0
-#&gt; 16            0            3    16      90            0       0            1
-#&gt; 17            2            0    17      90            0       0            1
-#&gt; 18            0            4    19      90            0       0            1
-#&gt; 19            1            0    20      90            0       0            1
-#&gt; 20            2            0    21      90            0       0            1
-#&gt; 21            0            1    22      90            0       0            1
-#&gt; 22            2            0    23      90            1       0            1
-#&gt; 23            1            2    24      90            0       0            0
-#&gt; 24            0            2    24      90            0       0            1
-#&gt; 25            4            0    25      90            0       0            1
-#&gt; 26            0            1    26      90            0       0            1
-#&gt; 27            3            2    27      90            0       0            0
-#&gt; 28            3            0    28      90            0       0            0
-#&gt; 29            2            1    29      90            0       1            0
-#&gt; 30            0            0    39      90            0       0            1
-#&gt; 31            4            0    40      90            0       1            1
-#&gt;    goals_conceded own_goals penalties_saved penalties_missed yellow_cards
-#&gt; 1               1         0               0                0            0
-#&gt; 2               1         0               0                0            0
-#&gt; 3               1         0               0                0            0
-#&gt; 4               0         0               0                0            0
-#&gt; 5               1         0               0                0            0
-#&gt; 6               1         0               0                0            0
-#&gt; 7               0         0               0                0            0
-#&gt; 8               1         0               0                0            0
-#&gt; 9               1         0               0                0            0
-#&gt; 10              1         0               0                0            0
-#&gt; 11              1         0               0                0            1
-#&gt; 12              1         0               0                0            0
-#&gt; 13              1         0               0                0            0
-#&gt; 14              1         0               0                0            0
-#&gt; 15              2         0               0                0            0
-#&gt; 16              0         0               0                0            0
-#&gt; 17              0         0               0                0            0
-#&gt; 18              0         0               0                0            0
-#&gt; 19              0         0               0                0            0
-#&gt; 20              0         0               0                0            0
-#&gt; 21              0         0               0                0            0
-#&gt; 22              0         0               0                0            0
-#&gt; 23              1         0               0                0            0
-#&gt; 24              0         0               0                0            0
-#&gt; 25              0         0               0                0            0
-#&gt; 26              0         0               0                0            0
-#&gt; 27              2         0               0                0            0
-#&gt; 28              3         0               0                0            0
-#&gt; 29              1         0               0                0            0
-#&gt; 30              0         0               0                0            0
-#&gt; 31              0         0               0                0            0
-#&gt;    red_cards saves bonus bps influence creativity threat ict_index value
-#&gt; 1          0     0     0  27      52.4        0.8   21.0       7.4    65
-#&gt; 2          0     0     0  16      30.8        1.1    2.0       3.4    65
-#&gt; 3          0     0     0   7      11.0        0.8   20.0       3.2    65
-#&gt; 4          0     0     1  27      20.8        1.0    2.0       2.4    65
-#&gt; 5          0     0     0  17      24.4        4.5   29.0       5.8    65
-#&gt; 6          0     0     0  13      14.2        0.5    0.0       1.5    65
-#&gt; 7          0     0     2  29      31.0       14.1    2.0       4.7    65
-#&gt; 8          0     0     0  18      17.0        3.4    4.0       2.4    65
-#&gt; 9          0     0     0  13      16.4        1.3    0.0       1.8    65
-#&gt; 10         0     0     0  14      16.4        2.6   17.0       3.6    65
-#&gt; 11         0     0     0  10      18.0       11.8    4.0       3.4    65
-#&gt; 12         0     0     0  15      28.4        0.1    2.0       3.1    64
-#&gt; 13         0     0     0  15      23.0        4.7   56.0       8.4    64
-#&gt; 14         0     0     3  42      80.6        3.7   36.0      12.0    64
-#&gt; 15         0     0     0  15      18.0        0.3    0.0       1.8    64
-#&gt; 16         0     0     0  27      22.6        2.1    0.0       2.5    64
-#&gt; 17         0     0     1  27      16.2        5.0    0.0       2.1    64
-#&gt; 18         0     0     0  22      12.6        1.3    0.0       1.4    64
-#&gt; 19         0     0     0  29      18.8        1.3    0.0       2.0    64
-#&gt; 20         0     0     1  31      30.0        1.4    0.0       3.1    64
-#&gt; 21         0     0     0  22      23.4        0.9   33.0       5.7    64
-#&gt; 22         0     0     3  44      55.0        0.4   21.0       7.6    64
-#&gt; 23         0     0     0  18      19.8        0.2    2.0       2.2    64
-#&gt; 24         0     0     0  27      20.6        1.6    0.0       2.2    64
-#&gt; 25         0     0     0  23      22.0        0.4   17.0       3.9    65
-#&gt; 26         0     0     0  24       9.2        2.0   21.0       3.2    65
-#&gt; 27         0     0     0  14      24.6        2.8   44.0       7.1    65
-#&gt; 28         0     0     0  16      24.0       14.0    1.0       3.9    66
-#&gt; 29         0     0     1  29      37.8       32.1   21.0       9.1    66
-#&gt; 30         0     0     0  23      13.8        0.7   17.0       3.2    65
-#&gt; 31         0     0     0  30      14.6        6.8   22.0       4.3    65
-#&gt;    transfers_balance selected transfers_in transfers_out      playername
-#&gt; 1                  0  2725192            0             0 Virgil van Dijk
-#&gt; 2              60548  3217035       107209         46661 Virgil van Dijk
-#&gt; 3             -71028  3261181        94480        165508 Virgil van Dijk
-#&gt; 4             -62084  3306073        87396        149480 Virgil van Dijk
-#&gt; 5               6215  3401581       128944        122729 Virgil van Dijk
-#&gt; 6            -120067  3308891        32733        152800 Virgil van Dijk
-#&gt; 7            -111045  3234963        39184        150229 Virgil van Dijk
-#&gt; 8             -28162  3233186        35562         63724 Virgil van Dijk
-#&gt; 9             -72180  3185653        27864        100044 Virgil van Dijk
-#&gt; 10            -40156  3161305        24219         64375 Virgil van Dijk
-#&gt; 11           -160108  3008759        20403        180511 Virgil van Dijk
-#&gt; 12           -149272  2864573        10214        159486 Virgil van Dijk
-#&gt; 13            -72586  2821719        35815        108401 Virgil van Dijk
-#&gt; 14            -73511  2756210        18321         91832 Virgil van Dijk
-#&gt; 15             48461  2820753        60061         11600 Virgil van Dijk
-#&gt; 16             15023  2844566        52494         37471 Virgil van Dijk
-#&gt; 17             34448  2898864        68807         34359 Virgil van Dijk
-#&gt; 18             17629  2852799        46904         29275 Virgil van Dijk
-#&gt; 19              3931  2866541        48470         44539 Virgil van Dijk
-#&gt; 20             31116  2909838        82103         50987 Virgil van Dijk
-#&gt; 21             -1951  2922685        56997         58948 Virgil van Dijk
-#&gt; 22             24370  2959715        70071         45701 Virgil van Dijk
-#&gt; 23            197071  3177803       222215         25144 Virgil van Dijk
-#&gt; 24            197071  3177803       222215         25144 Virgil van Dijk
-#&gt; 25             80533  3265907       121745         41212 Virgil van Dijk
-#&gt; 26             37865  3308961        73854         35989 Virgil van Dijk
-#&gt; 27             30036  3350597        59837         29801 Virgil van Dijk
-#&gt; 28            -16357  3323775        30707         47064 Virgil van Dijk
-#&gt; 29            -44047  3291071        26563         70610 Virgil van Dijk
-#&gt; 30            -76296  3249515       132396        208692 Virgil van Dijk
-#&gt; 31             31356  3309746        55153         23797 Virgil van Dijk
-#&gt;  [ reached 'max' / getOption("max.print") -- omitted 7 rows ]</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_player_details</span>(<span class='fl'>300</span>)</div><div class='output co'>#&gt;   playername
+#&gt; 1  Luke Shaw</div><div class='input'>
+<span class='fu'>get_player_details</span>(<span class='kw'>name</span><span class='kw'>=</span><span class='st'>"Virgil van Dijk"</span>)</div><div class='output co'>#&gt;   element fixture opponent_team total_points was_home         kickoff_time
+#&gt; 1     250       3            10            7     TRUE 2020-09-12T16:30:00Z
+#&gt;   team_h_score team_a_score round minutes goals_scored assists clean_sheets
+#&gt; 1            4            3     1      90            1       0            0
+#&gt;   goals_conceded own_goals penalties_saved penalties_missed yellow_cards
+#&gt; 1              3         0               0                0            0
+#&gt;   red_cards saves bonus bps influence creativity threat ict_index value
+#&gt; 1         0     0     0  19      37.6        0.8   37.0       7.5    65
+#&gt;   transfers_balance selected transfers_in transfers_out      playername
+#&gt; 1                 0  1528505            0             0 Virgil van Dijk</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

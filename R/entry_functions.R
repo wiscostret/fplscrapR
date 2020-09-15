@@ -3,7 +3,7 @@
 #' get_entry
 #'
 #' This function fetches detailed information for a Fantasy Premier League entry given the entry ID(s).
-#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/entry/XXXXXX/history.
 #' @keywords entry
 #' @export
 #' @examples
@@ -23,7 +23,7 @@ get_entry <- function(entryid = NULL){
 #' get_entry_hist
 #'
 #' This function fetches historical statistics for a Fantasy Premier League entry given the entry ID(s).
-#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history. You can list multiple, e.g. with c().
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/entry/XXXXXX/history. You can list multiple, e.g. with c().
 #' @keywords entry
 #' @export
 #' @examples
@@ -48,7 +48,7 @@ get_entry_hist <- function(entryid = NULL){
 #' get_entry_season
 #'
 #' This function fetches in-season statistics for a Fantasy Premier League entry given the entry ID(s).
-#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history. You can list multiple, e.g. with c().
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/entry/XXXXXX/history. You can list multiple, e.g. with c().
 #' @keywords entry
 #' @export
 #' @examples
@@ -72,7 +72,7 @@ get_entry_season <- function(entryid = NULL){
 #' get_entry_picks
 #'
 #' This function fetches player picks for a Fantasy Premier League entry given the entry ID and GW.
-#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param entryid The entry ID. Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/entry/XXXXXX/history.
 #' @param gw The GW for which player picks is requested.
 #' @keywords entry
 #' @export
@@ -94,7 +94,7 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
 #' get_entry_player_picks()
 #'
 #' This function fetches player picks for a Fantasy Premier League entry given the entry ID(s) and GW(s).
-#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/entry/XXXXXX/history.
 #' @param gw The gameweek(s) for which player picks are requested.
 #' @keywords entry
 #' @export
@@ -104,7 +104,7 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
 get_entry_player_picks <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
   if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
-  
+
   picks3 <- data.frame()
   for (j in 1:length(entryid)) {
     picks2 <- data.frame()
@@ -113,20 +113,20 @@ get_entry_player_picks <- function(entryid = NULL, gw = NULL){
     for (i in 1:length(gw_thisentry)) {
       picks_list <- jsonlite::fromJSON(paste("https://fantasy.premierleague.com/api/entry/",entryid[j],"/event/",gw_thisentry[i],"/picks","/",sep=""))
       picks <- picks_list$picks
-    
+
       picks$event <- gw_thisentry[i]
       picks2 <- rbind(picks2, picks)
     }
     picks2$entry <- entryid[j]
     picks3 <- rbind(picks3, picks2)
   }
-  
+
   player_names <- get_player_name(unique(picks3$element))
   picks3 <- merge(player_names, picks3, by.x = "id", by.y = "element")
   names(picks3) <- c("id", "playername", "position", "multiplier", "is_captain", "is_vice_captain", "event", "entry")
-  
+
   picks3 <- picks3[order(picks3$entry, picks3$event), ]
-  
+
   return(picks3)
 }
 
@@ -135,7 +135,7 @@ get_entry_player_picks <- function(entryid = NULL, gw = NULL){
 #' get_entry_captain
 #'
 #' This function fetches captain information for a Fantasy Premier League entry given the entry ID(s) and GW(s).
-#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/a/entry/XXXXXX/history.
+#' @param entryid The entry ID(s). Can be found on the FPL website under 'Gameweek history' in the URL - https://fantasy.premierleague.com/entry/XXXXXX/history.
 #' @param gw The gameweek(s) for which captain is requested.
 #' @keywords entry
 #' @export
@@ -145,7 +145,7 @@ get_entry_player_picks <- function(entryid = NULL, gw = NULL){
 get_entry_captain <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
   if(is.null(gw)) stop("You'll need to input a gameweek, mate.")
-  
+
   captain3 <- data.frame()
   for (j in 1:length(entryid)) {
     captain2 <- data.frame()
@@ -163,12 +163,12 @@ get_entry_captain <- function(entryid = NULL, gw = NULL){
     captain2$entry <- entryid[j]
     captain3 <- rbind(captain3, captain2)
   }
-  
+
   player_names <- get_player_name(unique(captain3$captain))
   captain3 <- merge(captain3, player_names, by = "id")
   captain3 <- captain3[c(1, 4, 3, 2)]
   names(captain3) <- c("id", "playername", "entry", "event")
   captain3 <- captain3[order(captain3$entry,captain3$event), ]
-  
+
   return(captain3)
 }

@@ -1,7 +1,7 @@
 Package: fplscrapR
 Type: Package
 Title: Easy compiling of Fantasy Premier League data in R
-Version: 0.2.0
+Version: 0.2.5
 Author: person("Rasmus", "Wiscostretford", email = "wiscostretford@gmail.com", role = c("aut", "cre"))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: This package enables those interested in Fantasy Premier League to perform detailed data analysis of the game, using the FPL's JSON API. The fplscrapR functions help R users collect and parse data from the Official Fantasy Premier League website.
