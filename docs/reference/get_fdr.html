@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -205,87 +205,87 @@
     <pre class="examples"><div class='input'><span class='fu'>get_fdr</span>()</div><div class='output co'>#&gt;    code draw form id loss           name played points position short_name
 #&gt; 1     3    0   NA  1    0        Arsenal      0      0        0        ARS
 #&gt; 2     7    0   NA  2    0    Aston Villa      0      0        0        AVL
-#&gt; 3    36    0   NA  3    0       Brighton      0      0        0        BHA
-#&gt; 4    90    0   NA  4    0        Burnley      0      0        0        BUR
-#&gt; 5     8    0   NA  5    0        Chelsea      0      0        0        CHE
-#&gt; 6    31    0   NA  6    0 Crystal Palace      0      0        0        CRY
-#&gt; 7    11    0   NA  7    0        Everton      0      0        0        EVE
-#&gt; 8    54    0   NA  8    0         Fulham      0      0        0        FUL
+#&gt; 3    94    0   NA  3    0      Brentford      0      0        0        BRE
+#&gt; 4    36    0   NA  4    0       Brighton      0      0        0        BHA
+#&gt; 5    90    0   NA  5    0        Burnley      0      0        0        BUR
+#&gt; 6     8    0   NA  6    0        Chelsea      0      0        0        CHE
+#&gt; 7    31    0   NA  7    0 Crystal Palace      0      0        0        CRY
+#&gt; 8    11    0   NA  8    0        Everton      0      0        0        EVE
 #&gt; 9    13    0   NA  9    0      Leicester      0      0        0        LEI
 #&gt; 10    2    0   NA 10    0          Leeds      0      0        0        LEE
 #&gt; 11   14    0   NA 11    0      Liverpool      0      0        0        LIV
 #&gt; 12   43    0   NA 12    0       Man City      0      0        0        MCI
 #&gt; 13    1    0   NA 13    0        Man Utd      0      0        0        MUN
 #&gt; 14    4    0   NA 14    0      Newcastle      0      0        0        NEW
-#&gt; 15   49    0   NA 15    0  Sheffield Utd      0      0        0        SHU
+#&gt; 15   45    0   NA 15    0        Norwich      0      0        0        NOR
 #&gt; 16   20    0   NA 16    0    Southampton      0      0        0        SOU
 #&gt; 17    6    0   NA 17    0          Spurs      0      0        0        TOT
-#&gt; 18   35    0   NA 18    0      West Brom      0      0        0        WBA
+#&gt; 18   57    0   NA 18    0        Watford      0      0        0        WAT
 #&gt; 19   21    0   NA 19    0       West Ham      0      0        0        WHU
 #&gt; 20   39    0   NA 20    0         Wolves      0      0        0        WOL
 #&gt;    strength team_division unavailable win strength_overall_home
-#&gt; 1         4            NA       FALSE   0                  1190
-#&gt; 2         2            NA       FALSE   0                  1050
-#&gt; 3         2            NA       FALSE   0                  1070
-#&gt; 4         3            NA       FALSE   0                  1140
-#&gt; 5         4            NA       FALSE   0                  1200
-#&gt; 6         3            NA       FALSE   0                  1080
-#&gt; 7         3            NA       FALSE   0                  1100
-#&gt; 8         2            NA       FALSE   0                  1000
-#&gt; 9         4            NA       FALSE   0                  1180
-#&gt; 10        2            NA       FALSE   0                  1030
-#&gt; 11        5            NA       FALSE   0                  1320
-#&gt; 12        5            NA       FALSE   0                  1310
+#&gt; 1         4            NA       FALSE   0                  1200
+#&gt; 2         3            NA       FALSE   0                  1100
+#&gt; 3         2            NA       FALSE   0                  1010
+#&gt; 4         3            NA       FALSE   0                  1100
+#&gt; 5         2            NA       FALSE   0                  1060
+#&gt; 6         4            NA       FALSE   0                  1250
+#&gt; 7         3            NA       FALSE   0                  1090
+#&gt; 8         3            NA       FALSE   0                  1250
+#&gt; 9         4            NA       FALSE   0                  1240
+#&gt; 10        3            NA       FALSE   0                  1160
+#&gt; 11        4            NA       FALSE   0                  1250
+#&gt; 12        5            NA       FALSE   0                  1340
 #&gt; 13        4            NA       FALSE   0                  1250
-#&gt; 14        3            NA       FALSE   0                  1090
-#&gt; 15        3            NA       FALSE   0                  1170
-#&gt; 16        3            NA       FALSE   0                  1150
-#&gt; 17        4            NA       FALSE   0                  1200
+#&gt; 14        2            NA       FALSE   0                  1050
+#&gt; 15        2            NA       FALSE   0                  1020
+#&gt; 16        3            NA       FALSE   0                  1060
+#&gt; 17        4            NA       FALSE   0                  1190
 #&gt; 18        2            NA       FALSE   0                  1020
-#&gt; 19        3            NA       FALSE   0                  1070
-#&gt; 20        3            NA       FALSE   0                  1200
+#&gt; 19        4            NA       FALSE   0                  1150
+#&gt; 20        3            NA       FALSE   0                  1080
 #&gt;    strength_overall_away strength_attack_home strength_attack_away
-#&gt; 1                   1270                 1190                 1200
-#&gt; 2                   1080                 1010                 1080
-#&gt; 3                   1070                 1100                 1130
-#&gt; 4                   1150                 1130                 1240
-#&gt; 5                   1260                 1140                 1270
-#&gt; 6                   1070                 1080                 1190
-#&gt; 7                   1180                 1090                 1190
-#&gt; 8                   1030                 1010                 1030
-#&gt; 9                   1230                 1180                 1260
-#&gt; 10                  1040                 1040                 1070
-#&gt; 11                  1350                 1280                 1320
-#&gt; 12                  1350                 1250                 1340
-#&gt; 13                  1250                 1250                 1260
-#&gt; 14                  1120                 1040                 1170
-#&gt; 15                  1220                 1160                 1280
-#&gt; 16                  1060                 1140                 1060
-#&gt; 17                  1260                 1100                 1240
-#&gt; 18                  1030                 1030                 1030
-#&gt; 19                  1100                 1090                 1090
-#&gt; 20                  1190                 1230                 1250
+#&gt; 1                   1250                 1130                 1150
+#&gt; 2                   1160                 1120                 1140
+#&gt; 3                   1020                 1020                 1030
+#&gt; 4                   1130                 1150                 1190
+#&gt; 5                   1070                 1040                 1090
+#&gt; 6                   1280                 1260                 1300
+#&gt; 7                   1090                 1030                 1120
+#&gt; 8                   1130                 1130                 1100
+#&gt; 9                   1180                 1190                 1150
+#&gt; 10                  1170                 1060                 1150
+#&gt; 11                  1260                 1190                 1210
+#&gt; 12                  1360                 1280                 1320
+#&gt; 13                  1320                 1250                 1280
+#&gt; 14                  1070                 1050                 1060
+#&gt; 15                  1030                 1030                 1040
+#&gt; 16                  1100                 1030                 1110
+#&gt; 17                  1250                 1130                 1170
+#&gt; 18                  1030                 1030                 1050
+#&gt; 19                  1260                 1140                 1190
+#&gt; 20                  1110                 1120                 1130
 #&gt;    strength_defence_home strength_defence_away pulse_id
-#&gt; 1                   1160                  1270        1
-#&gt; 2                   1000                  1110        2
-#&gt; 3                   1060                  1060      131
-#&gt; 4                   1050                  1170       43
-#&gt; 5                   1240                  1250        4
-#&gt; 6                   1010                  1040        6
-#&gt; 7                   1150                  1180        7
-#&gt; 8                   1000                  1050       34
-#&gt; 9                   1220                  1250       26
-#&gt; 10                   990                   990        9
-#&gt; 11                  1300                  1340       10
+#&gt; 1                   1220                  1210        1
+#&gt; 2                   1080                  1100        2
+#&gt; 3                   1020                  1030      130
+#&gt; 4                   1100                  1130      131
+#&gt; 5                   1040                  1080       43
+#&gt; 6                   1250                  1310        4
+#&gt; 7                   1010                  1020        6
+#&gt; 8                   1200                  1140        7
+#&gt; 9                   1150                  1230       26
+#&gt; 10                  1210                  1170        9
+#&gt; 11                  1300                  1230       10
 #&gt; 12                  1340                  1350       11
-#&gt; 13                  1200                  1290       12
-#&gt; 14                  1020                  1070       23
-#&gt; 15                  1010                  1150       18
-#&gt; 16                  1190                  1090       20
-#&gt; 17                  1200                  1260       21
-#&gt; 18                  1020                  1150       36
-#&gt; 19                  1040                  1210       25
-#&gt; 20                  1170                  1200       38</div></pre>
+#&gt; 13                  1240                  1310       12
+#&gt; 14                  1030                  1110       23
+#&gt; 15                  1020                  1030       14
+#&gt; 16                  1110                  1160       20
+#&gt; 17                  1250                  1290       21
+#&gt; 18                  1010                  1040       33
+#&gt; 19                  1260                  1290       25
+#&gt; 20                  1040                  1120       38</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

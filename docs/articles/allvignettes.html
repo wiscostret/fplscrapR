@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>All Vignettes</h1>
                         <h4 class="author">Rasmus Wiscostretford</h4>
             
-            <h4 class="date">2020-09-15</h4>
+            <h4 class="date">2021-08-14</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/wiscostret/fplscrapR/blob/master/vignettes/allvignettes.Rmd"><code>vignettes/allvignettes.Rmd</code></a></small>
       <div class="hidden name"><code>allvignettes.Rmd</code></div>
@@ -297,8 +297,8 @@
 <pre><code>## # A tibble: 2 x 2
 ##   team  `sum(value)`
 ##   &lt;chr&gt;        &lt;int&gt;
-## 1 away           135
-## 2 home           171</code></pre>
+## 1 away           129
+## 2 home           218</code></pre>
 <hr>
 </div>
 <div id="top-options-by-fpl-points-per-90-mins" class="section level2">
@@ -436,8 +436,9 @@
 <div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="no">goalscorerids</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">df</span>$<span class="no">a</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">element</span>,<span class="no">df</span>$<span class="no">h</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">element</span>))</pre></body></html></div>
 <p>Finally we fetch the playernames of goalscorers using get_player_name:</p>
 <div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="../reference/get_player_name.html">get_player_name</a></span>(<span class="kw">playerid</span><span class="kw">=</span><span class="no">goalscorerids</span>)</pre></body></html></div>
-<pre><code>##      playername  id
-## 1 Wilfried Zaha 141</code></pre>
+<pre><code>##           playername id
+## 1 Christian Nørgaard 77
+## 2        Sergi Canós 81</code></pre>
 <hr>
 </div>
 <div id="creating-a-simple-fixture-table" class="section level2">
@@ -503,33 +504,16 @@
 
 <span class="no">df</span>$<span class="no">leagues</span>$<span class="no">classic</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">name</span>,<span class="no">entry_last_rank</span>) <span class="co"># selecting the columns of interest here</span></pre></body></html></div>
-<pre><code>##                              name entry_last_rank
-## 1                     Aston Villa               0
-## 2                Christmas Island               0
-## 3                      Gameweek 1               0
-## 4                         Overall               0
-## 5         The Big FPL Mini League               0
-## 6              Battle Of The Ages               0
-## 7    The Fantasy King prem League               0
-## 8                      Twitter 20               0
-## 9                        The Pack               0
-## 10               Wolfpack Members               0
-## 11            FPL_Lew Mini League               0
-## 12                Wolfpack Litter               0
-## 13             Physio's League #3               0
-## 14   Always Cheating Super League               0
-## 15            Blood Sweat &amp; Beers               0
-## 16                Twitterliga 100               0
-## 17                  FPL Staffroom               0
-## 18                 2 Goals, 1 Cup               0
-## 19               The weakest link               0
-## 20    Teachers vs Students League               0
-## 21               FPL 92 Challenge               0
-## 22   League of Ordinary Gentlemen               0
-## 23    Footstock Chat Prize League               0
-## 24 ChampManFPL FPL League- 8cwb6c               0
-## 25            Heroes and Villains               0
-## 26  Fantasy Football Hub - £5,000               0</code></pre>
+<pre><code>##                             name entry_last_rank
+## 1                        Arsenal               0
+## 2                    Netherlands               0
+## 3                     Gameweek 1               0
+## 4                        Overall               0
+## 5        youtube.com/letstalkfpl               0
+## 6 @FPLHINTS (No Room for Racism)               0
+## 7               FPLSwedes league               0
+## 8             Randolph FPL 21-22               0
+## 9                    Reev League               0</code></pre>
 <hr>
 </div>
 <div id="my-expected-points" class="section level2">
@@ -553,24 +537,24 @@
 <div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(<span class="no">picks</span>,<span class="no">df</span>,<span class="kw">by</span><span class="kw">=</span><span class="st">"element"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">playername</span>,<span class="no">is_captain</span>,<span class="no">is_vice_captain</span>,<span class="no">ep_next</span>)
 
 <span class="no">df2</span></pre></body></html></div>
-<pre><code>##                                playername is_captain is_vice_captain ep_next
-## 1                           Alex McCarthy      FALSE           FALSE     1.3
-## 2                            Matt Doherty      FALSE           FALSE     3.4
-## 3                  Trent Alexander-Arnold      FALSE           FALSE     4.5
-## 4                               John Egan      FALSE           FALSE     2.6
-## 5                           Yves Bissouma      FALSE           FALSE     0.5
-## 6                           Mohamed Salah       TRUE           FALSE     4.5
-## 7               Pierre-Emerick Aubameyang      FALSE            TRUE     4.5
-## 8                             Kai Havertz      FALSE           FALSE     2.4
-## 9                               Che Adams      FALSE           FALSE     1.3
-## 10                  Dominic Calvert-Lewin      FALSE           FALSE     2.8
-## 11                            Timo Werner      FALSE           FALSE     2.3
-## 12                              Jed Steer      FALSE           FALSE     0.5
-## 13 Rúben Gonçalo Silva Nascimento Vinagre      FALSE           FALSE     0.6
-## 14                          Harrison Reed      FALSE           FALSE     1.0
-## 15                         Charlie Taylor      FALSE           FALSE     1.1</code></pre>
+<pre><code>##                       playername is_captain is_vice_captain ep_next
+## 1                 Robert Sánchez      FALSE           FALSE     2.3
+## 2                      Luke Shaw      FALSE           FALSE     3.1
+## 3         Trent Alexander-Arnold      FALSE           FALSE     5.0
+## 4          Konstantinos Tsimikas      FALSE           FALSE     2.0
+## 5                  Harvey Barnes      FALSE           FALSE     2.4
+## 6                  Mohamed Salah       TRUE           FALSE     5.0
+## 7  Bruno Miguel Borges Fernandes      FALSE            TRUE     4.4
+## 8                Mason Greenwood      FALSE           FALSE     3.0
+## 9           Raphael Dias Belloli      FALSE           FALSE     2.2
+## 10               Michail Antonio      FALSE           FALSE     2.4
+## 11                    Danny Ings      FALSE           FALSE     3.0
+## 12                    Ben Foster      FALSE           FALSE     0.5
+## 13                     Ben White      FALSE           FALSE     1.7
+## 14                   Luke Ayling      FALSE           FALSE     1.7
+## 15                  Stipe Perica      FALSE           FALSE     0.5</code></pre>
 <div class="sourceCode" id="cb51"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">df2</span>$<span class="no">ep_next</span>[<span class="fl">1</span>:<span class="fl">11</span>])</pre></body></html></div>
-<pre><code>## [1] 30.1</code></pre>
+<pre><code>## [1] 34.8</code></pre>
 <hr>
 </div>
 <div id="mohamed-salahs-points-in-each-gameweek-for-the-first-25-gameweeks" class="section level2">

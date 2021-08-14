@@ -34,6 +34,30 @@ get_player_id <- function(name = NULL){
   )
 }
 
+# get_player_ids
+
+#' get_player_ids
+#'
+#' This function fetches ids for all players.
+#' @param season To retrieve prior season data, enter a 2-digit year corresponding to the start of the historical FPL season of interest (e.g. '17' for the 2017/2018 season).
+#' @keywords player
+#' @export
+#' @examples
+#' get_player_ids()
+
+get_player_ids <- function(season = NULL){
+  ifelse(
+    is.null(season),
+    {
+      elements <- jsonlite::fromJSON("https://fantasy.premierleague.com/api/bootstrap-static/")$elements
+      elements$playername <- paste(elements$first_name,elements$second_name)
+    },
+    {
+      elements <- read.csv(paste0("https://raw.githubusercontent.com/wiscostret/histfpldata/master/getplayerinfo",season,".csv"),encoding="UTF-8")
+    })
+  return(elements %>% dplyr::select(id,playername))
+}
+
 # get_player_name
 
 #' get_player_name
@@ -193,4 +217,3 @@ get_player_details <- function(playerid = NULL, name = NULL, season = NULL){
     }
   )
 }
-

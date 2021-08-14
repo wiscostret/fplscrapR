@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>Finding the names of goalscorers in a given fixture</h1>
                         <h4 class="author">Rasmus Wiscostretford</h4>
             
-            <h4 class="date">2020-09-15</h4>
+            <h4 class="date">2021-08-14</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/wiscostret/fplscrapR/blob/master/vignettes/findgoalscorers.Rmd"><code>vignettes/findgoalscorers.Rmd</code></a></small>
       <div class="hidden name"><code>findgoalscorers.Rmd</code></div>
@@ -167,8 +167,9 @@
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">goalscorerids</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">df</span>$<span class="no">a</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">element</span>,<span class="no">df</span>$<span class="no">h</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">element</span>))</pre></body></html></div>
 <p>Finally we fetch the playernames of goalscorers using get_player_name:</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/get_player_name.html">get_player_name</a></span>(<span class="kw">playerid</span><span class="kw">=</span><span class="no">goalscorerids</span>)</pre></body></html></div>
-<pre><code>##      playername  id
-## 1 Wilfried Zaha 141</code></pre>
+<pre><code>##           playername id
+## 1 Christian Nørgaard 77
+## 2        Sergi Canós 81</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

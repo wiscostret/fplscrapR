@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>My Expected Points</h1>
                         <h4 class="author">Rasmus Wiscostretford</h4>
             
-            <h4 class="date">2020-09-15</h4>
+            <h4 class="date">2021-08-14</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/wiscostret/fplscrapR/blob/master/vignettes/myxpts.Rmd"><code>vignettes/myxpts.Rmd</code></a></small>
       <div class="hidden name"><code>myxpts.Rmd</code></div>
@@ -176,24 +176,24 @@
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">df2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(<span class="no">picks</span>,<span class="no">df</span>,<span class="kw">by</span><span class="kw">=</span><span class="st">"element"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">playername</span>,<span class="no">is_captain</span>,<span class="no">is_vice_captain</span>,<span class="no">ep_next</span>)
 
 <span class="no">df2</span></pre></body></html></div>
-<pre><code>##                                playername is_captain is_vice_captain ep_next
-## 1                           Alex McCarthy      FALSE           FALSE     1.3
-## 2                            Matt Doherty      FALSE           FALSE     3.4
-## 3                  Trent Alexander-Arnold      FALSE           FALSE     4.5
-## 4                               John Egan      FALSE           FALSE     2.6
-## 5                           Yves Bissouma      FALSE           FALSE     0.5
-## 6                           Mohamed Salah       TRUE           FALSE     4.5
-## 7               Pierre-Emerick Aubameyang      FALSE            TRUE     4.5
-## 8                             Kai Havertz      FALSE           FALSE     2.4
-## 9                               Che Adams      FALSE           FALSE     1.3
-## 10                  Dominic Calvert-Lewin      FALSE           FALSE     2.8
-## 11                            Timo Werner      FALSE           FALSE     2.3
-## 12                              Jed Steer      FALSE           FALSE     0.5
-## 13 Rúben Gonçalo Silva Nascimento Vinagre      FALSE           FALSE     0.6
-## 14                          Harrison Reed      FALSE           FALSE     1.0
-## 15                         Charlie Taylor      FALSE           FALSE     1.1</code></pre>
+<pre><code>##                       playername is_captain is_vice_captain ep_next
+## 1                 Robert Sánchez      FALSE           FALSE     2.3
+## 2                      Luke Shaw      FALSE           FALSE     3.1
+## 3         Trent Alexander-Arnold      FALSE           FALSE     5.0
+## 4          Konstantinos Tsimikas      FALSE           FALSE     2.0
+## 5                  Harvey Barnes      FALSE           FALSE     2.4
+## 6                  Mohamed Salah       TRUE           FALSE     5.0
+## 7  Bruno Miguel Borges Fernandes      FALSE            TRUE     4.4
+## 8                Mason Greenwood      FALSE           FALSE     3.0
+## 9           Raphael Dias Belloli      FALSE           FALSE     2.2
+## 10               Michail Antonio      FALSE           FALSE     2.4
+## 11                    Danny Ings      FALSE           FALSE     3.0
+## 12                    Ben Foster      FALSE           FALSE     0.5
+## 13                     Ben White      FALSE           FALSE     1.7
+## 14                   Luke Ayling      FALSE           FALSE     1.7
+## 15                  Stipe Perica      FALSE           FALSE     0.5</code></pre>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">df2</span>$<span class="no">ep_next</span>[<span class="fl">1</span>:<span class="fl">11</span>])</pre></body></html></div>
-<pre><code>## [1] 30.1</code></pre>
+<pre><code>## [1] 34.8</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

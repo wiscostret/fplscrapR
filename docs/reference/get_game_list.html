@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fplscrapR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -211,117 +211,117 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>get_game_list</span>()</div><div class='output co'>#&gt;     GW  id home team_h away team_a finished              kickoff team_h_score
-#&gt; 1   NA 379  BUR      4  MUN     13    FALSE                 &lt;NA&gt;           NA
-#&gt; 2   NA 380  MCI     12  AVL      2    FALSE                 &lt;NA&gt;           NA
-#&gt; 3    1   2  FUL      8  ARS      1     TRUE 2020-09-12T11:30:00Z            0
-#&gt; 4    1   1  CRY      6  SOU     16     TRUE 2020-09-12T14:00:00Z            1
-#&gt; 5    1   3  LIV     11  LEE     10     TRUE 2020-09-12T16:30:00Z            4
-#&gt; 6    1   6  WHU     19  NEW     14     TRUE 2020-09-12T19:00:00Z            0
-#&gt; 7    1   5  WBA     18  LEI      9     TRUE 2020-09-13T13:00:00Z            0
-#&gt; 8    1   4  TOT     17  EVE      7     TRUE 2020-09-13T15:30:00Z            0
-#&gt; 9    1   8  SHU     15  WOL     20     TRUE 2020-09-14T17:00:00Z            0
-#&gt; 10   1   7  BHA      3  CHE      5     TRUE 2020-09-14T19:15:00Z            1
-#&gt; 11   2  12  EVE      7  WBA     18    FALSE 2020-09-19T11:30:00Z           NA
-#&gt; 12   2  13  LEE     10  FUL      8    FALSE 2020-09-19T14:00:00Z           NA
-#&gt; 13   2  15  MUN     13  CRY      6    FALSE 2020-09-19T16:30:00Z           NA
-#&gt; 14   2   9  ARS      1  WHU     19    FALSE 2020-09-19T19:00:00Z           NA
-#&gt; 15   2  17  SOU     16  TOT     17    FALSE 2020-09-20T11:00:00Z           NA
-#&gt; 16   2  16  NEW     14  BHA      3    FALSE 2020-09-20T13:00:00Z           NA
-#&gt; 17   2  11  CHE      5  LIV     11    FALSE 2020-09-20T15:30:00Z           NA
-#&gt; 18   2  14  LEI      9  BUR      4    FALSE 2020-09-20T18:00:00Z           NA
-#&gt; 19   2  10  AVL      2  SHU     15    FALSE 2020-09-21T17:00:00Z           NA
-#&gt; 20   2  18  WOL     20  MCI     12    FALSE 2020-09-21T19:15:00Z           NA
-#&gt; 21   3  19  BHA      3  MUN     13    FALSE 2020-09-26T11:30:00Z           NA
-#&gt; 22   3  21  CRY      6  EVE      7    FALSE 2020-09-26T14:00:00Z           NA
-#&gt; 23   3  27  WBA     18  CHE      5    FALSE 2020-09-26T16:30:00Z           NA
-#&gt; 24   3  20  BUR      4  SOU     16    FALSE 2020-09-26T19:00:00Z           NA
-#&gt; 25   3  25  SHU     15  LEE     10    FALSE 2020-09-27T11:00:00Z           NA
-#&gt; 26   3  26  TOT     17  NEW     14    FALSE 2020-09-27T13:00:00Z           NA
-#&gt; 27   3  24  MCI     12  LEI      9    FALSE 2020-09-27T15:30:00Z           NA
-#&gt; 28   3  28  WHU     19  WOL     20    FALSE 2020-09-27T18:00:00Z           NA
-#&gt; 29   3  22  FUL      8  AVL      2    FALSE 2020-09-28T17:00:00Z           NA
-#&gt; 30   3  23  LIV     11  ARS      1    FALSE 2020-09-28T19:15:00Z           NA
-#&gt; 31   4  29  ARS      1  SHU     15    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 32   4  30  AVL      2  LIV     11    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 33   4  31  CHE      5  CRY      6    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 34   4  32  EVE      7  BHA      3    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 35   4  33  LEE     10  MCI     12    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 36   4  34  LEI      9  WHU     19    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 37   4  35  MUN     13  TOT     17    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 38   4  36  NEW     14  BUR      4    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 39   4  37  SOU     16  WBA     18    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 40   4  38  WOL     20  FUL      8    FALSE 2020-10-03T14:00:00Z           NA
-#&gt; 41   5  39  CHE      5  SOU     16    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 42   5  40  CRY      6  BHA      3    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 43   5  41  EVE      7  LIV     11    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 44   5  42  LEE     10  WOL     20    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 45   5  43  LEI      9  AVL      2    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 46   5  44  MCI     12  ARS      1    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 47   5  45  NEW     14  MUN     13    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 48   5  46  SHU     15  FUL      8    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 49   5  47  TOT     17  WHU     19    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 50   5  48  WBA     18  BUR      4    FALSE 2020-10-17T14:00:00Z           NA
-#&gt; 51   6  49  ARS      1  LEI      9    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 52   6  50  AVL      2  LEE     10    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 53   6  51  BHA      3  WBA     18    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 54   6  52  BUR      4  TOT     17    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 55   6  53  FUL      8  CRY      6    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 56   6  54  LIV     11  SHU     15    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 57   6  55  MUN     13  CHE      5    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 58   6  56  SOU     16  EVE      7    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 59   6  57  WHU     19  MCI     12    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 60   6  58  WOL     20  NEW     14    FALSE 2020-10-24T14:00:00Z           NA
-#&gt; 61   7  59  AVL      2  SOU     16    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 62   7  60  BUR      4  CHE      5    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 63   7  61  FUL      8  WBA     18    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 64   7  62  LEE     10  LEI      9    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 65   7  63  LIV     11  WHU     19    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 66   7  64  MUN     13  ARS      1    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 67   7  65  NEW     14  EVE      7    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 68   7  66  SHU     15  MCI     12    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 69   7  67  TOT     17  BHA      3    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 70   7  68  WOL     20  CRY      6    FALSE 2020-10-31T15:00:00Z           NA
-#&gt; 71   8  69  ARS      1  AVL      2    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 72   8  70  BHA      3  BUR      4    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 73   8  71  CHE      5  SHU     15    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 74   8  72  CRY      6  LEE     10    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 75   8  73  EVE      7  MUN     13    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 76   8  74  LEI      9  WOL     20    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 77   8  75  MCI     12  LIV     11    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 78   8  76  SOU     16  NEW     14    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 79   8  77  WBA     18  TOT     17    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 80   8  78  WHU     19  FUL      8    FALSE 2020-11-07T15:00:00Z           NA
-#&gt; 81   9  79  AVL      2  BHA      3    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 82   9  80  BUR      4  CRY      6    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 83   9  81  FUL      8  EVE      7    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 84   9  82  LEE     10  ARS      1    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 85   9  83  LIV     11  LEI      9    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 86   9  84  MUN     13  WBA     18    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 87   9  85  NEW     14  CHE      5    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 88   9  86  SHU     15  WHU     19    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 89   9  87  TOT     17  MCI     12    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 90   9  88  WOL     20  SOU     16    FALSE 2020-11-21T15:00:00Z           NA
-#&gt; 91  10  89  ARS      1  WOL     20    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 92  10  90  BHA      3  LIV     11    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 93  10  91  CHE      5  TOT     17    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 94  10  92  CRY      6  NEW     14    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 95  10  93  EVE      7  LEE     10    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 96  10  94  LEI      9  FUL      8    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 97  10  95  MCI     12  BUR      4    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 98  10  96  SOU     16  MUN     13    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 99  10  97  WBA     18  SHU     15    FALSE 2020-11-28T15:00:00Z           NA
-#&gt; 100 10  98  WHU     19  AVL      2    FALSE 2020-11-28T15:00:00Z           NA
+#&gt; 1    1   1  BRE      3  ARS      1     TRUE 2021-08-13T19:00:00Z            2
+#&gt; 2    1   6  MUN     13  LEE     10    FALSE 2021-08-14T11:30:00Z           NA
+#&gt; 3    1   2  BUR      5  BHA      4    FALSE 2021-08-14T14:00:00Z           NA
+#&gt; 4    1   3  CHE      6  CRY      7    FALSE 2021-08-14T14:00:00Z           NA
+#&gt; 5    1   4  EVE      8  SOU     16    FALSE 2021-08-14T14:00:00Z           NA
+#&gt; 6    1   5  LEI      9  WOL     20    FALSE 2021-08-14T14:00:00Z           NA
+#&gt; 7    1   8  WAT     18  AVL      2    FALSE 2021-08-14T14:00:00Z           NA
+#&gt; 8    1   7  NOR     15  LIV     11    FALSE 2021-08-14T16:30:00Z           NA
+#&gt; 9    1   9  NEW     14  WHU     19    FALSE 2021-08-15T13:00:00Z           NA
+#&gt; 10   1  10  TOT     17  MCI     12    FALSE 2021-08-15T15:30:00Z           NA
+#&gt; 11   2  15  LIV     11  BUR      5    FALSE 2021-08-21T11:30:00Z           NA
+#&gt; 12   2  11  AVL      2  NEW     14    FALSE 2021-08-21T14:00:00Z           NA
+#&gt; 13   2  13  CRY      7  BRE      3    FALSE 2021-08-21T14:00:00Z           NA
+#&gt; 14   2  14  LEE     10  EVE      8    FALSE 2021-08-21T14:00:00Z           NA
+#&gt; 15   2  16  MCI     12  NOR     15    FALSE 2021-08-21T14:00:00Z           NA
+#&gt; 16   2  12  BHA      4  WAT     18    FALSE 2021-08-21T16:30:00Z           NA
+#&gt; 17   2  19  SOU     16  MUN     13    FALSE 2021-08-22T13:00:00Z           NA
+#&gt; 18   2  17  WOL     20  TOT     17    FALSE 2021-08-22T13:00:00Z           NA
+#&gt; 19   2  18  ARS      1  CHE      6    FALSE 2021-08-22T15:30:00Z           NA
+#&gt; 20   2  20  WHU     19  LEI      9    FALSE 2021-08-23T19:00:00Z           NA
+#&gt; 21   3  24  MCI     12  ARS      1    FALSE 2021-08-28T11:30:00Z           NA
+#&gt; 22   3  21  AVL      2  BRE      3    FALSE 2021-08-28T14:00:00Z           NA
+#&gt; 23   3  22  BHA      4  EVE      8    FALSE 2021-08-28T14:00:00Z           NA
+#&gt; 24   3  25  NEW     14  SOU     16    FALSE 2021-08-28T14:00:00Z           NA
+#&gt; 25   3  26  NOR     15  LEI      9    FALSE 2021-08-28T14:00:00Z           NA
+#&gt; 26   3  28  WHU     19  CRY      7    FALSE 2021-08-28T14:00:00Z           NA
+#&gt; 27   3  23  LIV     11  CHE      6    FALSE 2021-08-28T16:30:00Z           NA
+#&gt; 28   3  29  BUR      5  LEE     10    FALSE 2021-08-29T13:00:00Z           NA
+#&gt; 29   3  27  TOT     17  WAT     18    FALSE 2021-08-29T13:00:00Z           NA
+#&gt; 30   3  30  WOL     20  MUN     13    FALSE 2021-08-29T15:30:00Z           NA
+#&gt; 31   4  34  CRY      7  TOT     17    FALSE 2021-09-11T11:30:00Z           NA
+#&gt; 32   4  31  ARS      1  NOR     15    FALSE 2021-09-11T14:00:00Z           NA
+#&gt; 33   4  32  BRE      3  BHA      4    FALSE 2021-09-11T14:00:00Z           NA
+#&gt; 34   4  37  LEI      9  MCI     12    FALSE 2021-09-11T14:00:00Z           NA
+#&gt; 35   4  38  MUN     13  NEW     14    FALSE 2021-09-11T14:00:00Z           NA
+#&gt; 36   4  39  SOU     16  WHU     19    FALSE 2021-09-11T14:00:00Z           NA
+#&gt; 37   4  40  WAT     18  WOL     20    FALSE 2021-09-11T14:00:00Z           NA
+#&gt; 38   4  33  CHE      6  AVL      2    FALSE 2021-09-11T16:30:00Z           NA
+#&gt; 39   4  36  LEE     10  LIV     11    FALSE 2021-09-12T15:30:00Z           NA
+#&gt; 40   4  35  EVE      8  BUR      5    FALSE 2021-09-13T19:00:00Z           NA
+#&gt; 41   5  46  NEW     14  LEE     10    FALSE 2021-09-17T19:00:00Z           NA
+#&gt; 42   5  50  WOL     20  BRE      3    FALSE 2021-09-18T11:30:00Z           NA
+#&gt; 43   5  43  BUR      5  ARS      1    FALSE 2021-09-18T14:00:00Z           NA
+#&gt; 44   5  44  LIV     11  CRY      7    FALSE 2021-09-18T14:00:00Z           NA
+#&gt; 45   5  45  MCI     12  SOU     16    FALSE 2021-09-18T14:00:00Z           NA
+#&gt; 46   5  47  NOR     15  WAT     18    FALSE 2021-09-18T14:00:00Z           NA
+#&gt; 47   5  41  AVL      2  EVE      8    FALSE 2021-09-18T16:30:00Z           NA
+#&gt; 48   5  42  BHA      4  LEI      9    FALSE 2021-09-19T13:00:00Z           NA
+#&gt; 49   5  49  WHU     19  MUN     13    FALSE 2021-09-19T13:00:00Z           NA
+#&gt; 50   5  48  TOT     17  CHE      6    FALSE 2021-09-19T15:30:00Z           NA
+#&gt; 51   6  53  CHE      6  MCI     12    FALSE 2021-09-25T11:30:00Z           NA
+#&gt; 52   6  55  EVE      8  NOR     15    FALSE 2021-09-25T14:00:00Z           NA
+#&gt; 53   6  56  LEE     10  WHU     19    FALSE 2021-09-25T14:00:00Z           NA
+#&gt; 54   6  57  LEI      9  BUR      5    FALSE 2021-09-25T14:00:00Z           NA
+#&gt; 55   6  58  MUN     13  AVL      2    FALSE 2021-09-25T14:00:00Z           NA
+#&gt; 56   6  60  WAT     18  NEW     14    FALSE 2021-09-25T14:00:00Z           NA
+#&gt; 57   6  52  BRE      3  LIV     11    FALSE 2021-09-25T16:30:00Z           NA
+#&gt; 58   6  59  SOU     16  WOL     20    FALSE 2021-09-26T13:00:00Z           NA
+#&gt; 59   6  51  ARS      1  TOT     17    FALSE 2021-09-26T15:30:00Z           NA
+#&gt; 60   6  54  CRY      7  BHA      4    FALSE 2021-09-27T19:00:00Z           NA
+#&gt; 61   7  67  MUN     13  EVE      8    FALSE 2021-10-02T11:30:00Z           NA
+#&gt; 62   7  62  BUR      5  NOR     15    FALSE 2021-10-02T14:00:00Z           NA
+#&gt; 63   7  63  CHE      6  SOU     16    FALSE 2021-10-02T14:00:00Z           NA
+#&gt; 64   7  65  LEE     10  WAT     18    FALSE 2021-10-02T14:00:00Z           NA
+#&gt; 65   7  68  TOT     17  AVL      2    FALSE 2021-10-02T14:00:00Z           NA
+#&gt; 66   7  70  WOL     20  NEW     14    FALSE 2021-10-02T14:00:00Z           NA
+#&gt; 67   7  61  BHA      4  ARS      1    FALSE 2021-10-02T16:30:00Z           NA
+#&gt; 68   7  64  CRY      7  LEI      9    FALSE 2021-10-03T13:00:00Z           NA
+#&gt; 69   7  69  WHU     19  BRE      3    FALSE 2021-10-03T13:00:00Z           NA
+#&gt; 70   7  66  LIV     11  MCI     12    FALSE 2021-10-03T15:30:00Z           NA
+#&gt; 71   8  80  WAT     18  LIV     11    FALSE 2021-10-16T11:30:00Z           NA
+#&gt; 72   8  72  AVL      2  WOL     20    FALSE 2021-10-16T14:00:00Z           NA
+#&gt; 73   8  75  LEI      9  MUN     13    FALSE 2021-10-16T14:00:00Z           NA
+#&gt; 74   8  76  MCI     12  BUR      5    FALSE 2021-10-16T14:00:00Z           NA
+#&gt; 75   8  78  NOR     15  BHA      4    FALSE 2021-10-16T14:00:00Z           NA
+#&gt; 76   8  79  SOU     16  LEE     10    FALSE 2021-10-16T14:00:00Z           NA
+#&gt; 77   8  73  BRE      3  CHE      6    FALSE 2021-10-16T16:30:00Z           NA
+#&gt; 78   8  74  EVE      8  WHU     19    FALSE 2021-10-17T13:00:00Z           NA
+#&gt; 79   8  77  NEW     14  TOT     17    FALSE 2021-10-17T15:30:00Z           NA
+#&gt; 80   8  71  ARS      1  CRY      7    FALSE 2021-10-18T19:00:00Z           NA
+#&gt; 81   9  81  ARS      1  AVL      2    FALSE 2021-10-22T19:00:00Z           NA
+#&gt; 82   9  84  CHE      6  NOR     15    FALSE 2021-10-23T11:30:00Z           NA
+#&gt; 83   9  85  CRY      7  NEW     14    FALSE 2021-10-23T14:00:00Z           NA
+#&gt; 84   9  86  EVE      8  WAT     18    FALSE 2021-10-23T14:00:00Z           NA
+#&gt; 85   9  87  LEE     10  WOL     20    FALSE 2021-10-23T14:00:00Z           NA
+#&gt; 86   9  89  SOU     16  BUR      5    FALSE 2021-10-23T14:00:00Z           NA
+#&gt; 87   9  83  BHA      4  MCI     12    FALSE 2021-10-23T16:30:00Z           NA
+#&gt; 88   9  82  BRE      3  LEI      9    FALSE 2021-10-24T13:00:00Z           NA
+#&gt; 89   9  90  WHU     19  TOT     17    FALSE 2021-10-24T13:00:00Z           NA
+#&gt; 90   9  88  MUN     13  LIV     11    FALSE 2021-10-24T15:30:00Z           NA
+#&gt; 91  10  93  LEI      9  ARS      1    FALSE 2021-10-30T11:30:00Z           NA
+#&gt; 92  10  92  BUR      5  BRE      3    FALSE 2021-10-30T14:00:00Z           NA
+#&gt; 93  10  94  LIV     11  BHA      4    FALSE 2021-10-30T14:00:00Z           NA
+#&gt; 94  10  95  MCI     12  CRY      7    FALSE 2021-10-30T14:00:00Z           NA
+#&gt; 95  10  96  NEW     14  CHE      6    FALSE 2021-10-30T14:00:00Z           NA
+#&gt; 96  10  99  WAT     18  SOU     16    FALSE 2021-10-30T14:00:00Z           NA
+#&gt; 97  10  98  TOT     17  MUN     13    FALSE 2021-10-30T16:30:00Z           NA
+#&gt; 98  10  97  NOR     15  LEE     10    FALSE 2021-10-31T14:00:00Z           NA
+#&gt; 99  10  91  AVL      2  WHU     19    FALSE 2021-10-31T16:30:00Z           NA
+#&gt; 100 10 100  WOL     20  EVE      8    FALSE 2021-11-01T20:00:00Z           NA
 #&gt;     team_a_score
-#&gt; 1             NA
+#&gt; 1              0
 #&gt; 2             NA
-#&gt; 3              3
-#&gt; 4              0
-#&gt; 5              3
-#&gt; 6              2
-#&gt; 7              3
-#&gt; 8              1
-#&gt; 9              2
-#&gt; 10             3
+#&gt; 3             NA
+#&gt; 4             NA
+#&gt; 5             NA
+#&gt; 6             NA
+#&gt; 7             NA
+#&gt; 8             NA
+#&gt; 9             NA
+#&gt; 10            NA
 #&gt; 11            NA
 #&gt; 12            NA
 #&gt; 13            NA

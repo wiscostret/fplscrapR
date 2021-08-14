@@ -99,7 +99,7 @@ get_entry_picks <- function(entryid = NULL, gw = NULL){
 #' @keywords entry
 #' @export
 #' @examples
-#' get_entry_player_picks(1076,5)
+#' get_entry_player_picks(1076,1)
 
 get_entry_player_picks <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
@@ -140,7 +140,7 @@ get_entry_player_picks <- function(entryid = NULL, gw = NULL){
 #' @keywords entry
 #' @export
 #' @examples
-#' get_entry_captain(1076,5)
+#' get_entry_captain(1076,1)
 
 get_entry_captain <- function(entryid = NULL, gw = NULL){
   if(is.null(entryid)) stop("You'll need to input an entry ID, mate.")
