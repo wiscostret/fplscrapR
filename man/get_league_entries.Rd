@@ -14,6 +14,6 @@ get_league_entries(leagueid = NULL, leaguetype = "classic", pages = 1)
 \item{pages}{The number of pages of entries to fetch (there are 50 entries on each page)}
 }
 \description{
-This function fetches a list of entries in the standings for a Fantasy Premier League mini-league given the league ID and type. In the new FPL API for 19/20, this information requires authentication - so you'll be prompted to post your FPL login and password to retrieve the data.
+This function fetches a list of entries in the standings for a Fantasy Premier League mini-league given the league ID and type.
 }
 \keyword{league}

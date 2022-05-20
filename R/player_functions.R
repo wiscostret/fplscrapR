@@ -1,7 +1,6 @@
 # imports
 #' @import jsonlite
 #' @import dplyr
-#' @import curl
 #' @import getPass
 #' @importFrom plyr rbind.fill
 

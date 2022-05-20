@@ -15,6 +15,6 @@ get_entry_player_picks(entryid = NULL, gw = NULL)
 This function fetches player picks for a Fantasy Premier League entry given the entry ID(s) and GW(s).
 }
 \examples{
-get_entry_player_picks(1076,5)
+get_entry_player_picks(1076,1)
 }
 \keyword{entry}
